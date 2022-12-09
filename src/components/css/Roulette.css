@@ -1,6 +1,7 @@
 .rouletter {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 74.5px);
+  background-color: #fff;
 }
 
 .rouletter-bg {
