@@ -5,7 +5,7 @@ import "../css/Main.css";
 function Main() {
   return (
     <Container className="main-container">
-      <h2>어떤 식당을 찾고 계세요?</h2>
+      <h2 style={{ padding: '0' }}>어떤 식당을 찾고 계세요?</h2>
       {/* <Row className="main-flex">
       </Row> */}
       <Row className="main-flex">
