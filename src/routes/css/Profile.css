@@ -1,0 +1,58 @@
+.profile-img {
+  border-radius: 50%;
+}
+
+.profile-nickname {
+  display: flex;
+}
+
+.profile-nickname div {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.profile-nickname span {
+  font-size: 16px;
+  color: grey
+}
+
+.profile-btn {
+  width: 100%;
+  border-radius: 5px;
+  height: 38px;
+  border: 0;
+  outline: 0;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  background: lightgrey;
+}
+
+.profile-manner {
+  height: 12px;
+  background: lightgrey;
+  border-radius: 5px;
+  position: relative;
+}
+
+.profile-manner-num {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.profile-manner-check {
+  position: absolute;
+  height: 12px;
+  top: 0%;
+  left: 0%;
+  background: black;
+  border-radius: 5px;
+}
+
+.profile-manner-first {
+  position: absolute;
+  top: 0%;
+  left: 36.5%;
+  font-size: 0.85rem;
+}

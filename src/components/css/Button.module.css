@@ -1,0 +1,128 @@
+.btn {
+  color: white;
+  background-color: rgb(255, 141, 121);
+  padding: 10px 10px;
+  border: 0;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.input {
+  width: 100%;
+  height: 38px;
+  border-radius: 5px;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+
+.category {
+  color: white;
+  background-color: rgb(255, 141, 121);
+  padding: 5px 5px;
+  border: 0;
+  border-radius: 15px;
+  width: 100px;
+  margin: 20px 0;
+  font-size: small;
+}
+
+.name {
+  font-weight: 1000;
+  margin-bottom: 20px;
+}
+
+.menuname {
+  color: rgb(204, 128, 115);
+  margin-bottom: 7px;
+}
+
+.review {
+  font-weight: 1000;
+  margin: 20px 0;
+}
+
+.categorynomargin {
+  color: white;
+  background-color: rgb(255, 141, 121);
+  padding: 5px 5px;
+  border: 0;
+  border-radius: 15px;
+  width: 100px;
+  font-size: small;
+}
+
+.numberbtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  color: white;
+  font-size: small;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.425);
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.sociallogingoogle {
+  user-select: none;
+  transition: background 20ms ease-in 0s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  height: 36px;
+  border-radius: 4px;
+  color: rgb(17, 17, 17);
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+  background: white;
+  border: 1px solid rgba(15, 15, 15, 0.15);
+  width: 100%;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 1px 2px;
+  margin-top: 15px;
+}
+
+.googleLogo {
+  width: 14px;
+  height: 14px;
+  display: block;
+  fill: inherit;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+  margin-right: 6px;
+}
+
+.socialloginkakao {
+  user-select: none;
+  transition: background 20ms ease-in 0s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  height: 36px;
+  border-radius: 4px;
+  color: rgb(17, 17, 17);
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+  background: #FEE500;
+  border: 0;
+  width: 100%;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 1px 2px;
+  margin-top: 15px;
+}
+
+.kakaoLogo {
+  width: 20px;
+  height: 20px;
+  display: block;
+  fill: inherit;
+  flex-shrink: 0;
+  backface-visibility: hidden;
+  margin-right: 6px;
+}

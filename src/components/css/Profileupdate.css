@@ -1,0 +1,290 @@
+.gender-button {
+  position: relative;
+  display: block;
+  width: 45px;
+  height: 50px;
+  margin-top: 15px;
+}
+
+.gender-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.gender-button .onoff-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 10;
+  bottom: 0;
+  height: 40px;
+  width: 120px;
+  background-color: rgba(0, 225, 255, 0.733);
+  box-shadow: inset 0px 0.5px 1px 1px #222;
+  border-radius: 50px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.gender-button .onoff-switch:before {
+  position: absolute;
+  content: "";
+  height: 50px;
+  width: 50px;
+  left: 5px;
+  top: -5px;
+  background-image: url("../../../public/male.png");
+  background-size: 70%;
+  background-position: center;
+  background-color: rgba(0, 225, 255, 0.9);
+  background-repeat: no-repeat;
+  -webkit-transition: .5s;
+  transition: .4s;
+  border-radius: 50px;
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  border-color: #222;
+}
+
+.gender-button input:checked+.onoff-switch {
+  background-color: pink;
+  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+}
+
+.gender-button input:checked+.onoff-switch:before {
+  background-image: url("../../../public/female.png");
+  left: 50px;
+  background-color: rgba(255, 192, 203, 0.904);
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.smoke-button {
+  position: relative;
+  display: block;
+  width: 45px;
+  height: 50px;
+  margin-top: 15px;
+}
+
+.smoke-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.smoke-button .onoff-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 10;
+  bottom: 0;
+  height: 40px;
+  width: 120px;
+  background-color: rgb(255, 148, 148);
+  box-shadow: inset 0px 0.5px 1px 1px #222;
+  border-radius: 50px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.smoke-button .onoff-switch:before {
+  position: absolute;
+  content: "";
+  height: 50px;
+  width: 50px;
+  left: 5px;
+  top: -5px;
+  background-image: url("../../../public/cigarrete.png");
+  background-size: 70%;
+  background-position: center;
+  background-color: rgba(255, 148, 148, 0.9);
+  background-repeat: no-repeat;
+  -webkit-transition: .5s;
+  transition: .4s;
+  border-radius: 50px;
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  border-color: #222;
+}
+
+.smoke-button input:checked+.onoff-switch {
+  background-color: rgba(167, 167, 167, 0.9);
+  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+}
+
+.smoke-button input:checked+.onoff-switch:before {
+  background-image: url("../../../public/no-smoking.png");
+  left: 50px;
+  background-color: rgba(167, 167, 167, 0.9);
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.alcohol-button {
+  position: relative;
+  display: block;
+  width: 45px;
+  height: 50px;
+  margin-top: 15px;
+}
+
+.alcohol-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.alcohol-button .onoff-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 10;
+  bottom: 0;
+  height: 40px;
+  width: 120px;
+  background-color: rgb(150, 150, 253);
+  box-shadow: inset 0px 0.5px 1px 1px #222;
+  border-radius: 50px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.alcohol-button .onoff-switch:before {
+  position: absolute;
+  content: "";
+  height: 50px;
+  width: 50px;
+  left: 5px;
+  top: -5px;
+  background-image: url("../../../public/soju.png");
+  background-size: 70%;
+  background-position: center;
+  background-color: rgb(150, 150, 253, 0.9);
+  background-repeat: no-repeat;
+  -webkit-transition: .5s;
+  transition: .4s;
+  border-radius: 50px;
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  border-color: #222;
+}
+
+.alcohol-button input:checked+.onoff-switch {
+  background-color: rgba(167, 167, 167, 0.9);
+  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+}
+
+.alcohol-button input:checked+.onoff-switch:before {
+  background-image: url("../../../public/no-alcohol.png");
+  left: 50px;
+  background-color: rgba(167, 167, 167, 0.9);
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.talk-button {
+  position: relative;
+  display: block;
+  width: 45px;
+  height: 50px;
+  margin-top: 15px;
+}
+
+.talk-button input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.talk-button .onoff-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 10;
+  bottom: 0;
+  height: 40px;
+  width: 120px;
+  background-color: rgb(146, 255, 161);
+  box-shadow: inset 0px 0.5px 1px 1px #222;
+  border-radius: 50px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.talk-button .onoff-switch:before {
+  position: absolute;
+  content: "";
+  height: 50px;
+  width: 50px;
+  left: 5px;
+  top: -5px;
+  background-image: url("../../../public/communication.png");
+  background-size: 70%;
+  background-position: center;
+  background-color: rgba(146, 255, 161, 0.9);
+  background-repeat: no-repeat;
+  -webkit-transition: .5s;
+  transition: .4s;
+  border-radius: 50px;
+  box-shadow: 0.5px 0.5px 1px rgb(0, 0, 0);
+  border-color: #222;
+}
+
+.talk-button input:checked+.onoff-switch {
+  background-color: rgba(167, 167, 167, 0.9);
+  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+}
+
+.talk-button input:checked+.onoff-switch:before {
+  background-image: url("../../../public/no-communication.png");
+  left: 50px;
+  background-color: rgba(167, 167, 167, 0.9);
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+}
+
+.select {
+  padding: 15px 10px;
+}
+
+.select input[type=radio] {
+  display: none;
+}
+
+.select input[type=radio]+label {
+  display: inline-block;
+  cursor: pointer;
+  height: 7vh;
+  width: 7vh;
+  line-height: 24px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  border-radius: 50px;
+  margin-right: 1.5vw;
+}
+
+.select input[type=radio]+label {
+  background-color: #fff;
+}
+
+.select input[type=radio]:checked+label {
+  background-color: rgba(194, 194, 194, 0.432);
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.speedimg {
+  width: 70%;
+  margin: 15%;
+}

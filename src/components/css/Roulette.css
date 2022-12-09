@@ -1,0 +1,64 @@
+.rouletter {
+  position: relative;
+  height: 100vh;
+}
+
+.rouletter-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  border-radius: 350px;
+  overflow: hidden;
+}
+
+.rouletter-wacu {
+  width: 100%;
+  height: 100%;
+  background: url("../image/roulette.jpg") no-repeat;
+  background-size: 100%;
+  transform-origin: center;
+  transition-timing-function: ease-in-out;
+  transition: 2s;
+}
+
+.rouletter-arrow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 1px;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-top: 20px solid red;
+  opacity: 0.6;
+  border-bottom: 0px solid transparent;
+}
+
+.rouletter-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  background: #fff;
+  border-image: linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);
+  border: 0.5px solid #ffffff;
+  color: #eec47e;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.result {
+  font-size: 24px;
+  text-align: center;
+  color: tomato;
+  margin-top: 5rem;
+}

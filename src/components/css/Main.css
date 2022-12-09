@@ -1,0 +1,57 @@
+.overlay {
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow-x: hidden;
+}
+
+.main_image {
+  position: absolute;
+  height: 100vh;
+  animation-name: move;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes move {
+
+  from {
+    left: 0;
+  }
+
+  to {
+    left: -80vh;
+  }
+}
+
+.div {
+  position: relative;
+}
+
+.div::-webkit-scrollbar {
+  display: none;
+}
+
+.text-box {
+  z-index: 2;
+  position: absolute;
+  top: 50vh;
+  left: 75vw;
+  color: white;
+  transform: translate(-50%, -50%);
+  border: solid whitesmoke;
+  border-width: 1px 0 1px 0;
+  padding: 10px;
+  text-align: end;
+  width: 140px;
+}
+
+.text {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  font: 2.5em 'GmarketSansMedium';
+}

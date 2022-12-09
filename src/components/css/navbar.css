@@ -1,0 +1,31 @@
+.Nav-flex {
+  flex-direction: row;
+  display: flex;
+}
+
+.footer {
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  margin: 10px 0;
+}
+
+.navdiv {
+  text-align: center;
+}
+
+.navtext {
+  font-size: 15px;
+  font-weight: 700;
+  /* : center; */
+  max-width: 33.48px;
+  color: black;
+}

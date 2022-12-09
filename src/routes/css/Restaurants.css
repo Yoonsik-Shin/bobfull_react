@@ -1,0 +1,28 @@
+.res-one {
+  margin: 20px 0
+}
+
+.res-img {
+  width: 50%;
+  border-radius: 20px;
+  padding: 10px
+}
+
+.res-img-wrapper {
+  display: flex;
+  overflow: hidden;
+}
+
+.res-detail {
+  display: flex;
+}
+
+.res-index-name {
+  text-decoration: none;
+  color: black;
+}
+
+.res-index-h3 {
+  margin: 10px 0;
+  font-weight: 1000px;
+}

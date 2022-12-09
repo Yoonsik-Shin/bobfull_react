@@ -1,0 +1,57 @@
+.main-container {
+  height: 100vh
+}
+
+.main-container h2 {
+  font-weight: 300;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  text-align: center;
+  font-size: 26px;
+}
+
+.main-flex {
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.main-choice {
+  width: 12vh;
+  height: 12vh;
+  display: flex;
+  background-color: aliceblue;
+  border-radius: 12px;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  margin-bottom: 5%;
+}
+
+.main-choice1 {
+  height: 150px;
+  display: flex;
+  background-color: lightsalmon;
+  border-radius: 12px;
+}
+
+
+.main-choice a {
+  margin: auto;
+  padding: auto;
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.choice-text {
+  text-align: center;
+  color: gray;
+  margin-bottom: 5vh;
+}
+
+.choice-img {
+  width: 12vh;
+  height: 12vh;
+  margin: auto;
+}

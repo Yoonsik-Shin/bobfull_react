@@ -1,0 +1,31 @@
+.res-img-div {
+  background: rgb(241, 241, 241);
+}
+
+.res-menu {
+  margin-bottom: 20px;
+
+}
+
+.res-date {
+  color: gray;
+  font-size: 12px;
+}
+
+.review-span {
+  font-size: 15px;
+}
+
+.review-p {
+  margin-bottom: 20px;
+}
+
+.res-detail-img {
+  height: 300px;
+  border-radius: 20px;
+  padding: 10px
+}
+
+.slick-arrow {
+  display: none !important;
+}
