@@ -43,7 +43,7 @@ function RestaurantsDetail() {
   const array = [0, 1, 2, 3, 4]
   const [score, setScore] = useState(1)
   const [scoreSum, setScoreSum] = useState([])
-  
+
   const getRes = async () => {
     const res = await axios.get(`${baseURL}/restaurant/${id}/`, { headers: { 'Content-Type': 'application/json' } })
     setRestaurant(res.data)
@@ -75,7 +75,7 @@ function RestaurantsDetail() {
     }
     setClicked(clickStates);
   };
-  
+
   const sendReview = () => {
     setScore(clicked.filter(Boolean).length);
   };
@@ -99,7 +99,7 @@ function RestaurantsDetail() {
     setClicked([false, false, false, false, false])
   }
 
-  
+
   const detailDate = (a) => {
     const milliSeconds = new Date() - a;
     const seconds = milliSeconds / 1000;
@@ -145,6 +145,7 @@ function RestaurantsDetail() {
             <h3 className={styled1.name}>
               {restaurant.name}
             </h3>
+            <p style={{ fontSize: '12px' }}>{restaurant.address.slice(0, -8)}</p>
             <p>인기메뉴</p>
             {menus.map((menu) =>
               <p className={styled1.menuname}>{menu}</p>
@@ -159,12 +160,12 @@ function RestaurantsDetail() {
             {reviews.map((el, i) => {
               return (
                 <div className='review-p'>
-                  <p>{reviews[i].user} 
+                  <p>{reviews[i].user}
                     <span className='res-date'>
                       {detailDate(new Date(reviews[i].updated_at))}
-                    </span> 
-                    <br /> 
-                      {reviews[i].content} {reviews[i].grade} {reviews[i].grade.length}
+                    </span>
+                    <br />
+                    {reviews[i].content} {reviews[i].grade} {reviews[i].grade.length}
                   </p>
                 </div>
               )
@@ -181,24 +182,24 @@ function RestaurantsDetail() {
           required
         />
         <Stars>
-        {
-          array.map((el) => (
-            <FaStar
-              key={el}
-              onClick={() => handleStarClick(el)}
-              className={clicked[el] && 'yellowStar'}
-              size="35"
-            />)
-          )
-        } 
+          {
+            array.map((el) => (
+              <FaStar
+                key={el}
+                onClick={() => handleStarClick(el)}
+                className={clicked[el] && 'yellowStar'}
+                size="35"
+              />)
+            )
+          }
         </Stars>
         <button>작성</button>
-        
+
       </Form>
       {
         restaurant ? <Link to={`/matching_room/${restaurant.id}`}>매칭룸 입장하기</Link> : null
       }
-      
+
     </Container>
   )
 }
