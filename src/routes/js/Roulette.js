@@ -1,4 +1,5 @@
 import "../../components/css/Roulette.css";
+import Topnavbar from '../../../src/components/js/Topnavbar';
 function Roulette() {
   var rolLength = 8; // 해당 룰렛 콘텐츠 갯수
   var setNum; // 랜덤숫자 담을 변수
@@ -90,14 +91,22 @@ function Roulette() {
   });
 
   return (
-    <div className="rouletter">
-      <h1 className="text-center">룰렛!</h1>
-      <p className="result"></p>
-      <div className="rouletter-bg">
-        <div className="rouletter-wacu"></div>
-        <div className="rouletter-arrow"></div>
+    <div>
+      <div style={{ backgroundColor: 'white', paddingLeft: '3%' }}>
+        <Topnavbar
+          key='roul'
+          pagename='룰렛'
+        />
       </div>
-      <button className="rouletter-btn">start</button>
+      <div className="rouletter">
+        <h1 className="text-center">음식 랜덤 추천</h1>
+        <p className="result"></p>
+        <div className="rouletter-bg">
+          <div className="rouletter-wacu"></div>
+          <div className="rouletter-arrow"></div>
+        </div>
+        <button className="rouletter-btn">start</button>
+      </div>
     </div>
   );
 }

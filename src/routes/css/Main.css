@@ -22,15 +22,13 @@
   /* display: flex; */
   display: block;
   border-radius: 12px;
-  margin-right: 2.5%;
-  margin-left: 2.5%;
-  margin-bottom: 5%;
+  margin: 0 auto 5% auto;
 }
 
 .main-choice1 {
-  height: 150px;
-  display: flex;
-  background-color: lightsalmon;
+  width: 12vh;
+  height: 12vh;
+  display: block;
   border-radius: 12px;
 }
 
