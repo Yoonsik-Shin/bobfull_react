@@ -17,15 +17,15 @@ import GoogleAuth from './components/js/GoogleAuth.js'
 import ProfileUpdate from './routes/js/ProfileUpdate';
 import { Routes, Route, Link, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import MatchingRoom from "./routes/js/MatchingRoom.js" 
-import MatchingRoomDetail from "./routes/js/MatchingRoomDetail.js" 
-import ChatRoom from "./routes/js/ChatRoom.js" 
+import MatchingRoom from "./routes/js/MatchingRoom.js"
+import MatchingRoomDetail from "./routes/js/MatchingRoomDetail.js"
+import ChatRoom from "./routes/js/ChatRoom.js"
 
 function App() {
   const user = useSelector((state) => state.user);
 
   return (
-    <div className="App" style={{ paddingBottom: "70px" }}>
+    <div className="App" style={{ paddingBottom: "74.5px" }}>
       {/* 페이지나누기 */}
       <Routes>
         <Route path="*" element={<div>404페이지</div>} />

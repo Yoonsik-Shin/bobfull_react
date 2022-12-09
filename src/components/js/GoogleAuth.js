@@ -12,16 +12,15 @@ const GoogleAuth = () => {
   console.log(window.location.href)
   console.log(code)
   let navigate = useNavigate()
-
   useEffect(() => {
-    dispatch(setCode({code: code}))
+    dispatch(setCode({ code: code }))
     axios({
       method: 'get',
       url: `http://localhost:8000/accounts/google/callback/?code=${code}`,
     })
       .then((res) => {
-        console.log({...res.data.user})
-        dispatch(loginUser({...res.data.user, access_token: res.data.access_token, refresh_token: res.data.refresh_token}))
+        console.log({ ...res.data.user })
+        dispatch(loginUser({ ...res.data.user, access_token: res.data.access_token, refresh_token: res.data.refresh_token }))
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`
         localStorage.setItem('Authorization', `Bearer ${res.data.access_token}`)
         alert('정상적으로 로그인 되었습니다.')
@@ -32,7 +31,7 @@ const GoogleAuth = () => {
       })
   }, [])
 
-  
+
   return (
     <>
       <Spinner animation="border" />
