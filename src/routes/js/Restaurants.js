@@ -54,6 +54,7 @@ function Restaurants() {
       }))
     }
   }, [])
+
   const getItems = useCallback(async () => {
     setLoading(true)
     await axios({
@@ -69,7 +70,6 @@ function Restaurants() {
         setRestaurants(prevState => [...prevState, ...res.data.results])
       })
     setLoading(false)
-
   }, [number])
 
   useEffect(() => {
@@ -83,7 +83,6 @@ function Restaurants() {
   }, [inView, loading])
 
   const PositionCalculation = (e, idx) => {
-    console.log(e.slice(0, -8), idx + 1)
     var geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(e.slice(0, -8), function (result, status) {
       if (status === kakao.maps.services.Status.OK) {
@@ -131,35 +130,45 @@ function Restaurants() {
       <div>
         <div>필터</div>
       </div>
+      <hr />
       <div className="list">
         {restaurants.map((data, idx) => (
           <React.Fragment key={idx}>
-            {restaurants.length - 1 == idx ? (
-              <div className='res-img-wrapper' ref={ref}>
-                {data.images.map((img, i) => {
-                  return (
-                    <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
-                  )
-                })}
-              </div>
-            ) : (
-              <div className='res-img-wrapper'>
-                {data.images.map((img, i) => {
-                  return (
-                    <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
-                  )
-                })}
-              </div>
-            )}
-            <div style={{ paddingLeft: '10px' }}>
-              <Link to={`/res_index/${data.id}`} className="res-index-name"><button className={styled.numberbtn}><p style={{ margin: '0' }}>{data.id}</p></button><button className={styled.categorynomargin}>{data.category_name}</button>
-                <h3 className='res-index-h3'>{data.name}</h3>
-              </Link>
-              <div className='res-detail'>
-                <div>별점</div>
-                <div id={idx}>거리{PositionCalculation(data.address, idx)}</div>
+            <div className='my-3'>
+              {restaurants.length - 1 == idx ? (
+                <div className='res-img-wrapper' ref={ref}>
+                  {data.images.map((img, i) => {
+                    return (
+                      <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
+                    )
+                  })}
+                </div>
+              ) : (
+                <div className='res-img-wrapper'>
+                  {data.images.map((img, i) => {
+                    return (
+                      <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
+                    )
+                  })}
+                </div>
+              )}
+              <div style={{ paddingLeft: '10px' }}>
+                <Link to={`/res_index/${data.id}`} className="res-index-name">
+                  <button className={styled.numberbtn}>
+                    <p style={{ margin: '0' }}>{data.id}</p>
+                  </button>
+                  <button className={styled.categorynomargin}>
+                    {data.category_name}
+                  </button>
+                  <h3 className='res-index-h3'>{data.name}</h3>
+                </Link>
+                <div className='res-detail'>
+                  <div>별점</div>
+                  <div id={idx}>거리{PositionCalculation(data.address, idx)}</div>
+                </div>
               </div>
             </div>
+            <hr />
           </React.Fragment>
         ))};
       </div>

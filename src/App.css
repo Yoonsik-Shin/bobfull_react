@@ -2,6 +2,7 @@
   box-sizing: border-box;
   background-color: #f6f6f6;
   font-family: "GmarketSansMedium";
+  height: 100%;
 }
 
 @font-face {

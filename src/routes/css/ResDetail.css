@@ -29,3 +29,7 @@
 .slick-arrow {
   display: none !important;
 }
+
+.container {
+  padding-bottom: 120px;
+}
