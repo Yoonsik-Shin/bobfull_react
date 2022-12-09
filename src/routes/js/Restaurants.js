@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect, useCallback } from 'react';
 import '../css/Restaurants.css'
 import { Container } from 'react-bootstrap'
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Location from '../../hooks/useWatchLocation.js'
 import { useInView } from "react-intersection-observer"
 import styled from '../../components/css/Button.module.css';
@@ -152,21 +152,25 @@ function Restaurants() {
           <React.Fragment key={idx}>
             <div className='my-3'>
               {restaurants.length - 1 == idx ? (
-                <Slider {...settings} ref={ref}>
-                  {data.images.map((img, i) => {
-                    return (
-                      <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
-                    )
-                  })}
-                </Slider>
+                <div ref={ref}>
+                  <Slider {...settings}>
+                    {data.images.map((img, i) => {
+                      return (
+                        <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
+                      )
+                    })}
+                  </Slider>
+                </div>
               ) : (
-                <Slider {...settings}>
-                  {data.images.map((img, i) => {
-                    return (
-                      <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
-                    )
-                  })}
-                </Slider>
+                <div>
+                  <Slider {...settings}>
+                    {data.images.map((img, i) => {
+                      return (
+                        <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
+                      )
+                    })}
+                  </Slider>
+                </div>
               )}
               <div style={{ paddingLeft: '10px' }}>
                 <Link to={`/res_index/${data.id}`} className="res-index-name">
