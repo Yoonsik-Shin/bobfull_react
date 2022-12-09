@@ -82,19 +82,19 @@
 }
 
 .toolbar__icon.is-active.icon--chart {
-  color: #00ff36;
+  color: #ffc600;
 }
 
 .toolbar__icon.is-active.icon--smile {
-  color: #24A1FD;
+  color: #ffc600;
 }
 
 .toolbar__icon.is-active.icon--bell {
-  color: #ff0030;
+  color: #ffc600;
 }
 
 .toolbar__icon.is-active.icon--search {
-  color: #e546ff;
+  color: #ffc600;
 }
 
 @keyframes bump {
