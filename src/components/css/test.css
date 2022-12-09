@@ -39,6 +39,7 @@
   background: currentColor;
   position: relative;
   border-radius: 1rem;
+  margin-bottom: 1px;
 }
 
 .toolbar__icon.icon--smile svg {

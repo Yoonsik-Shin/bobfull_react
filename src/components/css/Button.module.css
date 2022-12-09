@@ -126,3 +126,39 @@
   backface-visibility: hidden;
   margin-right: 6px;
 }
+
+.categoryName {
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  color: gray;
+  flex-direction: column;
+  font-size: 2.5vw;
+  margin-top: 5px;
+  text-align: center;
+}
+
+.categorydiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 21.53846153846154vw;
+  border-radius: 20px;
+  background-color: white;
+  margin: 1.75vw 1.75vw;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  padding: 0;
+
+}
+
+.categoryimg {
+  width: 10vw;
+  height: 10vw;
+  margin: 0 auto 2vw auto;
+}
+
+.categoryrow {
+  justify-content: center;
+  padding: 0 10vw;
+
+}

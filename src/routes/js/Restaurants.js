@@ -2,12 +2,17 @@ import axios from 'axios'
 import React, { useState, useEffect, useCallback } from 'react';
 import '../css/Restaurants.css'
 import { Container } from 'react-bootstrap'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Location from '../../hooks/useWatchLocation.js'
 import { useInView } from "react-intersection-observer"
 import styled from '../../components/css/Button.module.css';
 import { } from 'react-kakao-maps-sdk'
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function Restaurants() {
+  const code = new URL(window.location.href).searchParams.get('category')
   var baseURL = process.env.REACT_APP_BASE_URL
   const [restaurants, setRestaurants] = useState([])
   const [number, setNumber] = useState(0)
@@ -62,6 +67,7 @@ function Restaurants() {
       url: `${baseURL}/restaurant/`,
       headers: { 'Content-Type': 'application/json' },
       params: {
+        category: code ? code : '',
         limit: 10,
         offset: number,
       },
@@ -117,7 +123,17 @@ function Restaurants() {
     var d = R * c; // Distance in km
     return d;
   }
-
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    autoplay: false,
+    autoplaySpeed: 90000,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    centerMode: false,
+    centerPadding: "20px"
+  };
   return (
     <Container>
       <h6>현재위치</h6>
@@ -136,21 +152,21 @@ function Restaurants() {
           <React.Fragment key={idx}>
             <div className='my-3'>
               {restaurants.length - 1 == idx ? (
-                <div className='res-img-wrapper' ref={ref}>
+                <Slider {...settings} ref={ref}>
                   {data.images.map((img, i) => {
                     return (
                       <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
                     )
                   })}
-                </div>
+                </Slider>
               ) : (
-                <div className='res-img-wrapper'>
+                <Slider {...settings}>
                   {data.images.map((img, i) => {
                     return (
                       <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
                     )
                   })}
-                </div>
+                </Slider>
               )}
               <div style={{ paddingLeft: '10px' }}>
                 <Link to={`/res_index/${data.id}`} className="res-index-name">
@@ -166,6 +182,7 @@ function Restaurants() {
                   <div>별점</div>
                   <div id={idx}>거리{PositionCalculation(data.address, idx)}</div>
                 </div>
+
               </div>
             </div>
             <hr />
