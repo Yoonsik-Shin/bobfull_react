@@ -23,9 +23,13 @@
   height: 38px;
   border: 0;
   outline: 0;
-  margin-top: 18px;
-  margin-bottom: 18px;
+  margin-top: 30px;
   background: lightgrey;
+}
+
+.profile-btn a{
+  text-decoration: none;
+  color: black
 }
 
 .profile-manner {
@@ -46,7 +50,6 @@
   height: 12px;
   top: 0%;
   left: 0%;
-  background: black;
   border-radius: 5px;
 }
 
@@ -55,4 +58,12 @@
   top: 0%;
   left: 36.5%;
   font-size: 0.85rem;
+}
+
+.list-group-font {
+  font-size: 15px;
+}
+
+.list-group-item.active {
+  background-color: black;
 }

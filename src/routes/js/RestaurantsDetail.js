@@ -32,9 +32,10 @@ padding-top: 5px;
 }
 `;
 
+var baseURL = process.env.REACT_APP_BASE_URL
+
 function RestaurantsDetail() {
   let { id } = useParams();
-  var baseURL = process.env.REACT_APP_BASE_URL
   const [restaurant, setRestaurant] = useState()
   const [reviews, setReviews] = useState()
   const [menus, setMenus] = useState()

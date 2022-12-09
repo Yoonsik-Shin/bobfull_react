@@ -16,8 +16,19 @@ function ChatRoom() {
     setChatRoomList(list.data)
   }
 
+  const createChatRoom = async () => {
+    const create = await axios({
+      method: 'get',
+      url: `${baseURL}/multichat/1/create/`
+    })
+    console.log(create)
+  }
+
+
+
   useEffect(()=>{
     getChatRoomList()
+    createChatRoom()
   }, [])
 
   return (
@@ -28,3 +39,4 @@ function ChatRoom() {
 }
 
 export default ChatRoom
+

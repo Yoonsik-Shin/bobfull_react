@@ -46,6 +46,7 @@ function App() {
         <Route path="/matching_room/:id" element={<MatchingRoom />} />
         <Route path="/matching_room/:id/:detail" element={<MatchingRoomDetail />} />
         <Route path="/chat_room/index" element={<ChatRoom />} />
+        <Route path="/matching_room/:id/:detail/multichat" element={<ChatRoom />} />
       </Routes>
       <NavbarBottom />
     </div>
