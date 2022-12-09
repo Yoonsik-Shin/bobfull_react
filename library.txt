@@ -11,3 +11,5 @@ npm install slick-carousel
 npm install styled-components
 npm install react-icons
 npm install @reduxjs/toolkit
+npm install moment
+npm install react-moment
