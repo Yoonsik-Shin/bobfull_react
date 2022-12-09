@@ -74,12 +74,14 @@ function Restaurants() {
                 })}
               </div>
             )}
-            <Link to={`/res_index/${data.id}`} className="res-index-name"><button className={styled.numberbtn}><p style={{ margin: '0' }}>{data.id}</p></button><button className={styled.categorynomargin}>{data.category_name}</button>
-              <h3 className='res-index-h3'>{data.name}</h3>
-            </Link>
-            <div className='res-detail'>
-              <div>별점</div><br />
-              <div>거리</div>
+            <div style={{ paddingLeft: '10px' }}>
+              <Link to={`/res_index/${data.id}`} className="res-index-name"><button className={styled.numberbtn}><p style={{ margin: '0' }}>{data.id}</p></button><button className={styled.categorynomargin}>{data.category_name}</button>
+                <h3 className='res-index-h3'>{data.name}</h3>
+              </Link>
+              <div className='res-detail'>
+                <div>별점</div><br />
+                <div>거리</div>
+              </div>
             </div>
           </React.Fragment>
         ))};
@@ -89,4 +91,4 @@ function Restaurants() {
   );
 }
 
-export default Restaurants
+export default Restaurants;

@@ -86,6 +86,7 @@ function Login() {
             <button type='submit' disabled={loading}>로그인</button>
           </div>
         </Form>
+        <br />
         <GoogleLogin />
         <KakaoLogin />
         <div className='login-menu'>

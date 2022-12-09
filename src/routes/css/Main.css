@@ -1,5 +1,5 @@
 .main-container {
-  height: 100vh
+  height: 100%;
 }
 
 .main-container h2 {
@@ -20,7 +20,7 @@
   width: 12vh;
   height: 12vh;
   display: flex;
-  background-color: aliceblue;
+  background-color: rgb(255, 255, 255);
   border-radius: 12px;
   margin-right: 2.5%;
   margin-left: 2.5%;
