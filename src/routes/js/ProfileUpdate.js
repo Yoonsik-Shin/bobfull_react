@@ -19,9 +19,12 @@ function ProfileAdd() {
     smoke: user.smoke,
     alcohol: user.alcohol,
     talk: user.talk,
-    speed: user.speed
+    speed: user.speed,
+    profile_image: null
   })
 
+  const formData = new FormData()
+  
   const ProfileUpdate = (e) => {
     e.preventDefault();
     axios({
@@ -40,11 +43,17 @@ function ProfileAdd() {
   const nicknameInput = (e) => {  // 아이디 값 받기
     setUserState({...user, nickname: e.target.value})
   }
-  
+  const imgaeInput = (e) => {  // 아이디 값 받기
+    formData.append('profile_image', JSON.stringify(e.target.value))
+    console.log(formData)
+    setUserState({...user, profile_image: formData})
+  }
+  // .replace('C:\\fakepath\\', `${baseURL}/media/account/${user.id}/`)
   return (
     <Container>
       <Form onSubmit={ProfileUpdate}>
         <h3 className="text-center my-5">프로필을 입력하면<br />나와 더 잘 맞는<br /> 밥풀을 만날 수 있어요.</h3>
+        <Form.Control type='file' onChange={imgaeInput} accept="image/*" name='profile_image'/>
         <Form.Control type='text' defaultValue={user.nickname} placeholder={'닉네임을 입력해주세요'} onChange={nicknameInput} name="nickname"/>
         <div className="d-flex align-items-center justify-content-between me-5 px-5">
           <h2 className="me-5 my-0">성별</h2>
