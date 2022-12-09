@@ -4,10 +4,13 @@ import '../../components/css/Profileupdate.css';
 import { useEffect, useState } from 'react';
 import { Container, Form } from 'react-bootstrap';
 import { changeUser } from '../../store/userSlice.js';
+import { useNavigate } from 'react-router-dom';
+
+var baseURL = process.env.REACT_APP_BASE_URL
 
 function ProfileAdd() {
   let dispatch = useDispatch();
-  var baseURL = process.env.REACT_APP_BASE_URL
+  let navigate = useNavigate()
   const user = useSelector((state) => state.user);
   const [userState, setUserState] = useState({
     email: user.email ? user.email : `kakaoUser${user.pk}@kakao.com`,
@@ -30,6 +33,7 @@ function ProfileAdd() {
       .then((res) => {
         dispatch(changeUser({...user, ...userState}))
         alert('성공적으로 업데이트 되었습니다')
+        navigate('/profile')
       })
   }
 

@@ -4,8 +4,9 @@ import { Container, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styled from '../../components/css/Button.module.css';
 
+var baseURL = process.env.REACT_APP_BASE_URL
+
 function Signup() {
-  var baseURL = process.env.REACT_APP_BASE_URL
   let navigate = useNavigate()
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');

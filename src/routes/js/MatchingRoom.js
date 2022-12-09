@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Container, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from 'react-router-dom'
+import Card from 'react-bootstrap/Card';
 
 var baseURL = process.env.REACT_APP_BASE_URL
 
@@ -34,15 +35,17 @@ function MatchingRoom() {
         matchList ? 
         matchList.map((el) => {
           return (
-            <>
-              <div>레스토랑명 : {el.restaurant}</div>
-              <div>매칭룸명 : {el.title}</div>
-              <div>매칭룸 내용 : {el.content}</div>
-              <div>매칭룸 호스트 : {el.user}</div>
-              <div>생성일자 : {el.from_date}</div>
-              <div>참여 멤버수 : {el.member.length}</div>
-              <Link to={`/matching_room/${id}/${el.id}`}>자세히보기</Link>
-            </>
+            <Card style={{marginBottom: '10px', marginTop: '10px'}}>
+              <Card.Body>
+                <Card.Title>{el.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">매칭룸 호스트 : {el.user}</Card.Subtitle>
+                <div>레스토랑명 : {el.restaurant}</div>
+                <div>매칭룸 내용 : {el.content}</div>
+                <div>약속날자/시간 : {el.from_date}</div>
+                <div>참여 멤버수 : {el.member.length}</div>
+                <Link to={`/matching_room/${id}/${el.id}`}>자세히보기</Link>
+              </Card.Body>
+            </Card>
           )
         })
         : null
