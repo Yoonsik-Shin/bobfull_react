@@ -14,7 +14,17 @@ function Profile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [state, setState] = useState([false, false, false, false, false, false])
-  const [mannerColor, setMannerColor] = useState('black')
+  const [mannerColor, setMannerColor] = useState('lightblue')
+
+  const mannerColorChange = () => {
+    if (user.manner <= 36.4) { return setMannerColor('black') }
+    if (user.manner >= 40) { return setMannerColor('green') }
+    if (user.manner >= 50) { return setMannerColor('orange') }
+    if (user.manner >= 60) { return setMannerColor('salmon') }
+    if (user.manner >= 70) { return setMannerColor('red') }
+  }
+  
+
   const LogoutFunc = () => {
     console.log('로그아웃');
     axios({
@@ -42,6 +52,10 @@ function Profile() {
     setState(copy)
   }, [])
 
+  useEffect(()=>{
+    mannerColorChange()
+  }, [mannerColor])
+
   return (
     <Container>
       <Topnavbar
@@ -50,7 +64,7 @@ function Profile() {
       />
       {/* 프로필 이미지, 정보 */}
       <div class="profile-nickname">
-        <img src="http://placeimg.com/75/75/people" alt="" className="profile-img" />
+        <img src="./basic_profile_img.png" alt="" width='45px' className="profile-img" />
         <div>
           <h4>{user.nickname ? user.nickname : '닉네임을 설정해주세요'}<span>  #{user.id}</span></h4>
         </div>
