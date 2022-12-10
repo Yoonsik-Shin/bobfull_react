@@ -29,7 +29,10 @@ function Signup() {
       method: 'post',
       url: `${baseURL}/accounts/registration/`,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-store',
+          Pragma: 'no-store',
+          Expires: '0',
       },
       data: {
         email: email,
