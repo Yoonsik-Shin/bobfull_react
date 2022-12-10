@@ -1,10 +1,7 @@
 import '../../components/css/Main.css';
 
-var baseURL = process.env.REACT_APP_BASE_URL // 환경변수설정
-
 function Test() {
-
-  setTimeout(`location.href='https://master.d23us6abru3x73.amplifyapp.com/main'`, 4000);
+  setTimeout("location.href='https://master.d23us6abru3x73.amplifyapp.com/main'", 4000);
   return (
     <div className="div">
       <div className='overlay'></div>
