@@ -15,6 +15,7 @@ import store from './store.js'
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 axios.defaults.headers.common["Authorization"] = localStorage.getItem("Authorization")
+axios.defaults.headers.common["Access-Control-Allow-Origin"] = '*'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient
