@@ -22,7 +22,7 @@
   height: 40px;
   width: 120px;
   background-color: rgba(0, 225, 255, 0.733);
-  box-shadow: inset 0px 0.5px 1px 1px #222;
+  box-shadow: inset 0px 0.5px 1px 1px rgb(104, 104, 104);
   border-radius: 50px;
   -webkit-transition: .4s;
   transition: .4s;
@@ -49,7 +49,7 @@
 
 .gender-button input:checked+.onoff-switch {
   background-color: pink;
-  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+  box-shadow: inset 0.5px 0.5px 1px 0.5px rgb(104, 104, 104);
 }
 
 .gender-button input:checked+.onoff-switch:before {
@@ -86,7 +86,7 @@
   height: 40px;
   width: 120px;
   background-color: rgb(255, 148, 148);
-  box-shadow: inset 0px 0.5px 1px 1px #222;
+  box-shadow: inset 0px 0.5px 1px 1px rgb(104, 104, 104);
   border-radius: 50px;
   -webkit-transition: .4s;
   transition: .4s;
@@ -113,7 +113,7 @@
 
 .smoke-button input:checked+.onoff-switch {
   background-color: rgba(167, 167, 167, 0.9);
-  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+  box-shadow: inset 0.5px 0.5px 1px 0.5px rgb(104, 104, 104);
 }
 
 .smoke-button input:checked+.onoff-switch:before {
@@ -150,7 +150,7 @@
   height: 40px;
   width: 120px;
   background-color: rgb(150, 150, 253);
-  box-shadow: inset 0px 0.5px 1px 1px #222;
+  box-shadow: inset 0px 0.5px 1px 1px rgb(104, 104, 104);
   border-radius: 50px;
   -webkit-transition: .4s;
   transition: .4s;
@@ -177,7 +177,7 @@
 
 .alcohol-button input:checked+.onoff-switch {
   background-color: rgba(167, 167, 167, 0.9);
-  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+  box-shadow: inset 0.5px 0.5px 1px 0.5px rgb(104, 104, 104);
 }
 
 .alcohol-button input:checked+.onoff-switch:before {
@@ -214,7 +214,7 @@
   height: 40px;
   width: 120px;
   background-color: rgb(146, 255, 161);
-  box-shadow: inset 0px 0.5px 1px 1px #222;
+  box-shadow: inset 0px 0.5px 1px 1px rgb(104, 104, 104);
   border-radius: 50px;
   -webkit-transition: .4s;
   transition: .4s;
@@ -235,13 +235,13 @@
   -webkit-transition: .5s;
   transition: .4s;
   border-radius: 50px;
-  box-shadow: 0.5px 0.5px 1px rgb(0, 0, 0);
+  box-shadow: 1px 1px 3px rgb(0, 0, 0);
   border-color: #222;
 }
 
 .talk-button input:checked+.onoff-switch {
   background-color: rgba(167, 167, 167, 0.9);
-  box-shadow: inset 0.5px 0.5px 1px 0.5px #222;
+  box-shadow: inset 0.5px 0.5px 1px 0.5px rgb(104, 104, 104);
 }
 
 .talk-button input:checked+.onoff-switch:before {
