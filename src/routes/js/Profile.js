@@ -6,11 +6,12 @@ import axios from "axios";
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import Topnavbar from '../../../src/components/js/Topnavbar';
+import toast, { Toaster } from 'react-hot-toast';
 
 var baseURL = process.env.REACT_APP_BASE_URL // 환경변수설정
 
 function Profile() {
-
+  const notify = () => toast('Here is your toast.');
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [state, setState] = useState([false, false, false, false, false, false])
@@ -23,7 +24,7 @@ function Profile() {
     if (user.manner >= 60) { return setMannerColor('salmon') }
     if (user.manner >= 70) { return setMannerColor('red') }
   }
-  
+
 
   const LogoutFunc = () => {
     console.log('로그아웃');
@@ -35,11 +36,12 @@ function Profile() {
     })
       .then(res => {
         console.log(res)
-        alert('성공적으로 로그아웃 되었습니다.')
+        toast.success('Successfully toasted!')
         dispatch(clearUser());
         localStorage.setItem('Authorization', "")
       })
       .catch((err) => {
+        toast.success('Successfully toasted!')
         dispatch(clearUser());
         localStorage.setItem('Authorization', "")
         return console.error(err)
@@ -52,7 +54,7 @@ function Profile() {
     setState(copy)
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     mannerColorChange()
   }, [mannerColor])
 
@@ -105,6 +107,10 @@ function Profile() {
       <div className="mt-5">
         <button className="btn btn-secondary" onClick={() => LogoutFunc()}>로그아웃 할게요</button>
       </div>
+      <Toaster
+      // position="bottom-center"
+      // reverseOrder={false}
+      />
     </Container>
   )
 }
