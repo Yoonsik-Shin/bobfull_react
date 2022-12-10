@@ -1,7 +1,9 @@
 import '../../components/css/Main.css';
+import { useNavigate } from 'react-router-dom';
 
 function Test() {
-  setTimeout("location.href='http://localhost:3000/main'", 4900);
+  let navigate = useNavigate()
+  setTimeout(navigate('/main'), 4000);
   return (
     <div className="div">
       <div className='overlay'></div>
