@@ -10,9 +10,11 @@ import { } from 'react-kakao-maps-sdk'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Topnavbar from '../../../src/components/js/Topnavbar';
 
 function Restaurants() {
   const code = new URL(window.location.href).searchParams.get('category')
+  const name = new URL(window.location.href).searchParams.get('name')
   var baseURL = process.env.REACT_APP_BASE_URL
   const [restaurants, setRestaurants] = useState([])
   const [number, setNumber] = useState(0)
@@ -26,6 +28,7 @@ function Restaurants() {
     errMsg: null,
     isLoading: true,
   })
+  const [count, setCount] = useState(0)
 
   const { kakao } = window;
   useEffect(() => {
@@ -74,6 +77,7 @@ function Restaurants() {
     })
       .then((res) => {
         setRestaurants(prevState => [...prevState, ...res.data.results])
+        setCount(res.data.count)
       })
     setLoading(false)
   }, [number])
@@ -83,7 +87,7 @@ function Restaurants() {
   }, [getItems])
 
   useEffect(() => {
-    if (inView && !loading && number < 980) {
+    if (inView && !loading && number < 980 && number < count) {
       setNumber(prevState => prevState + 10)
     }
   }, [inView, loading])
@@ -136,6 +140,10 @@ function Restaurants() {
   };
   return (
     <Container>
+      <Topnavbar
+        key='res'
+        pagename={name ? name : '모든 목록'}
+      />
       <h6>현재위치</h6>
       <Location />
       <form action="">
@@ -173,7 +181,7 @@ function Restaurants() {
                 </div>
               )}
               <div style={{ paddingLeft: '10px' }}>
-                <Link to={`/res_index/${data.id}`} className="res-index-name">
+                <Link to={`/res_index/${data.id}?name=${data.name}`} className="res-index-name">
                   <button className={styled.numberbtn}>
                     <p style={{ margin: '0' }}>{data.id}</p>
                   </button>
@@ -191,7 +199,7 @@ function Restaurants() {
             </div>
             <hr />
           </React.Fragment>
-        ))};
+        ))}
       </div>
 
     </Container>

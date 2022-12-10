@@ -58,7 +58,7 @@ function MatchingRoomDetail() {
                 })}
               </div>
               <div>음식점명 : {info.restaurant}</div>
-              <div>약속 시간 : {info.from_date}</div>
+              <div>약속 시간 : {moment(info.from_date).format('YYYY년 MM월 D일 a h시mm분')}</div>
               <div>약속 내용 : {info.content}</div>
             </div>
           </>

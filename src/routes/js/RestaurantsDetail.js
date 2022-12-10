@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
 import styled from 'styled-components'
+import Topnavbar from '../../../src/components/js/Topnavbar';
 
 const Stars = styled.div`
 display: flex;
@@ -43,7 +44,7 @@ function RestaurantsDetail() {
   const array = [0, 1, 2, 3, 4]
   const [score, setScore] = useState(1)
   const [scoreSum, setScoreSum] = useState([])
-
+  const name = new URL(window.location.href).searchParams.get('name')
   const getRes = async () => {
     const res = await axios.get(`${baseURL}/restaurant/${id}/`, { headers: { 'Content-Type': 'application/json' } })
     setRestaurant(res.data)
@@ -131,6 +132,10 @@ function RestaurantsDetail() {
 
   return (
     <Container>
+      <Topnavbar
+        key='res'
+        pagename={name ? name : ''}
+      />
       {
         restaurant ?
           <>
