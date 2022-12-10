@@ -23,7 +23,6 @@ import ChatRoom from "./routes/js/ChatRoom.js"
 
 function App() {
   const user = useSelector((state) => state.user);
-
   return (
     <div className="App" style={{ paddingBottom: "74.5px" }}>
       {/* 페이지나누기 */}
@@ -40,7 +39,7 @@ function App() {
         <Route path="/profile/update" element={<ProfileUpdate />} />
         <Route path="/roulette" element={<Roulette />} />
         <Route path="/map" element={<KakaoMap />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/" element={<Test />} />
         <Route path="/oauth/callback/kakao" element={<KaKaoAuth />} />
         <Route path="/accounts/google/callback/" element={<GoogleAuth />} />
         <Route path="/matching_room/:id" element={<MatchingRoom />} />

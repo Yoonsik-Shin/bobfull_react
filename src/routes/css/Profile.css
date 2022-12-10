@@ -27,7 +27,7 @@
   background: lightgrey;
 }
 
-.profile-btn a{
+.profile-btn a {
   text-decoration: none;
   color: black
 }
@@ -65,5 +65,5 @@
 }
 
 .list-group-item.active {
-  background-color: black;
+  background-color: rgba(63, 63, 63, 0.781);
 }
