@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { loginUser, clearUser } from '../../store/userSlice.js'
 
+var baseURL = process.env.REACT_APP_BASE_URL
+
 const GoogleAuth = () => {
   const dispatch = useDispatch()
   const code = new URL(window.location.href).searchParams.get('code')
@@ -16,7 +18,7 @@ const GoogleAuth = () => {
     dispatch(setCode({ code: code }))
     axios({
       method: 'get',
-      url: `http://localhost:8000/accounts/google/callback/?code=${code}`,
+      url: `${baseURL}/accounts/google/callback/?code=${code}`,
     })
       .then((res) => {
         console.log({ ...res.data.user })
