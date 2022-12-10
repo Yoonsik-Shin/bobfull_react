@@ -39,9 +39,6 @@ function Login() {
         url: `${baseURL}/accounts/login/`,
         headers: { 
           "Content-Type": "application/json",
-          'Cache-Control': 'no-store',
-          Pragma: 'no-store',
-          Expires: '0',
         },
         data: {
           email: inputId,

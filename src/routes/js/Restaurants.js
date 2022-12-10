@@ -70,9 +70,6 @@ function Restaurants() {
       url: `${baseURL}/restaurant/`,
       headers: { 
         'Content-Type': 'application/json', 
-        'Cache-Control': 'no-store',
-        Pragma: 'no-store',
-        Expires: '0',
       },
       params: {
         category: code ? code : '',
