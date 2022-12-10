@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../css/Main.css";
 import Topnavbar from '../../../src/components/js/Topnavbar';
+
 function Main() {
   return (
     <Container className="main-container">
@@ -10,8 +11,6 @@ function Main() {
         pagename='홈'
       />
       <h2>어떤 식당을 찾고 계세요?</h2>
-      {/* <Row className="main-flex">
-      </Row> */}
       <Row className="main-flex">
         <Col xs={4} className="choice-text">
           <Link to="/res_category" className="main-choice">
