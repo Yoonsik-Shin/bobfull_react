@@ -68,7 +68,12 @@ function Restaurants() {
     await axios({
       method: 'get',
       url: `${baseURL}/restaurant/`,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json', 
+        'Cache-Control': 'no-store',
+        Pragma: 'no-store',
+        Expires: '0',
+      },
       params: {
         category: code ? code : '',
         limit: 10,
