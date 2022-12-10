@@ -164,7 +164,7 @@ function Restaurants() {
                   <Slider {...settings}>
                     {data.images.map((img, i) => {
                       return (
-                        <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
+                        <img src={decodeURIComponent(data.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/', ''))} className='res-img' />
                       )
                     })}
                   </Slider>
@@ -174,7 +174,7 @@ function Restaurants() {
                   <Slider {...settings}>
                     {data.images.map((img, i) => {
                       return (
-                        <img src={decodeURIComponent(data.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-img' />
+                        <img src={decodeURIComponent(data.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/', ''))} className='res-img' />
                       )
                     })}
                   </Slider>

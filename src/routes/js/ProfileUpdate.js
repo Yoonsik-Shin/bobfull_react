@@ -20,10 +20,11 @@ function ProfileAdd() {
     alcohol: user.alcohol,
     talk: user.talk,
     speed: user.speed,
-    profile_image: null
+    profile_image: user.profile_image
   })
 
   const formData = new FormData()
+  formData.append('data', new Blob([JSON.stringify(userState)], {type: "application/json"}))
   
   const ProfileUpdate = (e) => {
     e.preventDefault();
@@ -43,10 +44,8 @@ function ProfileAdd() {
   const nicknameInput = (e) => {  // 아이디 값 받기
     setUserState({...user, nickname: e.target.value})
   }
-  const imgaeInput = (e) => {  // 아이디 값 받기
-    formData.append('profile_image', JSON.stringify(e.target.value))
-    console.log(formData)
-    setUserState({...user, profile_image: formData})
+  const imgaeInput = (file) => {  
+    setUserState({...user, profile_image: file.target.value})
   }
   // .replace('C:\\fakepath\\', `${baseURL}/media/account/${user.id}/`)
   return (
