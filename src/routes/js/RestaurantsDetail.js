@@ -103,7 +103,7 @@ function RestaurantsDetail() {
             <Slider {...settings}>
               {restaurant.images.map((img, i) => {
                 return (
-                  <img src={decodeURIComponent(restaurant.images[i].image.replace('http://127.0.0.1:8000/media/', ''))} className='res-detail-img' />
+                  <img src={decodeURIComponent(restaurant.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/', ''))} className='res-detail-img' />
                 )
               })}
             </Slider>
