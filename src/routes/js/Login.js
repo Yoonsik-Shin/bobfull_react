@@ -26,7 +26,6 @@ function Login() {
     // 비밀번호 값 받기
     setInputPw(e.target.value);
   };
-
   const LoginFunc = (e) => {
     e.preventDefault();
     if (!inputId) {

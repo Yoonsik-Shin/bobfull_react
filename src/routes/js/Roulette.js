@@ -1,11 +1,12 @@
 import "../../components/css/Roulette.css";
 import Topnavbar from '../../../src/components/js/Topnavbar';
+import { useState } from "react"
 function Roulette() {
   var rolLength = 8; // 해당 룰렛 콘텐츠 갯수
   var setNum; // 랜덤숫자 담을 변수
   var hiddenInput = document.createElement("input");
   hiddenInput.className = "hidden-input";
-
+  const [transform, settransform] = useState()
   //랜덤숫자부여
   const rRandom = () => {
     var min = Math.ceil(0);
@@ -14,7 +15,6 @@ function Roulette() {
   };
 
   const rRotate = () => {
-    var panel = document.querySelector(".rouletter-wacu");
     var btn = document.querySelector(".rouletter-btn");
     var deg = [];
     // 룰렛 각도 설정(rolLength = 6)
@@ -30,14 +30,14 @@ function Roulette() {
     // 애니설정
     var ani = setInterval(() => {
       num++;
-      panel.style.transform = "rotate(" + 360 * num + "deg)";
+      settransform("rotate(" + 360 * num + "deg)");
       btn.disabled = true; //button,input
       btn.style.pointerEvents = "none"; //a 태그
 
       // 총 50에 다달했을때, 즉 마지막 바퀴를 돌고나서
       if (num === 30) {
         clearInterval(ani);
-        panel.style.transform = `rotate(${deg[setNum]}deg)`;
+        settransform(`rotate(${deg[setNum]}deg)`);
       }
     }, 30);
   };
@@ -102,7 +102,7 @@ function Roulette() {
         <h1 className="text-center">음식 랜덤 추천</h1>
         <p className="result"></p>
         <div className="rouletter-bg">
-          <div className="rouletter-wacu"></div>
+          <div className="rouletter-wacu" style={{ transform: transform }}></div>
           <div className="rouletter-arrow"></div>
         </div>
         <button className="rouletter-btn">start</button>
