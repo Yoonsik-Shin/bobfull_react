@@ -66,7 +66,11 @@ function Profile() {
       />
       {/* 프로필 이미지, 정보 */}
       <div class="profile-nickname">
-        <img src="./basic_profile_img.png" alt="" width='45px' className="profile-img" />
+        { 
+          user.profile_image ?
+          <img src={`${user.profile_image}`} alt="" width='45px' className="profile-img" />
+          : <img src="./basic_profile_img.png" alt="" width='45px' className="profile-img" />
+        }
         <div>
           <h4>{user.nickname ? user.nickname : '닉네임을 설정해주세요'}<span>  #{user.id}</span></h4>
         </div>

@@ -12,6 +12,7 @@ function ProfileAdd() {
   let dispatch = useDispatch();
   let navigate = useNavigate()
   const user = useSelector((state) => state.user);
+  const formData = new FormData()
   const [userState, setUserState] = useState({
     email: user.email ? user.email : `kakaoUser${user.pk}@kakao.com`,
     nickname: user.nickname ? user.nickname : null,
@@ -20,22 +21,22 @@ function ProfileAdd() {
     alcohol: user.alcohol,
     talk: user.talk,
     speed: user.speed,
-    profile_image: user.profile_image
   })
-
-  const formData = new FormData()
-  formData.append('data', new Blob([JSON.stringify(userState)], {type: "application/json"}))
   
   const ProfileUpdate = (e) => {
     e.preventDefault();
+    let copy = {...userState}
+    Object.entries(copy).map(([key,value]) => {
+      formData.append(`${key}`, value)
+    })
     axios({
       method: 'put',
       url: `${baseURL}/accounts/user/`,
-      headers: { 'Content-Type': 'application/json' },
-      data: userState
+      processData : false,
+      data: formData
     })
       .then((res) => {
-        dispatch(changeUser({...user, ...userState}))
+        dispatch(changeUser({...user, ...userState, profile_image: res.data.profile_image}))
         alert('성공적으로 업데이트 되었습니다')
         navigate('/profile')
       })
@@ -44,15 +45,16 @@ function ProfileAdd() {
   const nicknameInput = (e) => {  // 아이디 값 받기
     setUserState({...user, nickname: e.target.value})
   }
-  const imgaeInput = (file) => {  
-    setUserState({...user, profile_image: file.target.value})
+  const imageInput = (file) => {
+    formData.append('profile_image', file.target.files[0])
+    console.log(file.target.files[0])
   }
-  // .replace('C:\\fakepath\\', `${baseURL}/media/account/${user.id}/`)
+
   return (
     <Container>
       <Form onSubmit={ProfileUpdate}>
         <h3 className="text-center my-5">프로필을 입력하면<br />나와 더 잘 맞는<br /> 밥풀을 만날 수 있어요.</h3>
-        <Form.Control type='file' onChange={imgaeInput} accept="image/*" name='profile_image'/>
+        <Form.Control type='file' onChange={imageInput} accept="image/*" name='profile_image'/>
         <Form.Control type='text' defaultValue={user.nickname} placeholder={'닉네임을 입력해주세요'} onChange={nicknameInput} name="nickname"/>
         <div className="d-flex align-items-center justify-content-between me-5 px-5">
           <h2 className="me-5 my-0">성별</h2>
