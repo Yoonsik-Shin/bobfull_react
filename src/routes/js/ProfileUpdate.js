@@ -23,27 +23,27 @@ function ProfileAdd() {
     speed: user.speed,
   })
   
-  const ProfileUpdate = (e) => {
+  const ProfileUpdate = async (e) => {
     e.preventDefault();
     let copy = {...userState}
     Object.entries(copy).map(([key,value]) => {
       formData.append(`${key}`, value)
     })
-    axios({
+    await axios({
       method: 'put',
       url: `${baseURL}/accounts/user/`,
       processData : false,
       data: formData
     })
       .then((res) => {
-        dispatch(changeUser({...user, ...userState, profile_image: res.data.profile_image}))
+        dispatch(changeUser({...res.data}))
         alert('성공적으로 업데이트 되었습니다')
         navigate('/profile')
       })
   }
 
   const nicknameInput = (e) => {  // 아이디 값 받기
-    setUserState({...user, nickname: e.target.value})
+    setUserState({...userState, nickname: e.target.value})
   }
   const imageInput = (file) => {
     formData.append('profile_image', file.target.files[0])
