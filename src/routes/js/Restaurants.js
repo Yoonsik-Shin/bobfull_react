@@ -20,6 +20,8 @@ function Restaurants() {
   const [number, setNumber] = useState(0)
   const [loading, setLoading] = useState(false)
   const [ref, inView] = useInView()
+  const { kakao } = window;
+  const [count, setCount] = useState(0)
   const [state, setState] = useState({
     center: {
       lat: 33.450701,
@@ -28,9 +30,7 @@ function Restaurants() {
     errMsg: null,
     isLoading: true,
   })
-  const [count, setCount] = useState(0)
 
-  const { kakao } = window;
   useEffect(() => {
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -114,13 +114,12 @@ function Restaurants() {
         res_idx.innerText = ''
       }
     })
-
   }
+
   function getDistanceFromLatLonInKm(lat1, lng1, lat2, lng2) {
     function deg2rad(deg) {
       return deg * (Math.PI / 180)
     }
-
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2 - lat1);  // deg2rad below
     var dLon = deg2rad(lng2 - lng1);
@@ -140,6 +139,7 @@ function Restaurants() {
     centerMode: false,
     centerPadding: "20px"
   };
+
   return (
     <Container>
       <Topnavbar
@@ -196,7 +196,6 @@ function Restaurants() {
                   <div>별점</div>
                   <div id={idx}>거리{PositionCalculation(data.address, idx)}</div>
                 </div>
-
               </div>
             </div>
             <hr />
