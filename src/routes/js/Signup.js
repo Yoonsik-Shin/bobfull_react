@@ -20,6 +20,32 @@ function Signup() {
   const passwordInput2 = (e) => {
     setPassword2(e.target.value)
   }
+  const [passwordType1, setPasswordType1] = useState({
+    type: 'password',
+    visible: false
+  });
+  const [passwordType2, setPasswordType2] = useState({
+    type: 'password',
+    visible: false
+  });
+
+  //password type 변경하는 함수
+  const handlePasswordType1 = e => {
+    setPasswordType1(() => {
+      if (!passwordType1.visible) {
+        return { type: 'text', visible: true };
+      }
+      return { type: 'password', visible: false };
+    })
+  }
+  const handlePasswordType2 = e => {
+    setPasswordType2(() => {
+      if (!passwordType2.visible) {
+        return { type: 'text', visible: true };
+      }
+      return { type: 'password', visible: false };
+    })
+  }
   const onSubmit = (e) => {
     if (password1 !== password2) {
       return alert('비밀번호가 서로 다릅니다.')
@@ -52,8 +78,8 @@ function Signup() {
       })
   }
   return (
-    <Container style={{marginTop: '150px'}}>
-      <h3>밥풀의 멤버가 되어 <br/>
+    <Container style={{ marginTop: '150px' }}>
+      <h3>밥풀의 멤버가 되어 <br />
         다양한 서비스를 이용해보세요</h3>
       <div className=''>
         <Form onSubmit={onSubmit}>
@@ -65,19 +91,29 @@ function Signup() {
               placeholder='이메일'
               className='mb-3'
             />
-            <Form.Control
-              onChange={passwordInput1}
-              value={password1}
-              type="password"
-              placeholder='비밀번호'
-              className='mb-3'
-            />
-            <Form.Control
-              onChange={passwordInput2}
-              value={password2}
-              type="password"
-              placeholder='비밀번호 확인'
-            />
+            <div className={styled.passworddiv}>
+              <Form.Control
+                onChange={passwordInput1}
+                value={password1}
+                type={passwordType1.type}
+                placeholder='비밀번호'
+                className='mb-3'
+              />
+              <span onClick={handlePasswordType1}>
+                {passwordType1.visible ? <img className={styled.passwordbtn} src='/hide.png' /> : <img className={styled.passwordbtn} src='/view.png' />}
+              </span>
+            </div>
+            <div className={styled.passworddiv}>
+              <Form.Control
+                onChange={passwordInput2}
+                value={password2}
+                type={passwordType2.type}
+                placeholder='비밀번호 확인'
+              />
+              <span onClick={handlePasswordType2}>
+                {passwordType2.visible ? <img className={styled.passwordbtn} src='/hide.png' /> : <img className={styled.passwordbtn} src='/view.png' />}
+              </span>
+            </div>
             <div className='mx-1 mt-2'>
               <Form.Text muted>
                 비밀번호는 반드시 8-20 글자 사이여야 합니다.<br />
