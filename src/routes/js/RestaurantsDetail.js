@@ -1,5 +1,5 @@
-import { useParams, Link } from 'react-router-dom'
-import axios from 'axios'
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container, Form } from 'react-bootstrap';
 import '../css/ResDetail.css';
@@ -7,31 +7,9 @@ import styled1 from '../../components/css/Button.module.css';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaStar } from "react-icons/fa";
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Topnavbar from '../../../src/components/js/Topnavbar';
-
-const Stars = styled.div`
-display: flex;
-padding-top: 5px;
-
-& svg {
-  color: gray;
-  cursor: pointer;
-}
-
-:hover svg {
-  color: #fcc419;
-}
-
-& svg:hover ~ svg {
-  color: gray;
-}
-
-.yellowStar {
-  color: #fcc419;
-}
-`;
+import Star from '../../../src/components/js/Star';
 
 var baseURL = process.env.REACT_APP_BASE_URL
 
@@ -40,8 +18,6 @@ function RestaurantsDetail() {
   const [restaurant, setRestaurant] = useState()
   const [reviews, setReviews] = useState()
   const [menus, setMenus] = useState()
-  const [clicked, setClicked] = useState([true, true, true, false, false]);
-  const array = [0, 1, 2, 3, 4]
   const [score, setScore] = useState(1)
   const [scoreSum, setScoreSum] = useState([])
   const name = new URL(window.location.href).searchParams.get('name')
@@ -69,21 +45,6 @@ function RestaurantsDetail() {
     getReviews()
   }, [])
 
-  const handleStarClick = index => {
-    let clickStates = [...clicked];
-    for (let i = 0; i < 5; i++) {
-      clickStates[i] = i <= index ? true : false;
-    }
-    setClicked(clickStates);
-  };
-
-  const sendReview = () => {
-    setScore(clicked.filter(Boolean).length);
-  };
-
-  useEffect(() => {
-    sendReview();
-  }, [clicked]); //컨디마 컨디업
 
   const onSubmitReview = async (e) => {
     e.preventDefault();
@@ -97,10 +58,10 @@ function RestaurantsDetail() {
     })
     getReviews()
     e.target[0].value = '';
-    setClicked([false, false, false, false, false])
   }
-
-
+  const handleInput = (e) => {
+    setScore(parseInt(e.target.defaultValue))
+  };
   const detailDate = (a) => {
     const milliSeconds = new Date() - a;
     const seconds = milliSeconds / 1000;
@@ -147,11 +108,11 @@ function RestaurantsDetail() {
               })}
             </Slider>
             <button className={styled1.category}>{restaurant.category_name}</button>
-            <h3 className={styled1.name}>
+            <h2 className={styled1.name}>
               {restaurant.name}
-            </h3>
-            <p style={{ fontSize: '12px' }}>{restaurant.address.slice(0, -8)}</p>
-            <p>인기메뉴</p>
+            </h2>
+            <p style={{ fontSize: '15px' }}>{restaurant.address.slice(0, -8)}</p>
+            <h2 className={styled1.name}>인기메뉴</h2>
             {menus.map((menu) =>
               <p className={styled1.menuname}>{menu}</p>
             )}
@@ -161,16 +122,19 @@ function RestaurantsDetail() {
       {
         reviews ?
           <>
-            <h3 className={styled1.review}>식당리뷰 {reviews.length ? <span className='review-span'>{reviews.length}개의 리뷰 </span> : <span className='review-span'>아직 리뷰가 없어요 😥</span>}</h3>
+            <h2 className={styled1.name}>식당리뷰 {reviews.length ? <span className='review-span'>{reviews.length}개의 리뷰 </span> : <span className='review-span'>아직 리뷰가 없어요 😥</span>}</h2>
             {reviews.map((el, i) => {
               return (
-                <div className='review-p'>
-                  <p>{reviews[i].user}
+                <div
+                >
+                  <p className={styled1.review}>{reviews[i].user}
                     <span className='res-date'>
                       {detailDate(new Date(reviews[i].updated_at))}
                     </span>
                     <br />
-                    {reviews[i].content} {reviews[i].grade} {reviews[i].grade.length}
+                    <span className='res-detail-span-p'>
+                      {reviews[i].content} {reviews[i].grade}
+                    </span>
                   </p>
                 </div>
               )
@@ -182,23 +146,12 @@ function RestaurantsDetail() {
       <Form onSubmit={onSubmitReview}>
         <Form.Control
           type="text"
-          placeholder='식당리뷰'
+          placeholder='작성할 내용을 입력하세요.'
           className='mb-3'
           required
         />
-        <Stars>
-          {
-            array.map((el) => (
-              <FaStar
-                key={el}
-                onClick={() => handleStarClick(el)}
-                className={clicked[el] && 'yellowStar'}
-                size="35"
-              />)
-            )
-          }
-        </Stars>
-        <button>작성</button>
+        <Star handleInput={handleInput} />
+        <button className={styled1.resbtn}>리뷰 쓰기</button>
 
       </Form>
       {
