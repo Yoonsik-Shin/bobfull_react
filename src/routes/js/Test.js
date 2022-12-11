@@ -1,7 +1,7 @@
 import '../../components/css/Main.css';
 
 function Test() {
-  setTimeout("location.href='http://localhost:3000/main'", 4900);
+  setTimeout("location.href='https://master.d23us6abru3x73.amplifyapp.com/main'", 4000);
   return (
     <div className="div">
       <div className='overlay'></div>

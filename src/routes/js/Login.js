@@ -37,7 +37,9 @@ function Login() {
       axios({
         method: "post",
         url: `${baseURL}/accounts/login/`,
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+        },
         data: {
           email: inputId,
           password: inputPw,
