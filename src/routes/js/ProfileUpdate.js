@@ -14,7 +14,7 @@ function ProfileAdd() {
   const user = useSelector((state) => state.user);
   const formData = new FormData()
   const [userState, setUserState] = useState({
-    email: user.email ? user.email : `kakaoUser${user.pk}@kakao.com`,
+    email: user.email ? user.email : `kakaoUser${user.id}@kakao.com`,
     nickname: user.nickname ? user.nickname : null,
     gender: user.gender,
     smoke: user.smoke,
@@ -54,7 +54,7 @@ function ProfileAdd() {
     <Container>
       <Form onSubmit={ProfileUpdate}>
         <h3 className="text-center my-5">프로필을 입력하면<br />나와 더 잘 맞는<br /> 밥풀을 만날 수 있어요.</h3>
-        <Form.Control type='file' onChange={imageInput} accept="image/*" name='profile_image'/>
+        <Form.Control type='file' onChange={imageInput} accept="image/*" name='profile_image' />
         <Form.Control type='text' defaultValue={user.nickname} placeholder={'닉네임을 입력해주세요'} onChange={nicknameInput} name="nickname"/>
         <div className="d-flex align-items-center justify-content-between me-5 px-5">
           <h2 className="me-5 my-0">성별</h2>
