@@ -1,6 +1,6 @@
 .btn {
   color: white;
-  background-color: rgb(255, 141, 121);
+  background-color: lightsalmon;
   padding: 10px 10px;
   border: 0;
   border-radius: 5px;
@@ -29,15 +29,18 @@
 
 .name {
   font-weight: 1000;
+  font-size: 28px;
+  margin: 20px 0;
 }
 
 .menuname {
   color: rgb(204, 128, 115);
   margin-bottom: 7px;
+  font-size: large;
 }
 
 .review {
-  font-weight: 1000;
+  font-size: 23px;
   margin: 20px 0;
 }
 
@@ -183,4 +186,15 @@
 
 .categorynavdiv {
   padding: 0 3%;
+}
+
+.resbtn {
+  color: white;
+  background-color: lightsalmon;
+  padding: 7px 5px;
+  border: 0;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+  font-size: medium;
 }

@@ -10,6 +10,7 @@
 .res-date {
   color: gray;
   font-size: 12px;
+  margin-left: 10px;
 }
 
 .review-span {
@@ -17,7 +18,9 @@
 }
 
 .review-p {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: x-large;
+  line-height: 150%;
 }
 
 .res-detail-img {
@@ -32,4 +35,8 @@
 
 .container {
   padding-bottom: 120px;
+}
+
+.res-detail-span-p {
+  font-size: large;
 }
