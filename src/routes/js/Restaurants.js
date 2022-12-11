@@ -166,7 +166,7 @@ function Restaurants() {
                   <Slider {...settings}>
                     {data.images.map((img, i) => {
                       return (
-                        <img src={require(decodeURIComponent(data.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/https:/', 'https://'))).default} className='res-img' />
+                        <img src={require(decodeURIComponent(data.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/https:`/', 'https:`/`/'))).default} className='res-img' />
                       )
                     })}
                   </Slider>
@@ -176,7 +176,7 @@ function Restaurants() {
                   <Slider {...settings}>
                     {data.images.map((img, i) => {
                       return (
-                        <img src={require(decodeURIComponent(data.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/https:/', 'https://'))).default} className='res-img' />
+                        <img src={require(decodeURIComponent(data.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/https:`/', 'https:`/`/'))).default} className='res-img' />
                       )
                     })}
                   </Slider>
