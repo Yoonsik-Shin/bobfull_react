@@ -13,7 +13,7 @@ function ContentCheck(props) {
           placeholder="내용"
           onChange={props.handleContent}
           className='form-control'
-          style={{ height: '30vh' }}
+          style={{ height: '10vh' }}
         />
       </Form.Group>
     </>
