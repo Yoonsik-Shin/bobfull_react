@@ -13,3 +13,4 @@ npm install react-icons
 npm install @reduxjs/toolkit
 npm install moment
 npm install react-moment
+npm install react-bootstrap-accordion

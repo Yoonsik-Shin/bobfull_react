@@ -8,6 +8,7 @@ import Category from './routes/js/Category.js'
 import NavbarBottom from './components/js/navbar.js'
 import KakaoMap from './components/js/Map.js'
 import Community from './routes/js/Communities.js'
+import CommunityDetail from "./routes/js/CommunityDetail";
 import Signup from './routes/js/Signup.js'
 import Profile from './routes/js/Profile.js'
 import Roulette from "./routes/js/Roulette";
@@ -34,6 +35,7 @@ function App() {
         <Route path="/res_index/:id" element={<RestaurantsDetail />} />
         <Route path="/res_category" element={<Category />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/community/:id" element={<CommunityDetail />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={user.isLogin ? <Profile /> : <Login />} />
         <Route path="/profile/update" element={<ProfileUpdate />} />
