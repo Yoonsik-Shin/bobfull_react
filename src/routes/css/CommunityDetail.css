@@ -1,0 +1,24 @@
+.article-card {
+  background-color: white;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  color: gray;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  margin-bottom: 1vh;
+  border-radius: 10px;
+}
+
+.comment-block {
+  margin-top: 20px;
+}
+
+.commentBtn {
+  --bs-btn-bg: lightsalmon;
+  --bs-btn-border-color: lightsalmon;
+  --bs-btn-active-bg: lightsalmon;
+  --bs-btn-active-border-color: lightsalmon;
+  --bs-btn-hover-bg: lightsalmon;
+  --bs-btn-hover-border-color: lightsalmon;
+}

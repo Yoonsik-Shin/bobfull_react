@@ -14,7 +14,7 @@
 
 .profile-nickname span {
   font-size: 16px;
-  color: grey
+  color: grey;
 }
 
 .profile-btn {
@@ -24,12 +24,12 @@
   border: 0;
   outline: 0;
   margin-top: 30px;
-  background: lightgrey;
+  background: lightsalmon;
 }
 
 .profile-btn a {
   text-decoration: none;
-  color: black
+  color: white;
 }
 
 .profile-manner {
@@ -65,5 +65,6 @@
 }
 
 .list-group-item.active {
-  background-color: rgba(63, 63, 63, 0.781);
+  background-color: lightsalmon;
+  border-color: lightsalmon;
 }
