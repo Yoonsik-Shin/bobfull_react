@@ -34,6 +34,7 @@ function CommunityDetail() {
     console.log(article);
   };
 
+
   const onSubmitReview = async (e) => {
     e.preventDefault();
     const submit = await axios({
