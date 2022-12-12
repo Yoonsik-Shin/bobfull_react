@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
 import Topnavbar from '../../../src/components/js/Topnavbar';
 import Star from '../../../src/components/js/Star';
+import { current } from '@reduxjs/toolkit';
 
 var baseURL = process.env.REACT_APP_BASE_URL
 
@@ -21,6 +22,7 @@ function RestaurantsDetail() {
   const [score, setScore] = useState(1)
   const [scoreSum, setScoreSum] = useState([])
   const name = new URL(window.location.href).searchParams.get('name')
+
   const getRes = async () => {
     const res = await axios.get(`${baseURL}/restaurant/${id}/`, { headers: { 'Content-Type': 'application/json' } })
     setRestaurant(res.data)
@@ -32,19 +34,31 @@ function RestaurantsDetail() {
       url: `${baseURL}/articles/${id}/review/`
     })
     setReviews(review.data)
-    review.data.map((el) => {
-      let copy = [...scoreSum]
+    let copy = []
+    review.data.map((el, idx) => {
+      console.log(copy)
+      console.log(el)
+      console.log(el.grade)
+      console.log(el.grade.length)
       copy.push(el.grade.length)
       setScoreSum(copy)
     })
   }
+
+  // useEffect(() => {
+  //   [...reviews].map((el, idx) => {
+  //     let copy = [...scoreSum]
+  //     copy.push(reviews[idx].grade.length)
+  //     setScoreSum(copy)
+  //     console.log(scoreSum)
+  //   })
+  // }, [reviews])
 
   // 랜더링시 레스토랑 정보 받아오기
   useEffect(() => {
     getRes()
     getReviews()
   }, [])
-
 
   const onSubmitReview = async (e) => {
     e.preventDefault();
@@ -59,9 +73,11 @@ function RestaurantsDetail() {
     getReviews()
     e.target[0].value = '';
   }
+
   const handleInput = (e) => {
     setScore(parseInt(e.target.defaultValue))
   };
+
   const detailDate = (a) => {
     const milliSeconds = new Date() - a;
     const seconds = milliSeconds / 1000;
@@ -79,6 +95,7 @@ function RestaurantsDetail() {
     const years = days / 365;
     return `${Math.floor(years)}년 전`;
   };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -122,7 +139,14 @@ function RestaurantsDetail() {
       {
         reviews ?
           <>
-            <h2 className={styled1.name}>식당리뷰 {reviews.length ? <span className='review-span'>{reviews.length}개의 리뷰 </span> : <span className='review-span'>아직 리뷰가 없어요 😥</span>}</h2>
+            <h2 className={styled1.name}>
+              식당리뷰 
+              {
+                reviews.length ? 
+                <span className='review-span'>  {reviews.length}개의 리뷰  { scoreSum.length != 0 ? <span> | 평점 : {(scoreSum.reduce((acc, cur) => { return (acc + cur) }) / scoreSum.length).toFixed(2)}/5</span>: null }</span> 
+                : <span className='review-span'>아직 리뷰가 없어요 😥</span>
+              }  
+            </h2>
             {reviews.map((el, i) => {
               return (
                 <div
@@ -152,12 +176,8 @@ function RestaurantsDetail() {
         />
         <Star handleInput={handleInput} />
         <button className={styled1.resbtn}>리뷰 쓰기</button>
-
       </Form>
-      {
-        restaurant ? <Link to={`/matching_room/${restaurant.id}`}>매칭룸 입장하기</Link> : null
-      }
-
+      { restaurant ? <Link to={`/matching_room/${restaurant.id}`}>매칭룸 입장하기</Link> : null }
     </Container>
   )
 }

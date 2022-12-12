@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "../css/MatchingRoomDetail.css";
-import React from "react";
-
 import moment from "moment";
-import Moment from "react-moment";
 import "moment/locale/ko";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
@@ -64,7 +61,7 @@ function MatchingRoomDetail() {
           </>
         ) : null}
         <button onClick={attendRoom}>매칭 {state}하기</button>
-        <Link>채팅하기</Link>
+        <Link to={`/multichat/${useParam.detail}`}>채팅하기</Link>
       </div>
     </Container>
   );

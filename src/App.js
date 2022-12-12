@@ -44,7 +44,8 @@ function App() {
         <Route path="/accounts/google/callback/" element={<GoogleAuth />} />
         <Route path="/matching_room/:id" element={<MatchingRoom />} />
         <Route path="/matching_room/:id/:detail" element={<MatchingRoomDetail />} />
-        <Route path="/chat_room/index" element={<ChatRoom />} />
+        <Route path="/multichat/index" element={<ChatRoom />} />
+        <Route path="/multichat/:room_id" element={<ChatRoom />} />
         <Route path="/matching_room/:id/:detail/multichat" element={<ChatRoom />} />
       </Routes>
       <NavbarBottom />
