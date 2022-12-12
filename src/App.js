@@ -20,8 +20,8 @@ import { Routes, Route, Link, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MatchingRoom from "./routes/js/MatchingRoom.js"
 import MatchingRoomDetail from "./routes/js/MatchingRoomDetail.js"
+import MatchingList from "./routes/js/MatchingList";
 import ChatRoom from "./routes/js/ChatRoom.js"
-
 function App() {
   const user = useSelector((state) => state.user);
   return (
@@ -46,6 +46,7 @@ function App() {
         <Route path="/accounts/google/callback/" element={<GoogleAuth />} />
         <Route path="/matching_room/:id" element={<MatchingRoom />} />
         <Route path="/matching_room/:id/:detail" element={<MatchingRoomDetail />} />
+        <Route path="/matching_list" element={<MatchingList />} />
         <Route path="/multichat/index" element={<ChatRoom />} />
         <Route path="/multichat/:room_id" element={<ChatRoom />} />
         <Route path="/matching_room/:id/:detail/multichat" element={<ChatRoom />} />
