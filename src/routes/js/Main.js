@@ -41,7 +41,7 @@ function Main() {
         <h2>수다가 필요하신가요?</h2>
         <Col xs={8} className="choice-community">
           <p>커뮤니티</p>
-          <Link to="/roulette" className="main-choice1">
+          <Link to="/community" className="main-choice1">
             <img src={"/group.png"} className="choice-img" />
           </Link>
         </Col>
