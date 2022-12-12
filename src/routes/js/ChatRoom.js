@@ -16,24 +16,29 @@ function ChatRoom() {
     setChatRoomList(list.data)
   }
 
-  const createChatRoom = async () => {
-    const create = await axios({
-      method: 'get',
-      url: `${baseURL}/multichat/1/create/`
-    })
-    console.log(create)
-  }
-
-
+  // const createChatRoom = async () => {
+  //   const create = await axios({
+  //     method: 'post',
+  //     url: `${baseURL}/multichat/1/create/`
+  //   })
+  //   console.log(create)
+  // }
 
   useEffect(()=>{
     getChatRoomList()
-    createChatRoom()
+    // createChatRoom()
   }, [])
 
   return (
     <Container>
-      <div>채팅방</div>
+      <div>채팅방 목록 페이지</div>
+      {
+        chatRoomList ?
+        chatRoomList.map((el)=> {
+          console.log(el)
+        })
+        : null
+      }
     </Container>
   )
 }
