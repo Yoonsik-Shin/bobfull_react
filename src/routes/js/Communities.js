@@ -56,30 +56,30 @@ function Community() {
         key='res'
         pagename='커뮤니티'
       />
+      <h2>글 목록</h2>
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={onSubmit}>
+            <TitleCheck handleTitle={handleTitle} />
+            <ContentCheck handleContent={handleContent} />
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button type='submit' variant="primary">
+              작성
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
       {
         articles ?
           <>
-            <h2>글 목록</h2>
-            <Button variant="primary" onClick={handleShow}>
-              Launch demo modal
-            </Button>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form onSubmit={onSubmit}>
-                  <TitleCheck handleTitle={handleTitle} />
-                  <ContentCheck handleContent={handleContent} />
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button type='submit' variant="primary">
-                    작성
-                  </Button>
-                </Form>
-              </Modal.Body>
-            </Modal>
             {articles.map((data, idx) => {
               return (
                 <div>
