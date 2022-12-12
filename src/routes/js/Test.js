@@ -9,7 +9,7 @@ function Test() {
       <div className='text-box'>
         <h2 className='text'>밥풀의</h2>
         <h2 className='text'>새로운</h2>
-        <h2 className='text'>경험</h2>
+        <h2 className='text'>문화</h2>
       </div>
     </div>
   );

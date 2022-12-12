@@ -31,10 +31,10 @@ function Main() {
           음식룰렛
         </Col>
         <Col xs={4} className="choice-text">
-          <Link to="/" className="main-choice">
+          <Link to="/matching_list" className="main-choice">
             <img src={"/random.png"} className="choice-img" />
           </Link>
-          식당추천
+          모든 모임
         </Col>
       </Row>
       <Row className="main-flex">

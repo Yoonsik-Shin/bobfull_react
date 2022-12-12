@@ -28,7 +28,7 @@ function CommunityDetail() {
       url: `${baseURL}/community/${id}/`
     })
     setArticle(res.data)
-    console.log(article)
+    console.log(res)
   }
 
   const onSubmitReview = async (e) => {

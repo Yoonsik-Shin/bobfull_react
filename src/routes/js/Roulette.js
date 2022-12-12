@@ -31,8 +31,8 @@ function Roulette() {
     var ani = setInterval(() => {
       num++;
       settransform("rotate(" + 360 * num + "deg)");
-      btn.disabled = true; //button,input
-      btn.style.pointerEvents = "none"; //a 태그
+      const qw = btn ? btn.disabled = true : null; //button,input
+      const qe = btn ? btn.style.pointerEvents = "none" : null; //a 태그
 
       // 총 50에 다달했을때, 즉 마지막 바퀴를 돌고나서
       if (num === 30) {
