@@ -19,3 +19,22 @@
   background-color: white;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
+
+.Btns {
+  display: flex;
+  margin-top: 10px;
+}
+
+.matchingBtn {
+  --bs-btn-bg: lightsalmon;
+  --bs-btn-border-color: lightsalmon;
+  --bs-btn-active-bg: lightsalmon;
+  --bs-btn-active-border-color: lightsalmon;
+  --bs-btn-hover-bg: lightsalmon;
+  --bs-btn-hover-border-color: lightsalmon;
+  margin-right: 5px;
+}
+
+.chattingBtn {
+  border-radius: 10px;
+}

@@ -17,6 +17,9 @@
   color: grey;
 }
 
+.username {
+  margin-bottom: 0px;
+}
 .profile-btn {
   width: 100%;
   border-radius: 5px;

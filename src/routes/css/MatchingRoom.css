@@ -1,0 +1,26 @@
+.matching-titles {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: 10px 5px;
+}
+
+.matchingBtn {
+  --bs-btn-bg: lightsalmon;
+  --bs-btn-border-color: lightsalmon;
+  --bs-btn-active-bg: lightsalmon;
+  --bs-btn-active-border-color: lightsalmon;
+  --bs-btn-hover-bg: lightsalmon;
+  --bs-btn-hover-border-color: lightsalmon;
+  border-radius: 10px;
+  color: white;
+}
+
+.matchingLink {
+  text-decoration: none;
+  color: lightsalmon;
+}
+
+.matching-container {
+  padding-bottom: 10px;
+}
