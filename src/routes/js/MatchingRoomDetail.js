@@ -39,7 +39,16 @@ function MatchingRoomDetail() {
     alert(attend.data);
     getDetail();
     participation.includes(user.id) ? setState("참가") : setState("취소");
+    participation.includes(user.id) ? setState("참가") : setState("취소");
   };
+
+  const attendChatting = async () => {
+    const autoIn = await axios({
+      method: "get",
+      url: `'${baseURL}/${useParam.detail}/join/'`
+    })
+    console.log(autoIn.data)
+  }
 
   return (
     <Container style={{ padding: "0" }}>
@@ -59,13 +68,27 @@ function MatchingRoomDetail() {
                   return `${member}번 `;
                 })}
               </div>
+              <div>
+                <h5>호스트 정보</h5>
+                <div>{info.user.pk} {info.user.nickname}</div>
+                <div>{info.user.gender ? '여성' : '남성'}</div>
+                <div>매너온도 : {info.user.manner}도</div>
+                <div>식사속도 : {info.user.speed}</div>
+                <div>대화여부 : {info.user.talk ? 'O' : 'X'} </div>
+                <div>음주여부 : {info.user.alcohol ? 'O' : 'X'} </div>
+                <div>흡연여부 : {info.user.smoke ? 'O' : 'X'} </div>
+              </div>
             </div>
           </>
         ) : null}
-        {state == "참가" ? null : <div>매칭참가중</div>}
-        <button onClick={attendRoom} className="matchingDetailBtn">
-          매칭 {state}하기
-        </button>
+        {
+          state == "참가" ? 
+          <button onClick={()=>{
+            attendRoom()
+            attendChatting()
+          }} className="matchingDetailBtn">매칭 {state}하기</button> 
+          : <div>매칭참가중</div>
+        }
         {info && participation.includes(user.id) ? (
           <div className="Btns">
             <button onClick={attendRoom} className="matchingDetailBtn">
