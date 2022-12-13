@@ -1,5 +1,5 @@
 .res-one {
-  margin: 20px 0
+  margin: 20px 0;
 }
 
 .res-img {
@@ -28,3 +28,12 @@
   font-weight: 1000px;
 }
 
+.searchForm {
+  margin-top: 10px;
+}
+
+.searchBtn {
+  color: white;
+  background-color: lightsalmon;
+  border-color: lightsalmon;
+}

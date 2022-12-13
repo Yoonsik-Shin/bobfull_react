@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Map, MapMarker} from 'react-kakao-maps-sdk'
+import { useEffect, useState } from "react";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
+import "../components/css/WatchLocation.css";
 
 function Location() {
   const [state, setState] = useState({
@@ -9,7 +10,7 @@ function Location() {
     },
     errMsg: null,
     isLoading: true,
-  })
+  });
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -23,30 +24,30 @@ function Location() {
               lng: position.coords.longitude, // 경도
             },
             isLoading: false,
-          }))
+          }));
         },
         (err) => {
           setState((prev) => ({
             ...prev,
             errMsg: err.message,
             isLoading: false,
-          }))
+          }));
         }
-      )
+      );
     } else {
       // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
       setState((prev) => ({
         ...prev,
         errMsg: "geolocation을 사용할수 없어요..",
         isLoading: false,
-      }))
+      }));
     }
-  }, [])
+  }, []);
 
   return (
     <>
-      <div>{state.center.lat}</div>
-      <div>{state.center.lng}</div>
+      {/* <div>{state.center.lat}</div>
+      <div>{state.center.lng}</div> */}
       <Map // 지도를 표시할 Container
         center={state.center}
         style={{
@@ -57,15 +58,21 @@ function Location() {
         level={3} // 지도의 확대 레벨
       >
         {!state.isLoading && (
-          <MapMarker position={state.center}>
-            <div style={{ padding: "5px", color: "#000" }}>
-              {state.errMsg ? state.errMsg : "현재위치"}
+          <MapMarker position={state.center} style={{ textAlign: "center" }}>
+            <div
+              style={{
+                color: "#000",
+                display: "inline-block",
+                paddingLeft: "13px",
+              }}
+            >
+              {state.errMsg ? state.errMsg : "현재 위치 입니다"}
             </div>
           </MapMarker>
         )}
       </Map>
     </>
-  )
+  );
 }
 
-export default Location
+export default Location;
