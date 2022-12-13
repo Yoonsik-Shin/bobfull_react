@@ -30,7 +30,13 @@ function ChatRoom() {
             <div key={idx}>
               <div>{el.id}번째 채팅방</div>
               <div>마지막 채팅시간 : {el.updated_at}</div>
-              <div>호스트 정보 : <img src={el.host.profile_image} alt="" width='30px' className="profile-img" /> {el.host.nickname}</div>
+              <div>호스트 정보 : {
+                el.host.profile_image ?
+                <img src={el.host.profile_image} alt="" width='30px' className="profile-img" /> 
+                : <img src="./basic_profile_img.png" width="45px"className="profile-img"/>
+              } 
+                {el.host.nickname}
+              </div>
               <div>호스트 매너온도 : {el.host.manner}도</div>
               <div>약속 음식점명 : {el.matching_room.restaurant.name} </div>
               <div>약속 시간 : {el.matching_room.to_date} </div>
