@@ -30,18 +30,6 @@ function ChatRoomDetail() {
     {staleTime: interval}
   )
 
-  // const getMessages = async () => {
-  //   const Messages = await axios({
-  //     method: 'get',
-  //     url: `${baseURL}/multichat/${room_id}`
-  //   })
-  //   setMessages(Messages.data)
-  //   console.log(Messages.data)
-  // }
-
-  // useEffect(()=>{
-  //   getMessages()
-  // }, [])
 
   return (
     <Container>
@@ -56,17 +44,6 @@ function ChatRoomDetail() {
           </div>
         )
       }) }
-      {/* {
-        messages ? 
-        messages.map((el, idx) => {
-          return (
-            <div key={idx}>
-              <div>채팅내용 : {el.content} || 보낸사람 : {el.sender.nickname}</div>
-            </div>
-          )
-        })
-        : null
-      } */}
       <SendChat room_id={room_id} setInputChating={setInputChating} inputChating={inputChating} handleInputChat={handleInputChat}/>
     </Container>
   )

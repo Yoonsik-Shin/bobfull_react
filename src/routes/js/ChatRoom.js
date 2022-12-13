@@ -11,7 +11,7 @@ function ChatRoom() {
   const getChatRoomList = async () => {
     const list = await axios({
       method: 'get',
-      url: `${baseURL}/multichat/`
+      url: `${baseURL}/multichat/${room_id}/`
     })
     setChatRoomList(list.data)
   }

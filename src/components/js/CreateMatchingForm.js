@@ -44,7 +44,7 @@ function CreateForm(props) {
     alert('매칭룸이 생성되었습니다.')
     props.setResponseChat(createRoom.data.id)
     console.log(createRoom.data)
-    
+    attendChatting()
   }
   
   useEffect(()=>{
@@ -61,6 +61,14 @@ function CreateForm(props) {
         props.setResponseChat(res.data.matching_room.id)
       })
   }, [props.responseChat])
+
+  const attendChatting = async () => {
+    const autoIn = await axios({
+      method: "get",
+      url: `${baseURL}/multichat/${props.responseChat}/join/`
+    })
+    console.log(autoIn.data)
+  }
 
   return (
     <Container>
