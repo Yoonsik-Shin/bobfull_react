@@ -15,7 +15,7 @@ function ChatRoomDetail() {
     setInputChating(e.target.value)
   }
   const [messages, setMessages] = useState()
-  
+  const interval = 2000
   const getMessages = useQuery(['Messages'], ()=>
     axios({
       method: 'get',
@@ -25,9 +25,9 @@ function ChatRoomDetail() {
         console.log(res.data)
         return res.data
       }),
-    {refetchInterval : 100},
-    {cacheTime: 100},
-    {staleTime: 100}
+    {refetchInterval : interval},
+    {cacheTime: interval},
+    {staleTime: interval}
   )
 
   // const getMessages = async () => {

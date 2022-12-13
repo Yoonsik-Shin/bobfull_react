@@ -30,12 +30,13 @@ function MatchingRoom() {
     })
     console.log(matchingRoom.data) 
     setMatchList(matchingRoom.data)
-    // setResId(matchingRoom.data[0].restaurant_id)
-    // setResName(matchingRoom.data[0].restaurant_name)
+    setResId(matchingRoom.data[0].restaurant_id)
+    setResName(matchingRoom.data[0].restaurant_name)
   }
   useState(() => {
     getMatchingRoom();
   }, [matchList]);
+
 
   return (
     <Container>
@@ -62,8 +63,8 @@ function MatchingRoom() {
                 <div>약속날자/시간 : {el.to_date}</div>
                 <div>참여 멤버수 : {el.member.length}</div>
                 <div>채팅룸 번호 : {el.chatroom}</div>
-                <Link to={`/matching_room/${id}/${el.id}`}>자세히보기</Link>
-                <Link to={`/multichat/${el.id}`}>채팅룸</Link>
+                <button><Link to={`/matching_room/${id}/${el.id}`}>자세히보기</Link></button>
+                <button><Link to={`/multichat/${el.id}`}>채팅룸</Link></button>
               </Card.Body>
             </Card>
           )

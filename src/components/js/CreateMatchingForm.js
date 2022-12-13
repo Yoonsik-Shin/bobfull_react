@@ -41,6 +41,7 @@ function CreateForm(props) {
       data: hostInfo
     })
     setHostInfo({...hostInfo, ...createRoom.data})
+    alert('매칭룸이 생성되었습니다.')
     props.setResponseChat(createRoom.data.id)
     console.log(createRoom.data)
     
