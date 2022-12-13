@@ -60,8 +60,10 @@ function MatchingRoomDetail() {
             </div>
           </>
         ) : null}
+        { state == '참가' ? null : <div>매칭참가중</div> }
         <button onClick={attendRoom}>매칭 {state}하기</button>
-        <Link to={`/multichat/${useParam.detail}`}>채팅하기</Link>
+        {info && participation.includes(user.id) ? <Link to={`/multichat/${useParam.detail}`}>채팅하기</Link> : null}
+        
       </div>
     </Container>
   );

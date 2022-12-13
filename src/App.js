@@ -22,6 +22,8 @@ import MatchingRoom from "./routes/js/MatchingRoom.js"
 import MatchingRoomDetail from "./routes/js/MatchingRoomDetail.js"
 import MatchingList from "./routes/js/MatchingList";
 import ChatRoom from "./routes/js/ChatRoom.js"
+import ChatRoomDetail from "./routes/js/ChatRoomDetail.js"
+
 function App() {
   const user = useSelector((state) => state.user);
   return (
@@ -48,7 +50,7 @@ function App() {
         <Route path="/matching_room/:id/:detail" element={<MatchingRoomDetail />} />
         <Route path="/matching_list" element={<MatchingList />} />
         <Route path="/multichat/index" element={<ChatRoom />} />
-        <Route path="/multichat/:room_id" element={<ChatRoom />} />
+        <Route path="/multichat/:room_id" element={<ChatRoomDetail />} />
         <Route path="/matching_room/:id/:detail/multichat" element={<ChatRoom />} />
       </Routes>
       <NavbarBottom />
