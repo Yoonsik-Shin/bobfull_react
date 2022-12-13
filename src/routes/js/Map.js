@@ -6,6 +6,7 @@ function KakaoMap() {
 
   return (
     <>
+      <div>외;안되//</div>
       <Location/>
     </>
   )

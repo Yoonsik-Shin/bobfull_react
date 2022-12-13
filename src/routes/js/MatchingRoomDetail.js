@@ -62,18 +62,13 @@ function MatchingRoomDetail() {
             </div>
           </>
         ) : null}
-        <div className="Btns">
-          <Button className="matchingBtn" onClick={attendRoom}>
-            매칭 {state}하기
-          </Button>
-          <Button
-            className="chattingBtn"
-            Link
-            to={`/multichat/${useParam.detail}`}
-          >
-            채팅하기
-          </Button>
-        </div>
+        { state == '참가' ? null : <div>매칭참가중</div> }
+        <button onClick={attendRoom} className="matchingBtn">매칭 {state}하기</button>
+        {
+          info && participation.includes(user.id) ? 
+          <div className="Btns"><Button className="chattingBtn"><Link to={`/multichat/${useParam.detail}`}>채팅하기</Link></Button></div> 
+          : null
+        }
       </div>
     </Container>
   );

@@ -38,12 +38,7 @@ function MatchingList() {
                 {data.from_date}
                 <br />
                 {data.member.length}명<br />
-                <Link
-                  className="matchingLink"
-                  to={`/matching_room/${data.restaurant_id}/${data.id}`}
-                >
-                  자세히보기
-                </Link>
+                { data.member.length > 4 ? <Link to={`/matching_room/${data.restaurant_id}/${data.id}`}>자세히보기</Link> : '4/4'}
               </div>
             );
           })}
