@@ -45,10 +45,22 @@ function MatchingRoomDetail() {
   const attendChatting = async () => {
     const autoIn = await axios({
       method: "get",
-      url: `'${baseURL}/${useParam.detail}/join/'`
+      url: `${baseURL}/multichat/${useParam.detail}/join/`
     })
     console.log(autoIn.data)
   }
+
+  const leaveChatting = async () => {
+    const autoOut = await axios({
+      method: "get",
+      url: `${baseURL}/multichat/${useParam.detail}/leave/`
+    })
+    console.log(autoOut.data)
+  }
+
+  useEffect(() => {
+    state == '취소' ? attendChatting() : leaveChatting()
+  }, [state])
 
   return (
     <Container style={{ padding: "0" }}>
@@ -85,13 +97,14 @@ function MatchingRoomDetail() {
           state == "참가" ? 
           <button onClick={()=>{
             attendRoom()
-            attendChatting()
           }} className="matchingDetailBtn">매칭 {state}하기</button> 
           : <div>매칭참가중</div>
         }
         {info && participation.includes(user.id) ? (
           <div className="Btns">
-            <button onClick={attendRoom} className="matchingDetailBtn">
+            <button onClick={()=>{
+              attendRoom()
+            }} className="matchingDetailBtn">
               매칭 {state}하기
             </button>
             <button className="chattingRoomBtn">
@@ -100,6 +113,8 @@ function MatchingRoomDetail() {
           </div>
         ) : null}
       </div>
+      <button onClick={leaveChatting}>싱크맞추기 : 채팅룸나가기</button>
+      <button onClick={attendChatting}>싱크맞추기 : 채팅룸들어가기</button>
     </Container>
   );
 }

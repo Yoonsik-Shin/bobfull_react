@@ -33,6 +33,7 @@ function MatchingRoom() {
     setResId(matchingRoom.data[0].restaurant_id)
     setResName(matchingRoom.data[0].restaurant_name)
   }
+  
   useState(() => {
     getMatchingRoom();
   }, [matchList]);
