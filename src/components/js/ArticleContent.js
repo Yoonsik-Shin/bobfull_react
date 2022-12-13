@@ -6,16 +6,32 @@ function ContentCheck(props) {
 
   return (
     <>
-      <Form.Group className={styled.passworddiv} controlId="exampleForm.ControlTextarea1">
-        <textarea
-          type='text'
-          aria-describedby="contentHelpBlock"
-          placeholder="내용"
-          onChange={props.handleContent}
-          className='form-control'
-          style={{ height: '10vh' }}
-        />
-      </Form.Group>
+      {!props.commu ?
+        <>
+          <Form.Group className={styled.passworddiv} controlId="exampleForm.ControlTextarea1">
+            <textarea
+              type='text'
+              aria-describedby="contentHelpBlock"
+              placeholder={props.name + ' 추가...'}
+              onChange={props.handleContent}
+              className='form-control'
+              style={{ height: '38px' }}
+            />
+          </Form.Group>
+        </> :
+        <>
+          <Form.Group className={styled.passworddiv} controlId="exampleForm.ControlTextarea1">
+            <textarea
+              type='text'
+              aria-describedby="contentHelpBlock"
+              placeholder={props.commu}
+              onChange={props.handleContent}
+              className='form-control'
+              style={{ height: '120px' }}
+            />
+          </Form.Group>
+        </>
+      }
     </>
   );
 }
