@@ -28,6 +28,7 @@ function MatchingRoom() {
       method: 'get',
       url: `${baseURL}/articles/${id}/matching_room/`
     })
+    console.log(matchingRoom.data) 
     setMatchList(matchingRoom.data)
     setResId(matchingRoom.data[0].restaurant_id)
     setResName(matchingRoom.data[0].restaurant_name)
@@ -43,6 +44,7 @@ function MatchingRoom() {
       { matchList ? <div>{resId} {resName}</div> : null}
       <button onClick={()=>{setFormModal(!formModal)}}>매칭룸 생성하기</button>
       {formModal ? <CreateForm getMatchingRoom={getMatchingRoom} responseChat={responseChat} setResponseChat={setResponseChat}/> : null}
+        
       {
         matchList ? 
         matchList.map((el, idx) => {
@@ -50,17 +52,18 @@ function MatchingRoom() {
             <Card style={{marginBottom: '10px', marginTop: '10px'}} key={idx}>
               <Card.Body>
                 <Card.Title>{el.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">매칭룸 호스트 : {el.user}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">매칭룸 호스트 : {
+                  el.user.profile_image ?
+                  <img src={el.user.profile_image} alt="" width='30px' className="profile-img" />
+                  : <img src="./basic_profile_img.png" width="45px"className="profile-img"/>
+                }
+                {el.user.nickname}
+                </Card.Subtitle>
                 <div>레스토랑명 : {el.restaurant_name}</div>
                 <div>매칭룸 내용 : {el.content}</div>
                 <div>약속날자/시간 : {el.to_date}</div>
                 <div>참여 멤버수 : {el.member.length}</div>
                 <Link to={`/matching_room/${id}/${el.id}`}>자세히보기</Link>
-                {/* {
-                  responseChat.map((element) => {
-                    return(element.matching_room.id == el.id ? <Link to={`/multichat${element.id}`}>매칭룸</Link> : null)
-                  })
-                } */}
               </Card.Body>
             </Card>
           )

@@ -24,7 +24,8 @@ function ChatRoomDetail() {
       .then((res)=>{
         console.log(res.data)
         return res.data
-      })
+      }),
+    {refetchInterval : 100}
   )
 
 
