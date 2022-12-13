@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Container, Form } from 'react-bootstrap'
 import { useSelector } from "react-redux";
 import { useParams } from 'react-router-dom'
+import RadioButton from '../../components/js/RadioButton.js'
 
 var baseURL = process.env.REACT_APP_BASE_URL
 
@@ -14,7 +15,8 @@ function CreateForm(props) {
     title: null,
     to_date: null,
     content: null,
-    member: [user.id]
+    member: [user.id],
+    chk_gender: null
   })
 
   const titleInput = (e) => {
@@ -25,6 +27,9 @@ function CreateForm(props) {
   }
   const endTimeInput = (e) => {
     setHostInfo({...hostInfo, to_date: e.target.value})
+  }
+  const checkGenderInput = (e) => {
+    setHostInfo({...hostInfo, chk_gender: Boolean(e.target.value)})
   }
 
   const createMatchingRoom = async (e) => {
@@ -61,8 +66,9 @@ function CreateForm(props) {
       <Form onSubmit={createMatchingRoom}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Control type="text" placeholder="매칭룸명" onChange={titleInput} required/>
-          <Form.Control type="text" placeholder="매칭룸내용" onChange={contentInput} required/>
+          <Form.Control type="text" placeholder="매칭룸내용" onChange={contentInput} required as="textarea" rows={3}/>
           <Form.Control type="datetime-local" onChange={endTimeInput} name="약속종료시간" required/>
+          <RadioButton checkGenderInput={checkGenderInput}></RadioButton>
         </Form.Group>
         <button>매칭룸 생성</button>
       </Form>
