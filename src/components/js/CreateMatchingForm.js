@@ -16,8 +16,9 @@ function CreateForm(props) {
     to_date: null,
     content: null,
     member: [user.id],
-    chk_gender: null
+    chk_gender: null,
   })
+  
 
   const titleInput = (e) => {
     setHostInfo({...hostInfo, title: e.target.value})
@@ -55,9 +56,8 @@ function CreateForm(props) {
       url: `${baseURL}/multichat/${props.responseChat}/create/`
     }) 
       .then((res)=>{
-        let copy = [...props.responseChat] 
-        copy.push(res.data)       
-        props.setResponseChat(copy)
+        console.log(res.data.matching_room.id)
+        props.setResponseChat(res.data.matching_room.id)
       })
   }, [props.responseChat])
 
