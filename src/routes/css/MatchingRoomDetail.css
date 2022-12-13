@@ -25,16 +25,25 @@
   margin-top: 10px;
 }
 
-.matchingBtn {
-  --bs-btn-bg: lightsalmon;
-  --bs-btn-border-color: lightsalmon;
-  --bs-btn-active-bg: lightsalmon;
-  --bs-btn-active-border-color: lightsalmon;
-  --bs-btn-hover-bg: lightsalmon;
-  --bs-btn-hover-border-color: lightsalmon;
+.matchingDetailBtn {
+  background-color: lightsalmon;
+  border-color: lightsalmon;
+  color: white;
   margin-right: 5px;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
 }
 
-.chattingBtn {
-  border-radius: 10px;
+.chattingRoomBtn a {
+  text-decoration: none;
+  color: white;
+}
+
+.chattingRoomBtn {
+  background-color: skyblue;
+  border-color: skyblue;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
 }

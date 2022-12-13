@@ -38,7 +38,16 @@ function MatchingList() {
                 {data.from_date}
                 <br />
                 {data.member.length}명<br />
-                { data.member.length > 4 ? <Link to={`/matching_room/${data.restaurant_id}/${data.id}`}>자세히보기</Link> : '4/4'}
+                {data.member.length > 4 ? (
+                  "4/4"
+                ) : (
+                  <Link
+                    className="matchingLink"
+                    to={`/matching_room/${data.restaurant_id}/${data.id}`}
+                  >
+                    자세히보기
+                  </Link>
+                )}
               </div>
             );
           })}
