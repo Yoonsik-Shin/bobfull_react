@@ -1,12 +1,17 @@
-import axios from "axios"
-import { useState } from "react"
-import { Container } from 'react-bootstrap'
-import { useSelector } from "react-redux";
-import { useParams, Link } from 'react-router-dom'
-import Card from 'react-bootstrap/Card';
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Container, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import "../css/MatchingRoom.css";
 import CreateForm from '../../components/js/CreateMatchingForm'
+import Button from "react-bootstrap/Button";
+import moment from "moment";
+import "moment/locale/ko";
 
-var baseURL = process.env.REACT_APP_BASE_URL
+var baseURL = process.env.REACT_APP_BASE_URL;
 
 function MatchingRoom() {
   
@@ -29,8 +34,8 @@ function MatchingRoom() {
   }
 
   useState(() => {
-    getMatchingRoom()
-  }, [matchList])
+    getMatchingRoom();
+  }, [matchList]);
 
   return (
     <Container>
@@ -68,5 +73,3 @@ function MatchingRoom() {
 }
 
 export default MatchingRoom
-  
-

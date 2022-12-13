@@ -70,7 +70,7 @@ function Community() {
             <ContentCheck handleContent={handleContent} />
             <div className="modal-btns">
               <Button variant="secondary" onClick={handleClose}>
-                Close
+                취소
               </Button>
               <Button type="submit" variant="primary" className="articlebtn">
                 작성
@@ -96,7 +96,7 @@ function Community() {
                   [{data.comments.length}]
                 </p>
                 <p>
-                  작성시간{" "}
+                  작성시간 :{" "}
                   {moment(data.created_at).format("YYYY년 MM월 D일 a h시mm분")}
                 </p>
               </div>

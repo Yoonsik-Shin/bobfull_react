@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "../css/MatchingRoomDetail.css";
+import Button from "react-bootstrap/Button";
 import moment from "moment";
 import "moment/locale/ko";
 
@@ -47,23 +48,27 @@ function MatchingRoomDetail() {
         {info ? (
           <>
             <div>
-              <div>방 이름 : {info.content}</div>
+              <div>음식점 : {info.restaurant_name}</div>
+              <div>내용 : {info.content}</div>
               <div>
-                참여 멤버 :{" "}
+                약속시간 : {moment(info.from_date).format("MM/D a h:mm")}
+              </div>
+              <div>
+                참여멤버 :{" "}
                 {info.member.map((member) => {
                   return `${member}번 `;
                 })}
               </div>
-              <div>음식점명 : {info.restaurant}</div>
-              <div>약속 시간 : {moment(info.from_date).format('YYYY년 MM월 D일 a h시mm분')}</div>
-              <div>약속 내용 : {info.content}</div>
             </div>
           </>
         ) : null}
         { state == '참가' ? null : <div>매칭참가중</div> }
-        <button onClick={attendRoom}>매칭 {state}하기</button>
-        {info && participation.includes(user.id) ? <Link to={`/multichat/${useParam.detail}`}>채팅하기</Link> : null}
-        
+        <button onClick={attendRoom} className="matchingBtn">매칭 {state}하기</button>
+        {
+          info && participation.includes(user.id) ? 
+          <div className="Btns"><Button className="chattingBtn"><Link to={`/multichat/${useParam.detail}`}>채팅하기</Link></Button></div> 
+          : null
+        }
       </div>
     </Container>
   );
