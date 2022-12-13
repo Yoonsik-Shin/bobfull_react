@@ -1,7 +1,7 @@
 import styled from '../css/Button.module.css'
 
 function GoogleLogin() {
-  var baseURL = 'https://master.d23us6abru3x73.amplifyapp.com'
+  var baseURL = 'https://master.d3n2xysrd0lvj9.amplifyapp.com'
   const SOCIAL_AUTH_GOOGLE_CLIENT_ID = "323207577725-isrne9k4vhitjpf11cetj98b2c3niuh2.apps.googleusercontent.com"
   const GOOGLE_CALLBACK_URI = baseURL + '/accounts/google/callback/'
   const scope = "https://www.googleapis.com/auth/userinfo.email"
