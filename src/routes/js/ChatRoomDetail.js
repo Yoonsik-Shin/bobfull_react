@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-quer
 var baseURL = process.env.REACT_APP_BASE_URL
 
 function ChatRoomDetail() {
-
+  
   const { room_id } = useParams()
   const [inputChating, setInputChating] = useState()
   const handleInputChat = (e) => {
@@ -19,16 +19,16 @@ function ChatRoomDetail() {
   const getMessages = useQuery(['Messages'], ()=>
     axios({
       method: 'get',
-      url: `${baseURL}/multichat/${room_id}`
+      url: `${baseURL}/multichat/${room_id}/`
     })
       .then((res)=>{
         console.log(res.data)
         return res.data
       }),
-    {refetchInterval : 100}
+    {refetchInterval : 100},
+    {cacheTime: 100},
+    {staleTime: 100}
   )
-
-
 
   // const getMessages = async () => {
   //   const Messages = await axios({
