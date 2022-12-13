@@ -1,0 +1,98 @@
+.comdetailcard {
+  background-color: white;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  color: gray;
+  border-radius: 10px;
+  padding: 10px 0 10px 0;
+}
+
+.comdetailtext {
+  margin-left: 10px;
+
+}
+
+.comdetailp {
+  margin: 0 0 0 10px;
+}
+
+.comdetailimg {
+  margin: 10px;
+}
+
+.comcomments {
+  background-color: rgb(172, 172, 172);
+  padding-left: 15px;
+  color: rgb(240, 240, 240);
+  width: 100%;
+  margin-right: 10px;
+  border-radius: 20px;
+  border: 0;
+  height: 35px;
+  text-align: start;
+}
+
+.comdetailspan {
+  font-size: 14px;
+  color: rgb(160, 160, 160);
+}
+
+.comcomdiv {
+  display: flex;
+  align-items: center;
+}
+
+.comclosebtn {
+  text-align: end;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.comheaderdiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: 700;
+  font-size: large;
+}
+
+.commentsubmitbtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  margin: 60px 20px 0 0;
+}
+
+.comcommenttext {
+  color: gray;
+  font-size: 15px;
+  margin-bottom: 3px;
+}
+
+.combodydiv {
+  padding: 0 10px 0 10px;
+}
+
+.soncomments {
+  width: 16px;
+}
+
+.sonlength {
+  color: lightsalmon;
+  text-decoration: none;
+  font-weight: 1000;
+}
+
+.comcommentdiv {
+  margin-bottom: 10px;
+}
+
+.soncommentsubmitbtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  margin: 108px 20px 0 0;
+}

@@ -67,7 +67,7 @@ function Community() {
         <Modal.Body>
           <Form onSubmit={onSubmit}>
             <TitleCheck handleTitle={handleTitle} />
-            <ContentCheck handleContent={handleContent} />
+            <ContentCheck handleContent={handleContent} commu='내용' />
             <div className="modal-btns">
               <Button variant="secondary" onClick={handleClose}>
                 취소

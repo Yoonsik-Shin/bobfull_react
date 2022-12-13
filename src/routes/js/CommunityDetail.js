@@ -11,16 +11,34 @@ import Button from "react-bootstrap/Button";
 import ContentCheck from "../../components/js/ArticleContent";
 import moment from "moment";
 import "moment/locale/ko";
+import styled from "../../components/css/Community.module.css";
+import { useSelector } from "react-redux";
+import Sheet from 'react-modal-sheet';
+import { useRef } from 'react';
+import { useOverlayTriggerState } from 'react-stately';
+import {
+  useOverlay,
+  useModal,
+  OverlayProvider,
+  FocusScope,
+  useButton,
+  useDialog,
+} from 'react-aria';
+import SheetComp from "../../components/js/SheetComp";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
 function CommunityDetail() {
+  const [isOpen, setOpen] = useState(false);
   let { id } = useParams();
   const name = new URL(window.location.href).searchParams.get("name");
   const [article, setArticle] = useState();
   const [content, setContent] = useState("");
   const [recommentId, setRecommentId] = useState([]);
-
+  const user = useSelector((state) => state.user);
+  const sheetState = useOverlayTriggerState({});
+  const openButtonRef = useRef(null);
+  const openButton = useButton({ onPress: sheetState.open }, openButtonRef);
   const handleContent = (e) => {
     setContent(e.target.value);
   };
@@ -51,7 +69,6 @@ function CommunityDetail() {
   };
 
   const onSubmitRecomment = async (e) => {
-    console.log(recommentId);
     e.preventDefault();
     const submit = await axios({
       method: "post",
@@ -65,10 +82,6 @@ function CommunityDetail() {
     getArticle();
   };
 
-  const onClick = async (e) => {
-    e.target.offsetParent.children[1].firstChild.firstChild[0].value = "";
-  };
-
   useEffect(() => {
     getArticle();
   }, []);
@@ -78,108 +91,51 @@ function CommunityDetail() {
       <Topnavbar key="res" pagename={name ? name + "번 글" : ""} />
       {article ? (
         <>
-          <div className="article-card">
-            <p>
+          <div className={styled.comdetailcard}>
+            <p className={styled.comdetailtext}>
               {article.user} {moment(article.created_at).format("MM/D a h:mm")}
             </p>
-            <h2>{article.title}</h2>
-            <p>{article.content}</p>
-          </div>
-          <div className="comment-block">
+            <h2 className={styled.comdetailtext}>{article.title}</h2>
+            <p className={styled.comdetailtext}>{article.content}</p>
             <div>
-              <h4>댓글</h4>
+              <p className={styled.comdetailp}>댓글 <span className={styled.comdetailspan}>{article.comments.length}</span></p>
+              <div className={styled.comcomdiv}>
+                {user.profile_image ? (
+                  <img
+                    src={`${user.profile_image}`}
+                    alt=""
+                    width="30px"
+                    className={styled.comdetailimg}
+                  />
+                ) : (
+                  <img
+                    src="/basic_profile_img.png"
+                    alt=""
+                    width="30px"
+                    className={styled.comdetailimg}
+                  />
+                )}
+                <button {...openButton.buttonProps} ref={openButtonRef} className={styled.comcomments}>
+                  댓글 추가...
+                </button>
+
+                <Sheet
+                  isOpen={sheetState.isOpen}
+                  onClose={sheetState.close}
+                  detent="content-height">
+                  <OverlayProvider>
+                    <FocusScope contain autoFocus restoreFocus>
+                      <SheetComp
+                        key='1'
+                        sheetState={sheetState}
+                        comments={article.comments}
+                        id={id}
+                        getArticle={getArticle} />
+                    </FocusScope>
+                  </OverlayProvider>
+                </Sheet>
+              </div>
             </div>
-            <Accordion onClick={onClick}>
-              <Card>
-                <Card.Header>
-                  <CostomToggle eventKey="0" className="commentBtn">
-                    작성하기
-                  </CostomToggle>
-                </Card.Header>
-                <Accordion.Collapse eventKey="0">
-                  <Card.Body>
-                    <Form onSubmit={onSubmitReview}>
-                      <ContentCheck handleContent={handleContent} />
-                      <Button
-                        type="submit"
-                        variant="primary"
-                        className="commentBtn"
-                      >
-                        작성
-                      </Button>
-                    </Form>
-                  </Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-            {article.comments ? (
-              <>
-                {article.comments.map((data, idx) => {
-                  return (
-                    <div>
-                      <h6>
-                        {data.user}
-                        {data.content}
-                        {data.created_at}
-                        <hr></hr>
-                      </h6>
-                      <Accordion onClick={onClick}>
-                        <Card>
-                          <Card.Header>
-                            <CostomToggle eventKey="0">답글 작성</CostomToggle>
-                          </Card.Header>
-                          <Accordion.Collapse eventKey="0">
-                            <Card.Body>
-                              <Form
-                                onSubmit={onSubmitRecomment}
-                                data-name={data.pk}
-                              >
-                                <ContentCheck handleContent={handleContent} />
-                                <Button
-                                  type="submit"
-                                  variant="primary"
-                                  className="commentBtn"
-                                >
-                                  작성
-                                </Button>
-                              </Form>
-                            </Card.Body>
-                          </Accordion.Collapse>
-                        </Card>
-                      </Accordion>
-                      {data.soncomments.length > 0 ? (
-                        <>
-                          <Accordion>
-                            <Card>
-                              <Card.Header>
-                                <CostomToggle eventKey="0">
-                                  답글 {data.soncomments.length} 개
-                                </CostomToggle>
-                              </Card.Header>
-                              <Accordion.Collapse eventKey="0">
-                                <Card.Body>
-                                  {data.soncomments.map((sondata, sonidx) => {
-                                    return (
-                                      <h6>
-                                        {sondata.user}
-                                        {sondata.content}
-                                        {sondata.created_at}
-                                      </h6>
-                                    );
-                                  })}
-                                </Card.Body>
-                              </Accordion.Collapse>
-                            </Card>
-                          </Accordion>
-                        </>
-                      ) : null}
-                    </div>
-                  );
-                })}
-              </>
-            ) : (
-              <p>아직 댓글이 없어요😅</p>
-            )}
           </div>
         </>
       ) : null}
