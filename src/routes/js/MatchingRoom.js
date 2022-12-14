@@ -87,7 +87,10 @@ function MatchingRoom() {
       ) : null}
       <Container style={{ position: "relative" }}>
         {matchList ? (
-          <Topnavbar key="roul" pagename={`${resName} #${resId}  `} />
+          <Topnavbar
+            key="roul"
+            pagename={`매칭룸 리스트 : ${resName} #${resId}  `}
+          />
         ) : null}
         <div class="form-btn-position">
           <button

@@ -94,7 +94,8 @@ function ProfileAdd() {
                 url ?
                   <img src={url} alt=""
                     className="profileimg" id="profile_img_load" />
-                  : <>{
+                  : <> 
+                    {
                       user.profile_image ?
                       <img src={user.profile_image} className="profileimg" id="profile_img_load"/>
                       : <img src="/basic_profile_img.png" className="profileimg" id="profile_img_load"/>
