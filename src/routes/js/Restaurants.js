@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Location from "../../hooks/useWatchLocation.js";
 import { useInView } from "react-intersection-observer";
 import styled from "../../components/css/Button.module.css";
-import {} from "react-kakao-maps-sdk";
+import { } from "react-kakao-maps-sdk";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -30,6 +30,32 @@ function Restaurants() {
     errMsg: null,
     isLoading: true,
   });
+  const [search2, setSearch2] = useState('');
+  const [searchres, setSearchres] = useState(0);
+
+  const handleSearch = (e) => {
+    setSearch2(e.target.value);
+  }
+
+  const onSubmitSearch = async (e) => {
+    e.preventDefault();
+    await axios({
+      method: 'get',
+      url: `${baseURL}/restaurant/`,
+      params: {
+        category: code ? code : "",
+        search: search2 ? search2 : '',
+        limit: 999
+      },
+    }).then((res) => {
+      setRestaurants([])
+      setRestaurants((prevState) => [...prevState, ...res.data.results]);
+      console.log(res.data)
+      setSearch2('')
+      setSearchres(1)
+    });
+    e.target.value = ''
+  }
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -128,9 +154,9 @@ function Restaurants() {
     var a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(deg2rad(lat1)) *
-        Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
     return d;
@@ -151,15 +177,60 @@ function Restaurants() {
     <Container>
       <Topnavbar key="res" pagename={name ? name : "모든 목록"} />
       {/* <h6>현재위치</h6> */}
-      <form action="" className="searchForm">
-        <input type="text" placeholder="검색어를 입력하세요" size="26" />
+      <form onSubmit={onSubmitSearch} className="searchForm">
+        <input onChange={handleSearch} type="text" placeholder="검색어를 입력하세요" size="26" />
         <button className="searchBtn" type="submit">
           검색
         </button>
       </form>
       <hr />
       <div className="list">
-        {restaurants.map((data, idx) => (
+
+        {searchres ? (restaurants.map((data, idx) => (
+          <React.Fragment key={idx}>
+            <div className="my-3">
+              <div>
+                <Slider {...settings}>
+                  {data.images.map((img, i) => {
+                    return (
+                      <img
+                        src={decodeURIComponent(
+                          data.images[i].image.replace(
+                            "https://bobfull.s3.ap-northeast-2.amazonaws.com/https%3A/",
+                            "https://"
+                          )
+                        )}
+                        className="res-img"
+                      />
+                    );
+                  })}
+                </Slider>
+              </div>
+
+              <div style={{ paddingLeft: "10px" }}>
+                <Link
+                  to={`/res_index/${data.id}?name=${data.name}`}
+                  className="res-index-name"
+                >
+                  <button className={styled.numberbtn}>
+                    <p style={{ margin: "0" }}>{data.id}</p>
+                  </button>
+                  <button className={styled.categorynomargin}>
+                    {data.category_name}
+                  </button>
+                  <h3 className="res-index-h3">{data.name}</h3>
+                </Link>
+                <div className="res-detail">
+                  <div>별점</div>
+                  <div id={idx}>
+                    거리{PositionCalculation(data.address, idx)}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+          </React.Fragment>
+        ))) : (restaurants.map((data, idx) => (
           <React.Fragment key={idx}>
             <div className="my-3">
               {restaurants.length - 1 == idx ? (
@@ -222,7 +293,7 @@ function Restaurants() {
             </div>
             <hr />
           </React.Fragment>
-        ))}
+        )))}
       </div>
     </Container>
   );

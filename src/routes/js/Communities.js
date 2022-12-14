@@ -106,7 +106,7 @@ function Community() {
           {articles.map((data, idx) => {
             return (
               <Link
-                to={`/community/${data.pk}?name=${data.pk}`}
+                to={`/community/${data.pk}?name=${data.title}`}
                 className="article-title"
               >
                 <div className="article-card">
