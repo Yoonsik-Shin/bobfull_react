@@ -33,25 +33,24 @@ function App() {
         <Route path="*" element={<div>404페이지</div>} />
         <Route path="/main" element={<Main />} />  {/* 메인페이지 */}
         <Route path="/login" element={user.isLogin ? <Profile /> : <Login />} /> {/* 로그인페이지 */}
-        <Route path="/res_index" element={<Restaurants />} />
-        <Route path="/res_index/:id" element={<RestaurantsDetail />} />
-        <Route path="/res_category" element={<Category />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/community/:id" element={<CommunityDetail />} />
+        <Route path="/res_index" element={user.isLogin ? <Restaurants /> : <Login />} />
+        <Route path="/res_index/:id" element={user.isLogin ? <RestaurantsDetail /> : <Login />} />
+        <Route path="/res_category" element={user.isLogin ? <Category /> : <Login /> }/>
+        <Route path="/community" element={user.isLogin ?<Community /> : <Login /> } />
+        <Route path="/community/:id" element={user.isLogin ?<CommunityDetail /> : <Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={user.isLogin ? <Profile /> : <Login />} />
-        <Route path="/profile/update" element={<ProfileUpdate />} />
+        <Route path="/profile/update" element={user.isLogin ? <ProfileUpdate /> : <Login />} />
         <Route path="/roulette" element={<Roulette />} />
-        <Route path="/map" element={<KakaoMap />} />
+        <Route path="/map" element={user.isLogin ?<KakaoMap /> : <Login />} />
         <Route path="/" element={<Test />} />
         <Route path="/oauth/callback/kakao" element={<KaKaoAuth />} />
         <Route path="/accounts/google/callback/" element={<GoogleAuth />} />
-        <Route path="/matching_room/:id" element={<MatchingRoom />} />
-        <Route path="/matching_room/:id/:detail" element={<MatchingRoomDetail />} />
-        <Route path="/matching_list" element={<MatchingList />} />
-        <Route path="/multichat/index" element={<ChatRoom />} />
-        <Route path="/multichat/:room_id" element={<ChatRoomDetail />} />
-        <Route path="/matching_room/:id/:detail/multichat" element={<ChatRoom />} />
+        <Route path="/matching_room/:id" element={user.isLogin ? <MatchingRoom /> : <Login />} />
+        <Route path="/matching_room/:id/:detail" element={user.isLogin ? <MatchingRoomDetail /> : <Login />} />
+        <Route path="/matching_list" element={user.isLogin ? <MatchingList /> : <Login />} />
+        <Route path="/multichat/index" element={user.isLogin ? <ChatRoom /> : <Login />} />
+        <Route path="/multichat/:room_id" element={user.isLogin ? <ChatRoomDetail /> : <Login />} />
       </Routes>
       <NavbarBottom />
     </div>
