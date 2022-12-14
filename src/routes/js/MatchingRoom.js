@@ -7,9 +7,8 @@ import { useParams, Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import "../css/MatchingRoom.css";
 import CreateForm from '../../components/js/CreateMatchingForm'
-import Button from "react-bootstrap/Button";
-import moment from "moment";
 import "moment/locale/ko";
+import Topnavbar from "../../../src/components/js/Topnavbar";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -40,9 +39,8 @@ function MatchingRoom() {
 
 
   return (
-    <Container>
-      <h2>매칭룸 리스트</h2>
-      { matchList ? <h3>{resId} {resName}</h3> : null}
+    <Container style={{position: 'relative'}}>
+      { matchList ? <Topnavbar key="roul" pagename={`매칭룸 리스트 : ${resName} #${resId}  `} /> : null }
       <button onClick={()=>{setFormModal(!formModal)}}>매칭룸 생성하기</button>
       {formModal ? <CreateForm getMatchingRoom={getMatchingRoom} responseChat={responseChat} setResponseChat={setResponseChat} /> : null}
       {
@@ -63,9 +61,7 @@ function MatchingRoom() {
                 <div>매칭룸 내용 : {el.content}</div>
                 <div>약속날자/시간 : {el.to_date}</div>
                 <div>참여 멤버수 : {el.member.length}</div>
-                <div>채팅룸 번호 : {el.chatroom}</div>
                 <button><Link to={`/matching_room/${id}/${el.id}`}>자세히보기</Link></button>
-                <button><Link to={`/multichat/${el.id}`}>채팅룸</Link></button>
               </Card.Body>
             </Card>
           )

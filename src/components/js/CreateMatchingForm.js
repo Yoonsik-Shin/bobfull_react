@@ -4,6 +4,7 @@ import { Container, Form } from 'react-bootstrap'
 import { useSelector } from "react-redux";
 import { useParams } from 'react-router-dom'
 import RadioButton from '../../components/js/RadioButton.js'
+import '../css/CreateMatchingForm.css'
 
 var baseURL = process.env.REACT_APP_BASE_URL
 
@@ -41,6 +42,7 @@ function CreateForm(props) {
       data: hostInfo
     })
     setHostInfo({...hostInfo, ...createRoom.data})
+    console.log(e.target.value)
     alert('매칭룸이 생성되었습니다.')
     props.setResponseChat(createRoom.data.id)
     console.log(createRoom.data)
@@ -71,16 +73,16 @@ function CreateForm(props) {
   }
 
   return (
-    <Container>
-      <Form onSubmit={createMatchingRoom}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Control type="text" placeholder="매칭룸명" onChange={titleInput} required/>
-          <Form.Control type="text" placeholder="매칭룸내용" onChange={contentInput} required as="textarea" rows={3}/>
-          <Form.Control type="datetime-local" onChange={endTimeInput} name="약속종료시간" required/>
-          <RadioButton checkGenderInput={checkGenderInput}></RadioButton>
-        </Form.Group>
-        <button>매칭룸 생성</button>
-      </Form>
+    <Container className="abosulte-container">
+        <Form onSubmit={createMatchingRoom}>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Control type="text" placeholder="매칭룸명" onChange={titleInput} required/>
+            <Form.Control type="text" placeholder="매칭룸내용" onChange={contentInput} required as="textarea" rows={3}/>
+            <Form.Control type="datetime-local" onChange={endTimeInput} name="약속종료시간" required/>
+            <RadioButton checkGenderInput={checkGenderInput}></RadioButton>
+          </Form.Group>
+          <button>매칭룸 생성</button>
+        </Form>
     </Container>
   )
 }
