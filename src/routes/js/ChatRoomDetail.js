@@ -3,7 +3,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "../css/ChatRoomDetail.css";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   QueryClient,
   QueryClientProvider,
@@ -13,13 +14,15 @@ import {
 var baseURL = process.env.REACT_APP_BASE_URL;
 
 function ChatRoomDetail() {
+  let navigate = useNavigate()
   const { room_id } = useParams();
+  const user = useSelector((state) => state.user);
   const [inputChating, setInputChating] = useState();
   const handleInputChat = (e) => {
     setInputChating(e.target.value);
   };
   const [messages, setMessages] = useState();
-  const interval = 2000;
+  const interval = 100000;
   const getMessages = useQuery(
     ["Messages"],
     () =>
@@ -36,36 +39,51 @@ function ChatRoomDetail() {
   );
 
   return (
-    <Container>
-      <h2>채팅방</h2>
+    <Container className="sending-fix">
+      <div className="sending-area-top"></div>
+      <div className="sending-topnav">
+      <div onClick={() => { navigate(-1) }}>
+        <img src="/arrow.png" className="sending-img" />
+      </div>
+      <p className="sending-navtext">{`#${room_id} 채팅방`}</p>
+      </div>
       {getMessages.isLoading && "로딩중"}
       {getMessages.error && "에러남"}
       {getMessages.data &&
         getMessages.data.map((el, idx) => {
           return (
-            <div className="chat-box">
-              <div key={idx}>
-                {el.sender.profile_image ? (
-                  <img
-                    src={`${el.sender.profile_image}`}
-                    alt=""
-                    width="45px"
-                    className="profile-img"
-                  />
-                ) : (
-                  <img
-                    src="/basic_profile_img.png"
-                    alt=""
-                    width="45px"
-                    className="profile-img"
-                  />
-                )}
+            <>
+            {
+              user.id == el.sender.id ?
+                <div className="chat-box-me">
+                <div key={idx} className="chat-textarea-me">
+                  <div className="chat-username">{el.sender.nickname}</div>
+                  <div className="chat-text-me">{el.content}</div>
+                </div>
+                <div key={idx}>
+                  {
+                    el.sender.profile_image ? 
+                      <img src={`${el.sender.profile_image}`} width="45px"className="profile-img" />
+                      : <img src="/basic_profile_img.png" width="45px" className="profile-img" />
+                  }
+                </div>
               </div>
-              <div key={idx} className="chat-textarea">
-                <div className="chat-username">{el.sender.nickname}</div>
-                <div className="chat-text">{el.content}</div>
+              :
+              <div className="chat-box">
+                <div key={idx}>
+                  {
+                    el.sender.profile_image ? 
+                      <img src={`${el.sender.profile_image}`} width="45px"className="profile-img" />
+                      : <img src="/basic_profile_img.png" width="45px" className="profile-img" />
+                  }
+                </div>
+                <div key={idx} className="chat-textarea">
+                  <div className="chat-username">{el.sender.nickname}</div>
+                  <div className="chat-text">{el.content}</div>
+                </div>
               </div>
-            </div>
+            }
+            </>
           );
         })}
       <div className="sendchat">
@@ -95,9 +113,12 @@ function SendChat(props) {
   };
   console.log(props.inputChating);
   return (
-    <Form onSubmit={sending} className="send-form">
-      <Form.Control type="text" onChange={props.handleInputChat}></Form.Control>
-      <button className="sendbtn">보내기</button>
-    </Form>
+    <>
+      <Form onSubmit={sending} className="send-form">
+        <Form.Control type="text" onChange={props.handleInputChat}></Form.Control>
+        <button className="sendbtn">보내기</button>
+      </Form>
+      <div className="sending-area"></div>
+    </>
   );
 }

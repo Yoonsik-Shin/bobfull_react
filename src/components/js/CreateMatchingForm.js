@@ -19,7 +19,7 @@ function CreateForm(props) {
     member: [user.id],
     chk_gender: null,
   })
-  const [success, setSuccess] = useState()
+  
 
   const titleInput = (e) => {
     setHostInfo({ ...hostInfo, title: e.target.value })
@@ -53,25 +53,6 @@ function CreateForm(props) {
     props.setFormModal(false)
   }
 
-  // 채팅룸 번호 받은 후 방생성 실행
-  useEffect(() => {
-    createChatRoom()
-  }, [props.responseChat])
-
-  // 매칭룸 생성후 id값 받아 채팅룸 생성하는 함수
-  const createChatRoom = async () => {
-    const autoCreate = await axios({
-      method: 'post',
-      url: `${baseURL}/multichat/${props.responseChat}/create/`
-    })
-    setSuccess(autoCreate.data)
-  }
-
-  // 채팅방 생성 후 매칭룸 불러오기
-  useState(() => {
-    props.getMatchingRoom();
-  }, [success]);
-  
 
   const closeModal = () => {
     props.setFormModal(false)

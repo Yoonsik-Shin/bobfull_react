@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import "../components/css/WatchLocation.css";
 
 function Location() {
   const [state, setState] = useState({
