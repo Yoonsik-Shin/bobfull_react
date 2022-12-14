@@ -42,7 +42,7 @@ function MatchingRoom() {
   return (
     <Container>
       <h2>매칭룸 리스트</h2>
-      { matchList ? <div>{resId} {resName}</div> : null}
+      { matchList ? <h3>{resId} {resName}</h3> : null}
       <button onClick={()=>{setFormModal(!formModal)}}>매칭룸 생성하기</button>
       {formModal ? <CreateForm getMatchingRoom={getMatchingRoom} responseChat={responseChat} setResponseChat={setResponseChat} /> : null}
       {

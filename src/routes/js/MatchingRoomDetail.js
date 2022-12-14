@@ -39,7 +39,6 @@ function MatchingRoomDetail() {
     alert(attend.data);
     getDetail();
     participation.includes(user.id) ? setState("참가") : setState("취소");
-    participation.includes(user.id) ? setState("참가") : setState("취소");
   };
 
   const attendChatting = async () => {
