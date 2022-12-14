@@ -24,7 +24,6 @@ function ProfileAdd() {
     talk: user.talk,
     speed: user.speed,
   });
-
   const ProfileUpdate = async (e) => {
     e.preventDefault();
     let copy = { ...userState };
@@ -42,16 +41,16 @@ function ProfileAdd() {
       navigate("/profile");
     });
   };
-
   const nicknameInput = (e) => {
     // 아이디 값 받기
     setUserState({ ...userState, nickname: e.target.value });
   };
+  const [url, setUrl] = useState(user.profile_image ? user.profile_image : '')
   const imageInput = (file) => {
     formData.append("profile_image", file.target.files[0]);
     console.log(file.target.files[0]);
+    setUrl(URL.createObjectURL(file.target.files[0]))
   };
-
   return (
     <Container>
       <Toaster
@@ -60,26 +59,51 @@ function ProfileAdd() {
       />
       <Topnavbar key="roul" pagename="프로필 업데이트" />
       <Form onSubmit={ProfileUpdate}>
-        <h3 className="text-center my-5">
+        <h3 className="text-center mb-4">
           프로필을 입력하면
           <br />
           나와 더 잘 맞는
           <br /> 밥풀을 만날 수 있어요.
         </h3>
-        <Form.Control
-          className="file-form"
-          type="file"
-          onChange={imageInput}
-          accept="image/*"
-          name="profile_image"
-        />
-        <Form.Control
-          type="text"
-          defaultValue={user.nickname}
-          placeholder={"닉네임을 입력해주세요"}
-          onChange={nicknameInput}
-          name="nickname"
-        />
+        <div>
+          <div className="mt-3 mx-2">
+            <h2 className="me-5 mt-4">닉네임</h2>
+            <Form.Control
+              type="text"
+              defaultValue={user.nickname}
+              placeholder={"닉네임을 입력해주세요"}
+              onChange={nicknameInput}
+              name="nickname"
+              className="mt-3"
+            />
+          </div>
+          <hr className="my-4" />
+          <h2 className="ms-2 mb-4">이미지 </h2>
+          <div className='d-flex justify-content-evenly align-items-center'>
+            <div className="text-center" >
+              {url ?
+                <img src={url} alt=""
+                  className="profileimg" id="profile_img_load" />
+                : <img
+                  src="/basic_profile_img.png"
+                  alt=""
+                  className="profileimg"
+                  id="profile_img_load"
+                />}
+            </div>
+            <Form.Control
+              className="file-form"
+              type="file"
+              onChange={imageInput}
+              accept="image/*"
+              name="profile_image"
+              id='profile_img_upload'
+            />
+            <label for='profile_img_upload'><i class="far fa-file-image" />파일 선택</label>
+          </div>
+        </div>
+        <hr className="my-4" />
+        <h2 className="ms-2">성별 및 식사 성향</h2>
         <div className="d-flex align-items-center justify-content-between me-5 px-5">
           <h2 className="me-5 my-0">성별</h2>
           <label className="gender-button">
@@ -164,7 +188,7 @@ function ProfileAdd() {
             <span className="onoff-switch"></span>
           </label>
         </div>
-        <br />
+        <hr className="my-4" />
         <h2>식사 속도</h2>
         <div className="select d-flex justify-content-between">
           {user.speed === 1 ? (
@@ -267,7 +291,7 @@ function ProfileAdd() {
           <button type="submit">수정</button>
         </div>
       </Form>
-    </Container>
+    </Container >
   );
 }
 
