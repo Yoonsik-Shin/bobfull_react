@@ -151,17 +151,12 @@ function Restaurants() {
     <Container>
       <Topnavbar key="res" pagename={name ? name : "모든 목록"} />
       {/* <h6>현재위치</h6> */}
-      <Location />
       <form action="" className="searchForm">
-        <input type="text" />
-        <button claasName="searchBtn" type="submit">
+        <input type="text" placeholder="검색어를 입력하세요" size="26" />
+        <button className="searchBtn" type="submit">
           검색
         </button>
       </form>
-      <Link to="/map">지도로보기</Link>
-      <div>
-        <div>필터</div>
-      </div>
       <hr />
       <div className="list">
         {restaurants.map((data, idx) => (

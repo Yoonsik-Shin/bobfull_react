@@ -1,49 +1,51 @@
-import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Container, Form } from 'react-bootstrap';
-import '../css/ResDetail.css';
-import styled1 from '../../components/css/Button.module.css';
-import Slider from 'react-slick';
+import { useParams, Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Container, Form } from "react-bootstrap";
+import "../css/ResDetail.css";
+import styled1 from "../../components/css/Button.module.css";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styled from 'styled-components';
-import Topnavbar from '../../../src/components/js/Topnavbar';
-import Star from '../../../src/components/js/Star';
-import { current } from '@reduxjs/toolkit';
+import styled from "styled-components";
+import Topnavbar from "../../../src/components/js/Topnavbar";
+import Star from "../../../src/components/js/Star";
+import { current } from "@reduxjs/toolkit";
 
-var baseURL = process.env.REACT_APP_BASE_URL
+var baseURL = process.env.REACT_APP_BASE_URL;
 
 function RestaurantsDetail() {
   let { id } = useParams();
-  const [restaurant, setRestaurant] = useState()
-  const [reviews, setReviews] = useState()
-  const [menus, setMenus] = useState()
-  const [score, setScore] = useState(1)
-  const [scoreSum, setScoreSum] = useState([])
-  const name = new URL(window.location.href).searchParams.get('name')
+  const [restaurant, setRestaurant] = useState();
+  const [reviews, setReviews] = useState();
+  const [menus, setMenus] = useState();
+  const [score, setScore] = useState(1);
+  const [scoreSum, setScoreSum] = useState([]);
+  const name = new URL(window.location.href).searchParams.get("name");
 
   const getRes = async () => {
-    const res = await axios.get(`${baseURL}/restaurant/${id}/`, { headers: { 'Content-Type': 'application/json' } })
-    setRestaurant(res.data)
-    setMenus(res.data.detail.split(', '))
-  }
+    const res = await axios.get(`${baseURL}/restaurant/${id}/`, {
+      headers: { "Content-Type": "application/json" },
+    });
+    setRestaurant(res.data);
+    setMenus(res.data.detail.split(", "));
+  };
   const getReviews = async () => {
     const review = await axios({
       method: "get",
-      url: `${baseURL}/articles/${id}/review/`
-    })
-    setReviews(review.data)
-    let copy = []
+      url: `${baseURL}/articles/${id}/review/`,
+    });
+    setReviews(review.data);
+    let copy = [];
     review.data.map((el, idx) => {
-      console.log(copy)
-      console.log(el)
-      console.log(el.grade)
-      console.log(el.grade.length)
-      copy.push(el.grade.length)
-      setScoreSum(copy)
-    })
-  }
+      console.log(copy);
+      console.log(el);
+      console.log(el.grade);
+      console.log(el.grade.length);
+      copy.push(el.grade.length);
+      setScoreSum(copy);
+    });
+  };
 
   // useEffect(() => {
   //   [...reviews].map((el, idx) => {
@@ -56,26 +58,26 @@ function RestaurantsDetail() {
 
   // 랜더링시 레스토랑 정보 받아오기
   useEffect(() => {
-    getRes()
-    getReviews()
-  }, [])
+    getRes();
+    getReviews();
+  }, []);
 
   const onSubmitReview = async (e) => {
     e.preventDefault();
     const submit = await axios({
-      method: 'post',
+      method: "post",
       url: `${baseURL}/articles/${id}/review/`,
       data: {
         content: e.target[0].value,
-        grade: '⭐'.repeat(score)
-      }
-    })
-    getReviews()
-    e.target[0].value = '';
-  }
+        grade: "⭐".repeat(score),
+      },
+    });
+    getReviews();
+    e.target[0].value = "";
+  };
 
   const handleInput = (e) => {
-    setScore(parseInt(e.target.defaultValue))
+    setScore(parseInt(e.target.defaultValue));
   };
 
   const detailDate = (a) => {
@@ -105,81 +107,105 @@ function RestaurantsDetail() {
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: "20px"
+    centerPadding: "20px",
   };
 
   return (
     <Container>
-      <Topnavbar
-        key='res'
-        pagename={name ? name : ''}
-      />
-      {
-        restaurant ?
-          <>
-            <Slider {...settings}>
-              {restaurant.images.map((img, i) => {
-                return (
-                  <img src={decodeURIComponent(restaurant.images[i].image.replace('https://bobfull.s3.ap-northeast-2.amazonaws.com/https%3A/', 'https://'))} className='res-detail-img' />
-                )
-              })}
-            </Slider>
-            <button className={styled1.category}>{restaurant.category_name}</button>
-            <h2 className={styled1.name}>
-              {restaurant.name}
-            </h2>
-            <p style={{ fontSize: '15px' }}>{restaurant.address.slice(0, -8)}</p>
-            <h2 className={styled1.name}>인기메뉴</h2>
-            {menus.map((menu) =>
-              <p className={styled1.menuname}>{menu}</p>
-            )}
-          </>
-          : null
-      }
-      {
-        reviews ?
-          <>
-            <h2 className={styled1.name}>
-              식당리뷰 
-              {
-                reviews.length ? 
-                <span className='review-span'>  {reviews.length}개의 리뷰  { scoreSum.length != 0 ? <span> | 평점 : {(scoreSum.reduce((acc, cur) => { return (acc + cur) }) / scoreSum.length).toFixed(2)}/5</span>: null }</span> 
-                : <span className='review-span'>아직 리뷰가 없어요 😥</span>
-              }  
-            </h2>
-            {reviews.map((el, i) => {
+      <Topnavbar key="res" pagename={name ? name : ""} />
+      {restaurant ? (
+        <>
+          <Slider {...settings}>
+            {restaurant.images.map((img, i) => {
               return (
-                <div
-                >
-                  <p className={styled1.review}>{reviews[i].user}
-                    <span className='res-date'>
-                      {detailDate(new Date(reviews[i].updated_at))}
-                    </span>
-                    <br />
-                    <span className='res-detail-span-p'>
-                      {reviews[i].content} {reviews[i].grade}
-                    </span>
-                  </p>
-                </div>
-              )
+                <img
+                  src={decodeURIComponent(
+                    restaurant.images[i].image.replace(
+                      "https://bobfull.s3.ap-northeast-2.amazonaws.com/https%3A/",
+                      "https://"
+                    )
+                  )}
+                  className="res-detail-img"
+                />
+              );
             })}
-          </>
-          : null
-      }
+          </Slider>
+          <button className={styled1.category}>
+            {restaurant.category_name}
+          </button>
+          <div className="res-title">
+            <h2 className={styled1.name}>{restaurant.name}</h2>
+            <button className="res-chat-button">
+              {restaurant ? (
+                <Link to={`/matching_room/${restaurant.id}`}>
+                  매칭룸 입장하기
+                </Link>
+              ) : null}
+            </button>
+          </div>
+          <p style={{ fontSize: "15px" }}>{restaurant.address.slice(0, -8)}</p>
+          <h2 className={styled1.name}>인기메뉴</h2>
+          {menus.map((menu) => (
+            <p className={styled1.menuname}>{menu}</p>
+          ))}
+        </>
+      ) : null}
+      {reviews ? (
+        <>
+          <h2 className={styled1.name}>
+            식당리뷰
+            {reviews.length ? (
+              <span className="review-span">
+                {" "}
+                {reviews.length}개의 리뷰{" "}
+                {scoreSum.length != 0 ? (
+                  <span>
+                    {" "}
+                    | 평점 :{" "}
+                    {(
+                      scoreSum.reduce((acc, cur) => {
+                        return acc + cur;
+                      }) / scoreSum.length
+                    ).toFixed(2)}
+                    /5
+                  </span>
+                ) : null}
+              </span>
+            ) : (
+              <span className="review-span">아직 리뷰가 없어요 😥</span>
+            )}
+          </h2>
+          {reviews.map((el, i) => {
+            return (
+              <div>
+                <p className={styled1.review}>
+                  {reviews[i].user}
+                  <span className="res-date">
+                    {detailDate(new Date(reviews[i].updated_at))}
+                  </span>
+                  <br />
+                  <span className="res-detail-span-p">
+                    {reviews[i].content} {reviews[i].grade}
+                  </span>
+                </p>
+              </div>
+            );
+          })}
+        </>
+      ) : null}
       <h3>리뷰작성하기</h3>
       <Form onSubmit={onSubmitReview}>
         <Form.Control
           type="text"
-          placeholder='작성할 내용을 입력하세요.'
-          className='mb-3'
+          placeholder="작성할 내용을 입력하세요."
+          className="mb-3"
           required
         />
         <Star handleInput={handleInput} />
         <button className={styled1.resbtn}>리뷰 쓰기</button>
       </Form>
-      { restaurant ? <Link to={`/matching_room/${restaurant.id}`}>매칭룸 입장하기</Link> : null }
     </Container>
-  )
+  );
 }
 
-export default RestaurantsDetail
+export default RestaurantsDetail;

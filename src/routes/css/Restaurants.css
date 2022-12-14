@@ -30,10 +30,24 @@
 
 .searchForm {
   margin-top: 10px;
+  text-align: center;
+}
+
+.searchForm input {
+  border-width: 0.25px;
+  height: 35px;
+  border-radius: 5px;
+  padding-left: 10px;
 }
 
 .searchBtn {
+  width: 55px;
   color: white;
   background-color: lightsalmon;
   border-color: lightsalmon;
+  border-radius: 5px;
+  margin-left: 5px;
+  height: 35px;
+  border: 0;
+  outline: 0;
 }
