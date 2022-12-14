@@ -17,7 +17,7 @@ import axios from "axios";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
-const SonSheetComp = ({ sheetState, id, data, origincomment }) => {
+const SonSheetComp = ({ sheetState, id, data, origincomment, getArticle2 }) => {
   const [article, setArticle] = useState();
   const [content, setContent] = useState("");
   const handleContent = (e) => {
@@ -63,6 +63,7 @@ const SonSheetComp = ({ sheetState, id, data, origincomment }) => {
     });
     e.target[0].value = "";
     getArticle();
+    getArticle2();
   };
   useEffect(() => {
     getArticle();

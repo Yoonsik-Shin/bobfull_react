@@ -29,6 +29,7 @@ var baseURL = process.env.REACT_APP_BASE_URL;
 
 const SheetComp = ({ sheetState, comments, id, getArticle }) => {
   const [content, setContent] = useState("");
+  const [modalData, setModalData] = useState(null);
   const containerRef = useRef(null);
   console.log(comments)
   const dialog = useDialog({}, containerRef);
@@ -61,9 +62,7 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
     e.target[0].value = "";
     getArticle();
   };
-  const onClick = async (e) => {
-    e.target.offsetParent.children[1].firstChild.firstChild[0].value = "";
-  };
+
   // In real world usage this would be a separate React component
   const customHeader = (
     <div style={{ height: '40px' }} className={styled.comheaderdiv}>
@@ -92,6 +91,7 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
   const sheetState2 = useOverlayTriggerState({});
   const openButtonRef = useRef(null);
   const openButton = useButton({ onPress: sheetState2.open }, openButtonRef);
+
   return (
     <>
       <Sheet.Container
@@ -118,32 +118,40 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
                       <p className={styled.comcommenttext}>
                         {data.user} · {detailDate(new Date(data.created_at))}
                       </p>
-                      <p style={{ margin: 0 }}>{data.content} <img src='/chat.png' {...openButton.buttonProps} ref={openButtonRef} className={styled.soncomments} /></p>
+                      <p style={{ margin: 0 }}>{data.content} <img src='/chat.png' {...openButton.buttonProps} ref={openButtonRef} className={styled.soncomments} onClick={() => {
+                        setModalData(data);
+                      }} /></p>
 
                       {data.soncomments.length > 0 ?
-                        <a {...openButton.buttonProps} ref={openButtonRef} className={styled.sonlength}>
+
+                        <a {...openButton.buttonProps} ref={openButtonRef} className={styled.sonlength} onClick={() => {
+                          setModalData(data);
+                        }}>
                           답글 {data.soncomments.length + '개'}
                         </a>
                         : null}
 
-                      <Sheet isOpen={sheetState2.isOpen} onClose={sheetState2.close} detent="content-height" aria-label={idx}>
-                        <OverlayProvider>
-                          <FocusScope contain autoFocus restoreFocus>
-                            <SonSheetComp
-                              key={data.pk}
-                              sheetState={sheetState2}
-                              id={id}
-                              data={data.pk}
-                              origincomment={data}
-                            />
-                          </FocusScope>
-                        </OverlayProvider>
-                      </Sheet>
                     </div>
 
                   )
                 }
                 )}
+                {modalData ?
+                  <Sheet isOpen={sheetState2.isOpen} onClose={sheetState2.close} detent="content-height">
+                    <OverlayProvider>
+                      <FocusScope contain autoFocus restoreFocus>
+                        <SonSheetComp
+                          key={modalData.pk}
+                          sheetState={sheetState2}
+                          id={id}
+                          data={modalData.pk}
+                          origincomment={modalData}
+                          getArticle2={getArticle}
+                        />
+                      </FocusScope>
+                    </OverlayProvider>
+                  </Sheet>
+                  : null}
               </>
             ) : null}
           </div>
