@@ -12,7 +12,7 @@ function ChatRoom() {
   const getChatRoomList = async () => {
     const list = await axios({
       method: "get",
-      url: `${baseURL}/multichat/${room_id}/`,
+      url: `${baseURL}/multichat/`,
     });
     setChatRoomList(list.data);
   };
@@ -41,7 +41,7 @@ function ChatRoom() {
                     />
                   ) : (
                     <img
-                      src="./basic_profile_img.png"
+                      src="/basic_profile_img.png"
                       width="45px"
                       className="profile-img"
                     />
