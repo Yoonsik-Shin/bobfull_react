@@ -41,12 +41,12 @@ function Evaluation() {
       <h3>매칭룸에 대한 평가를 남겨주세요!</h3>
       <FlushExample evaluations={evaluations} setValuations={setValuations} />
       { evaluations.evaluation ? 
-        <div>"{evaluations.evaluation}"를 선택하셨습니다.</div>
+        <div className="my-3">"{evaluations.evaluation}"를 선택하셨습니다.</div>
         : null  
       }
       <div></div>
       <Form onSubmit={evaluateRoom}>
-        <button type="submit" className="matching-detail-btn mt-3">평가하기</button>
+        <button type="submit" className="matching-detail-btn">평가하기</button>
       </Form>
     </Container>
   )
