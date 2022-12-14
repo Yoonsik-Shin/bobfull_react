@@ -46,19 +46,35 @@ function Community() {
         content: content,
       },
     });
-    toast.success('글 작성 완료.')
+    toast.success("글 작성 완료.");
     getArticle();
     handleClose();
   };
+
+  const detailDate = (a) => {
+    const milliSeconds = new Date() - a;
+    const seconds = milliSeconds / 1000;
+    if (seconds < 60) return `방금 전`;
+    const minutes = seconds / 60;
+    if (minutes < 60) return `${Math.floor(minutes)}분 전`;
+    const hours = minutes / 60;
+    if (hours < 24) return `${Math.floor(hours)}시간 전`;
+    const days = hours / 24;
+    if (days < 7) return `${Math.floor(days)}일 전`;
+    const weeks = days / 7;
+    if (weeks < 5) return `${Math.floor(weeks)}주 전`;
+    const months = days / 30;
+    if (months < 12) return `${Math.floor(months)}개월 전`;
+    const years = days / 365;
+    return `${Math.floor(years)}년 전`;
+  };
+
   useEffect(() => {
     getArticle();
   }, []);
   return (
     <Container>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
+      <Toaster position="top-center" reverseOrder={false} />
       <Topnavbar key="res" pagename="커뮤니티" />
       <div className="d-flex justify-content-between community-titles">
         <h2 className="article-list">글 목록</h2>
@@ -73,7 +89,7 @@ function Community() {
         <Modal.Body>
           <Form onSubmit={onSubmit}>
             <TitleCheck handleTitle={handleTitle} />
-            <ContentCheck handleContent={handleContent} commu='내용' />
+            <ContentCheck handleContent={handleContent} commu="내용" />
             <div className="modal-btns">
               <Button variant="secondary" onClick={handleClose}>
                 취소
@@ -89,23 +105,36 @@ function Community() {
         <>
           {articles.map((data, idx) => {
             return (
-              <div className="article-card">
-                {/* <p>글번호 {data.pk}</p> */}
-                <p>{data.user}</p>
-                <p>
-                  <Link
-                    to={`/community/${data.pk}?name=${data.pk}`}
-                    className="article-title"
-                  >
-                    {data.title}
-                  </Link>{" "}
-                  [{data.comments.length}]
-                </p>
-                <p>
-                  작성시간 :{" "}
-                  {moment(data.created_at).format("YYYY년 MM월 D일 a h시mm분")}
-                </p>
-              </div>
+              <Link
+                to={`/community/${data.pk}?name=${data.pk}`}
+                className="article-title"
+              >
+                <div className="article-card">
+                  <p className="card-title">
+                    <span style={{ color: "lightsalmon" }}>{data.title}</span> [
+                    {data.comments.length}]
+                  </p>
+                  <p style={{ marginTop: "10px", marginBottom: "0px" }}>
+                    {data.user.profile_image ? (
+                      <img
+                        src={`${data.user.profile_image}`}
+                        alt=""
+                        width="30px"
+                        className="commu-profile-img"
+                      />
+                    ) : (
+                      <img
+                        src="./basic_profile_img.png"
+                        alt=""
+                        width="30px"
+                        className="commu-profile-img"
+                      />
+                    )}
+                    {data.user.nickname} /
+                    <span> {detailDate(new Date(data.created_at))}</span>
+                  </p>
+                </div>
+              </Link>
             );
           })}
         </>

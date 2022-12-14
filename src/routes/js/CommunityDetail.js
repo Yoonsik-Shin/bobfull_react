@@ -13,9 +13,9 @@ import moment from "moment";
 import "moment/locale/ko";
 import styled from "../../components/css/Community.module.css";
 import { useSelector } from "react-redux";
-import Sheet from 'react-modal-sheet';
-import { useRef } from 'react';
-import { useOverlayTriggerState } from 'react-stately';
+import Sheet from "react-modal-sheet";
+import { useRef } from "react";
+import { useOverlayTriggerState } from "react-stately";
 import {
   useOverlay,
   useModal,
@@ -23,7 +23,7 @@ import {
   FocusScope,
   useButton,
   useDialog,
-} from 'react-aria';
+} from "react-aria";
 import SheetComp from "../../components/js/SheetComp";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -53,7 +53,6 @@ function CommunityDetail() {
     console.log(article);
   };
 
-
   const onSubmitReview = async (e) => {
     e.preventDefault();
     const submit = await axios({
@@ -81,7 +80,6 @@ function CommunityDetail() {
     console.log(submit);
     e.target[0].value = "";
     getArticle();
-
   };
 
   useEffect(() => {
@@ -90,25 +88,43 @@ function CommunityDetail() {
 
   return (
     <Container>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
+      <Toaster position="top-center" reverseOrder={false} />
       <Topnavbar key="res" pagename={name ? name + "번 글" : ""} />
       {article ? (
         <>
           <div className={styled.comdetailcard}>
-            <p className={styled.comdetailtext}>
-              {article.user} {moment(article.created_at).format("MM/D a h:mm")}
+            <p className={styled.comdetailtext} style={{ marginLeft: "5px" }}>
+              {article.user.profile_image ? (
+                <img
+                  src={`${article.user.profile_image}`}
+                  alt=""
+                  width="30px"
+                  className="profile-img"
+                />
+              ) : (
+                <img
+                  src="./basic_profile_img.png"
+                  alt=""
+                  width="30px"
+                  className="profile-img"
+                />
+              )}
+              {article.user.nickname} |{" "}
+              {moment(article.created_at).format("MM/D a h:mm")}
             </p>
             <h2 className={styled.comdetailtext}>{article.title}</h2>
             <p className={styled.comdetailtext}>{article.content}</p>
             <div>
-              <p className={styled.comdetailp}>댓글 <span className={styled.comdetailspan}>{article.comments.length}</span></p>
+              <p className={styled.comdetailp}>
+                댓글{" "}
+                <span className={styled.comdetailspan}>
+                  {article.comments.length}
+                </span>
+              </p>
               <div className={styled.comcomdiv}>
-                {user.profile_image ? (
+                {article.user.profile_image ? (
                   <img
-                    src={`${user.profile_image}`}
+                    src={`${article.user.profile_image}`}
                     alt=""
                     width="30px"
                     className={styled.comdetailimg}
@@ -118,25 +134,31 @@ function CommunityDetail() {
                     src="/basic_profile_img.png"
                     alt=""
                     width="30px"
-                    className={styled.comdetailimg}
+                    className="profile-img"
                   />
                 )}
-                <button {...openButton.buttonProps} ref={openButtonRef} className={styled.comcomments}>
+                <button
+                  {...openButton.buttonProps}
+                  ref={openButtonRef}
+                  className={styled.comcomments}
+                >
                   댓글 추가...
                 </button>
 
                 <Sheet
                   isOpen={sheetState.isOpen}
                   onClose={sheetState.close}
-                  detent="content-height">
+                  detent="content-height"
+                >
                   <OverlayProvider>
                     <FocusScope contain autoFocus restoreFocus>
                       <SheetComp
-                        key='1'
+                        key="1"
                         sheetState={sheetState}
                         comments={article.comments}
                         id={id}
-                        getArticle={getArticle} />
+                        getArticle={getArticle}
+                      />
                     </FocusScope>
                   </OverlayProvider>
                 </Sheet>

@@ -26,11 +26,11 @@
   padding-left: 10px;
   margin-bottom: 1vh;
   border-radius: 10px;
+  font-size: 14px;
 }
 
 .article-title {
   text-decoration: none;
-  color: lightsalmon;
 }
 
 .modal-btns {
@@ -40,4 +40,14 @@
 .article-list {
   margin-bottom: 0px;
   line-height: normal;
+}
+
+.commu-profile-img {
+  width: 30px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.card-title {
+  font-size: 20px;
 }

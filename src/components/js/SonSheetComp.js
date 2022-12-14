@@ -1,7 +1,7 @@
-import Sheet from 'react-modal-sheet';
-import { useRef } from 'react';
-import { useOverlayTriggerState } from 'react-stately';
-import styled from '../css/Community.module.css';
+import Sheet from "react-modal-sheet";
+import { useRef } from "react";
+import { useOverlayTriggerState } from "react-stately";
+import styled from "../css/Community.module.css";
 import {
   useOverlay,
   useModal,
@@ -9,7 +9,7 @@ import {
   FocusScope,
   useButton,
   useDialog,
-} from 'react-aria';
+} from "react-aria";
 import { Container, Form } from "react-bootstrap";
 import ContentCheck from "./ArticleContent";
 import { useEffect, useState } from "react";
@@ -39,7 +39,7 @@ const SonSheetComp = ({ sheetState, id, data, origincomment, getArticle2 }) => {
 
   const closeButtonRef = useRef(null);
   const closeButton = useButton(
-    { onPress: sheetState.close, 'aria-label': 'Close sheet' },
+    { onPress: sheetState.close, "aria-label": "Close sheet" },
     closeButtonRef
   );
 
@@ -47,9 +47,15 @@ const SonSheetComp = ({ sheetState, id, data, origincomment, getArticle2 }) => {
 
   // In real world usage this would be a separate React component
   const customHeader = (
-    <div style={{ height: '40px' }} className={styled.comheaderdiv}>
-      {article ? <span {...dialog.titleProps}>답글 {article.length}개</span> : null}
-      <img src='/close.png' className={styled.comclosebtn} {...closeButton.buttonProps} />
+    <div style={{ height: "40px" }} className={styled.comheaderdiv}>
+      {article ? (
+        <span {...dialog.titleProps}>답글 {article.length}개</span>
+      ) : null}
+      <img
+        src="/close.png"
+        className={styled.comclosebtn}
+        {...closeButton.buttonProps}
+      />
     </div>
   );
   const onSubmitRecomment = async (e) => {
@@ -93,42 +99,49 @@ const SonSheetComp = ({ sheetState, id, data, origincomment, getArticle2 }) => {
         {...dialog.dialogProps}
         ref={containerRef}
       >
-        {article ?
+        {article ? (
           <Sheet.Header>
             {customHeader}
             <div className={styled.combodydiv}>
               <p className={styled.comcommenttext}>
-                {origincomment.user} · {detailDate(new Date(origincomment.created_at))}
+                {origincomment.user.nickname} ·{" "}
+                {detailDate(new Date(origincomment.created_at))}
               </p>
               <p style={{ margin: 0 }}>{origincomment.content}</p>
             </div>
-            <Form onSubmit={onSubmitRecomment} style={{ margin: '10px' }} data-name={data}>
-              <ContentCheck handleContent={handleContent} name='답글' />
-              {content ?
-                <input type='image' src='/paper.png' className={styled.soncommentsubmitbtn} />
-
-                : null}
+            <Form
+              onSubmit={onSubmitRecomment}
+              style={{ margin: "10px" }}
+              data-name={data}
+            >
+              <ContentCheck handleContent={handleContent} name="답글" />
+              {content ? (
+                <input
+                  type="image"
+                  src="/paper.png"
+                  className={styled.soncommentsubmitbtn}
+                />
+              ) : null}
             </Form>
           </Sheet.Header>
-          : null}
-        {article ?
+        ) : null}
+        {article ? (
           <Sheet.Content>
-            <div style={{ height: '310px' }} className={styled.combodydiv}>
+            <div style={{ height: "310px" }} className={styled.combodydiv}>
               {article.map((data, idx) => {
                 return (
                   <div className={styled.comcommentdiv}>
                     <p className={styled.comcommenttext}>
-                      {data.user} · {detailDate(new Date(data.created_at))}
+                      {data.user.nickname} ·{" "}
+                      {detailDate(new Date(data.created_at))}
                     </p>
                     <p style={{ margin: 0 }}>{data.content}</p>
                   </div>
-
-                )
-              }
-              )}
+                );
+              })}
             </div>
           </Sheet.Content>
-          : null}
+        ) : null}
       </Sheet.Container>
       <Sheet.Backdrop />
     </>

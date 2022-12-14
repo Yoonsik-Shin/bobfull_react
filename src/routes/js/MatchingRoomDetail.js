@@ -45,18 +45,18 @@ function MatchingRoomDetail() {
   const attendChatting = async () => {
     const autoIn = await axios({
       method: "get",
-      url: `${baseURL}/multichat/${useParam.detail}/join/`
-    })
-    console.log(autoIn.data)
-  }
+      url: `${baseURL}/multichat/${useParam.detail}/join/`,
+    });
+    console.log(autoIn.data);
+  };
 
   const leaveChatting = async () => {
     const autoOut = await axios({
       method: "get",
-      url: `${baseURL}/multichat/${useParam.detail}/leave/`
-    })
-    console.log(autoOut.data)
-  }
+      url: `${baseURL}/multichat/${useParam.detail}/leave/`,
+    });
+    console.log(autoOut.data);
+  };
 
   return (
     <Container>
@@ -67,9 +67,14 @@ function MatchingRoomDetail() {
             <div className="matching-detail-info">
               <h5 className="matching-detail-h5">모임정보</h5>
               <div>음식점명 : {info.restaurant_name}</div>
-              <div>약속시간 : {moment(info.from_date).format("MM/D a h:mm")}</div>
+              <div>
+                약속시간 : {moment(info.from_date).format("MM/D a h:mm")}
+              </div>
               <div>약속내용 : {info.content}</div>
-              <div>참가제한 : {info.chk_gender ? '성별 상관없어요' : '같은 성별이 편해요' }</div>
+              <div>
+                참가제한 :{" "}
+                {info.chk_gender ? "성별 상관없어요" : "같은 성별이 편해요"}
+              </div>
               <div>
                 참여멤버 :{" "}
                 {info.member.map((member) => {
@@ -79,30 +84,40 @@ function MatchingRoomDetail() {
             </div>
             <div>
               <h5 className="matching-detail-h5">호스트 정보</h5>
-              <div>{info.user.nickname} #{info.user.pk} </div>
-              <div>{info.user.gender ? '여성' : '남성'}</div>
+              <div>
+                {info.user.nickname} #{info.user.pk}{" "}
+              </div>
+              <div>{info.user.gender ? "여성" : "남성"}</div>
               <div>매너온도 : {info.user.manner}도</div>
               <div>식사속도 : {info.user.speed}</div>
-              <div>대화여부 : {info.user.talk ? 'O' : 'X'} </div>
-              <div>음주여부 : {info.user.alcohol ? 'O' : 'X'} </div>
-              <div>흡연여부 : {info.user.smoke ? 'O' : 'X'} </div>
+              <div>대화여부 : {info.user.talk ? "O" : "X"} </div>
+              <div>음주여부 : {info.user.alcohol ? "O" : "X"} </div>
+              <div>흡연여부 : {info.user.smoke ? "O" : "X"} </div>
             </div>
           </>
         ) : null}
-        {
-          info && (state == "참가") ? 
-          <button onClick={()=>{
-            attendRoom()
-            attendChatting()
-          }} className="matchingDetailBtn">매칭 {state}하기</button> 
-          : <div>매칭참가중</div>
-        }
+        {info && state == "참가" ? (
+          <button
+            onClick={() => {
+              attendRoom();
+              attendChatting();
+            }}
+            className="matchingDetailBtn"
+          >
+            매칭 {state}하기
+          </button>
+        ) : (
+          <div>매칭참가중</div>
+        )}
         {info && participation.includes(user.id) ? (
           <div className="Btns">
-            <button onClick={()=>{
-              attendRoom()
-              leaveChatting()
-            }} className="matchingDetailBtn">
+            <button
+              onClick={() => {
+                attendRoom();
+                leaveChatting();
+              }}
+              className="matchingDetailBtn"
+            >
               매칭 {state}하기
             </button>
             <button className="chattingRoomBtn">
@@ -111,8 +126,8 @@ function MatchingRoomDetail() {
           </div>
         ) : null}
       </div>
-      <button onClick={leaveChatting}>싱크맞추기 : 채팅룸나가기</button>
-      <button onClick={attendChatting}>싱크맞추기 : 채팅룸들어가기</button>
+      {/* <button onClick={leaveChatting}>싱크맞추기 : 채팅룸나가기</button>
+      <button onClick={attendChatting}>싱크맞추기 : 채팅룸들어가기</button> */}
     </Container>
   );
 }

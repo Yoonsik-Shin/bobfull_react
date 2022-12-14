@@ -22,3 +22,8 @@
   --bs-btn-hover-bg: lightsalmon;
   --bs-btn-hover-border-color: lightsalmon;
 }
+
+.profile-img {
+  border-radius: 50%;
+  width: 20px;
+}

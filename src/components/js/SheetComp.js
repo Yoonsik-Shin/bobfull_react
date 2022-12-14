@@ -1,6 +1,6 @@
-import Sheet from 'react-modal-sheet';
-import { useRef } from 'react';
-import { useOverlayTriggerState } from 'react-stately';
+import Sheet from "react-modal-sheet";
+import { useRef } from "react";
+import { useOverlayTriggerState } from "react-stately";
 import {
   useOverlay,
   useModal,
@@ -8,7 +8,7 @@ import {
   FocusScope,
   useButton,
   useDialog,
-} from 'react-aria';
+} from "react-aria";
 import axios from "axios";
 import { Container, Form } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
@@ -20,10 +20,10 @@ import Button from "react-bootstrap/Button";
 import ContentCheck from "./ArticleContent";
 import moment from "moment";
 import "moment/locale/ko";
-import styled from '../css/Community.module.css';
+import styled from "../css/Community.module.css";
 import CostomToggle from "./CustomArticle";
-import SonSheetComp from './SonSheetComp';
-import { OverlayTriggerState } from 'react-stately';
+import SonSheetComp from "./SonSheetComp";
+import { OverlayTriggerState } from "react-stately";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -31,7 +31,7 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
   const [content, setContent] = useState("");
   const [modalData, setModalData] = useState(null);
   const containerRef = useRef(null);
-  console.log(comments)
+  console.log(comments);
   const dialog = useDialog({}, containerRef);
   const overlay = useOverlay(
     { onClose: sheetState.close, isOpen: true, isDismissable: true },
@@ -40,7 +40,7 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
 
   const closeButtonRef = useRef(null);
   const closeButton = useButton(
-    { onPress: sheetState.close, 'aria-label': 'Close sheet' },
+    { onPress: sheetState.close, "aria-label": "Close sheet" },
     closeButtonRef
   );
 
@@ -65,9 +65,13 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
 
   // In real world usage this would be a separate React component
   const customHeader = (
-    <div style={{ height: '40px' }} className={styled.comheaderdiv}>
+    <div style={{ height: "40px" }} className={styled.comheaderdiv}>
       <span {...dialog.titleProps}>댓글 {comments.length}개</span>
-      <img src='/close.png' className={styled.comclosebtn} {...closeButton.buttonProps} />
+      <img
+        src="/close.png"
+        className={styled.comclosebtn}
+        {...closeButton.buttonProps}
+      />
     </div>
   );
 
@@ -99,45 +103,64 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
         {...dialog.dialogProps}
         ref={containerRef}
       >
-        <Sheet.Header>{customHeader}
-          <Form onSubmit={onSubmitReview} style={{ margin: '10px' }}>
-            <ContentCheck handleContent={handleContent} name='댓글' />
-            {content ?
-              <input type='image' src='/paper.png' className={styled.commentsubmitbtn} />
-
-              : null}
+        <Sheet.Header>
+          {customHeader}
+          <Form onSubmit={onSubmitReview} style={{ margin: "10px" }}>
+            <ContentCheck handleContent={handleContent} name="댓글" />
+            {content ? (
+              <input
+                type="image"
+                src="/paper.png"
+                className={styled.commentsubmitbtn}
+              />
+            ) : null}
           </Form>
         </Sheet.Header>
         <Sheet.Content>
-          <div style={{ height: '360px' }} className={styled.combodydiv}>
+          <div style={{ height: "360px" }} className={styled.combodydiv}>
             {comments ? (
               <>
                 {comments.map((data, idx) => {
                   return (
                     <div className={styled.comcommentdiv}>
                       <p className={styled.comcommenttext}>
-                        {data.user} · {detailDate(new Date(data.created_at))}
+                        {data.user.nickname} ·{" "}
+                        {detailDate(new Date(data.created_at))}
                       </p>
-                      <p style={{ margin: 0 }}>{data.content} <img src='/chat.png' {...openButton.buttonProps} ref={openButtonRef} className={styled.soncomments} onClick={() => {
-                        setModalData(data);
-                      }} /></p>
+                      <p style={{ margin: 0 }}>
+                        {data.content}{" "}
+                        <img
+                          src="/chat.png"
+                          {...openButton.buttonProps}
+                          ref={openButtonRef}
+                          className={styled.soncomments}
+                          onClick={() => {
+                            setModalData(data);
+                          }}
+                        />
+                      </p>
 
-                      {data.soncomments.length > 0 ?
-
-                        <a {...openButton.buttonProps} ref={openButtonRef} className={styled.sonlength} onClick={() => {
-                          setModalData(data);
-                        }}>
-                          답글 {data.soncomments.length + '개'}
+                      {data.soncomments.length > 0 ? (
+                        <a
+                          {...openButton.buttonProps}
+                          ref={openButtonRef}
+                          className={styled.sonlength}
+                          onClick={() => {
+                            setModalData(data);
+                          }}
+                        >
+                          답글 {data.soncomments.length + "개"}
                         </a>
-                        : null}
-
+                      ) : null}
                     </div>
-
-                  )
-                }
-                )}
-                {modalData ?
-                  <Sheet isOpen={sheetState2.isOpen} onClose={sheetState2.close} detent="content-height">
+                  );
+                })}
+                {modalData ? (
+                  <Sheet
+                    isOpen={sheetState2.isOpen}
+                    onClose={sheetState2.close}
+                    detent="content-height"
+                  >
                     <OverlayProvider>
                       <FocusScope contain autoFocus restoreFocus>
                         <SonSheetComp
@@ -151,7 +174,7 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
                       </FocusScope>
                     </OverlayProvider>
                   </Sheet>
-                  : null}
+                ) : null}
               </>
             ) : null}
           </div>
