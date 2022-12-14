@@ -60,7 +60,7 @@ function Profile() {
       .catch((err) => {
         setTimeout(() => toast.success("성공적으로 로그아웃이 되었습니다."), 200);
         dispatch(clearUser());
-        setTimeout(() => localStorage.setItem("Authorization", "");
+        localStorage.setItem("Authorization", "");
         return console.error(err);
       });
   };
