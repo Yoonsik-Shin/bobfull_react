@@ -31,8 +31,11 @@ function CreateForm(props) {
     setHostInfo({ ...hostInfo, to_date: e.target.value })
   }
   const checkGenderInput = (e) => {
-    setHostInfo({ ...hostInfo, chk_gender: Boolean(e.target.value) })
+    console.log(e.target.value)
+    setHostInfo({ ...hostInfo, chk_gender: parseInt(e.target.value) ? true : false })
+    console.log(hostInfo)
   }
+
 
   // 폼 제출시 매칭룸 생성
   const createMatchingRoom = async (e) => {
@@ -43,6 +46,7 @@ function CreateForm(props) {
       data: hostInfo
     })
     // 채팅룸 번호 생성성
+    console.log(createRoom.data)
     props.setResponseChat(createRoom.data.id)
     toast.success('매칭룸이 생성되었습니다.')
     for (let i = 0; i < 3; i++) {
@@ -70,7 +74,7 @@ function CreateForm(props) {
           <Form.Control type="text" placeholder="매칭룸명" onChange={titleInput} required />
           <Form.Control type="text" placeholder="약속내용" onChange={contentInput} required as="textarea" rows={3} />
           <Form.Control type="datetime-local" onChange={endTimeInput} name="약속종료시간" required />
-          <RadioButton checkGenderInput={checkGenderInput}></RadioButton>
+          <RadioButton checkGenderInput={checkGenderInput} />
         </Form.Group>
           <button type='submit'>생성</button>
       </Form>

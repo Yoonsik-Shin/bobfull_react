@@ -71,10 +71,7 @@ function MatchingRoomDetail() {
                 약속시간 : {moment(info.from_date).format("MM/D a h:mm")}
               </div>
               <div>약속내용 : {info.content}</div>
-              <div>
-                참가제한 :{" "}
-                {info.chk_gender ? "성별 상관없어요" : "같은 성별이 편해요"}
-              </div>
+              <div>참가제한 : {info.chk_gender ? "같은 성별이 편해요" : "성별 상관없어요"} </div>
               <div>
                 참여멤버 :{" "}
                 {info.member.map((member) => {
