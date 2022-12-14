@@ -21,7 +21,8 @@ function MatchingRoom() {
   const [responseChat, setResponseChat] = useState([])
   const [resId, setResId] = useState()
   const [resName, setResName] = useState()
-
+  const [success, setSuccess] = useState()
+  
   const getMatchingRoom = async () => {
     const matchingRoom = await axios({
       method: 'get',
@@ -38,13 +39,29 @@ function MatchingRoom() {
   }
 
   useState(() => {
-    getMatchingRoom();
-  }, [responseChat]);
-
-  useState(() => {
     getRes()
     getMatchingRoom();
   }, [])
+
+  // 채팅룸 번호 받은 후 방생성 실행
+  useEffect(() => {
+    createChatRoom()
+    getMatchingRoom();
+  }, [responseChat])
+
+  // 매칭룸 생성후 id값 받아 채팅룸 생성하는 함수
+  const createChatRoom = async () => {
+    const autoCreate = await axios({
+      method: 'post',
+      url: `${baseURL}/multichat/${responseChat}/create/`
+    })
+    setSuccess(autoCreate.data)
+  }
+
+  // 채팅방 생성 후 매칭룸 불러오기
+  useState(() => {
+    getMatchingRoom();
+  }, [success]);
 
   return (
     <>
@@ -72,7 +89,7 @@ function MatchingRoom() {
                   <Card.Subtitle className="mb-2 text-muted">매칭룸 호스트 : {
                     el.user.profile_image ?
                     <img src={el.user.profile_image} alt="" width='30px' className="profile-img" />
-                    : <img src="./basic_profile_img.png" width="45px"className="profile-img"/>
+                    : <img src="/basic_profile_img.png" width="45px"className="profile-img"/>
                   }
                   {el.user.nickname}
                   </Card.Subtitle>
