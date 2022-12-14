@@ -97,6 +97,7 @@ function MatchingRoom() {
                   <div>매칭룸 내용 : {el.content}</div>
                   <div>약속날자/시간 : {el.to_date}</div>
                   <div>참여 멤버수 : {el.member.length}</div>
+                  <div>참가제한 : {el.chk_gender ? "같은 성별이 편해요" : "성별 상관없어요"} </div>
                   <button><Link to={`/matching_room/${id}/${el.id}`}>자세히보기</Link></button>
                 </Card.Body>
               </Card>
