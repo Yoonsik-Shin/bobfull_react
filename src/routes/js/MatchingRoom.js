@@ -33,10 +33,19 @@ function MatchingRoom() {
     setResName(matchingRoom.data[0].restaurant_name)
   }
   
+  const getRes = async () => {
+    const res = await axios.get(`${baseURL}/restaurant/${id}/`, { headers: { 'Content-Type': 'application/json' } })
+    setResName(res.data.name)
+    setResId(res.data.id)
+  }
+
   useState(() => {
     getMatchingRoom();
   }, [matchList]);
 
+  useState(() => {
+    getRes()
+  }, [])
 
   return (
     <Container style={{position: 'relative'}}>
