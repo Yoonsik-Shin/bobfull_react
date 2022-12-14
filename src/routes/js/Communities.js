@@ -119,14 +119,12 @@ function Community() {
                       <img
                         src={`${data.user.profile_image}`}
                         alt=""
-                        width="30px"
                         className="commu-profile-img"
                       />
                     ) : (
                       <img
                         src="./basic_profile_img.png"
                         alt=""
-                        width="30px"
                         className="commu-profile-img"
                       />
                     )}

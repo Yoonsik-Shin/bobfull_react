@@ -23,7 +23,8 @@
   --bs-btn-hover-border-color: lightsalmon;
 }
 
-.profile-img {
+.commu-detail-profile-img {
   border-radius: 50%;
-  width: 20px;
+  width: 25px;
+  margin: 0 5px;
 }

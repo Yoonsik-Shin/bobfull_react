@@ -14,6 +14,7 @@ import { Container, Form } from "react-bootstrap";
 import ContentCheck from "./ArticleContent";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../css/SonSheetComp.css";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -104,6 +105,19 @@ const SonSheetComp = ({ sheetState, id, data, origincomment, getArticle2 }) => {
             {customHeader}
             <div className={styled.combodydiv}>
               <p className={styled.comcommenttext}>
+                {origincomment.user.profile_image ? (
+                  <img
+                    src={`${origincomment.user.profile_image}`}
+                    alt=""
+                    className="grandsoncomment-profile-img"
+                  />
+                ) : (
+                  <img
+                    src="/basic_profile_img.png"
+                    alt=""
+                    className="grandsoncomment-profile-img"
+                  />
+                )}
                 {origincomment.user.nickname} ·{" "}
                 {detailDate(new Date(origincomment.created_at))}
               </p>
@@ -132,6 +146,19 @@ const SonSheetComp = ({ sheetState, id, data, origincomment, getArticle2 }) => {
                 return (
                   <div className={styled.comcommentdiv}>
                     <p className={styled.comcommenttext}>
+                      {data.user.profile_image ? (
+                        <img
+                          src={`${data.user.profile_image}`}
+                          alt=""
+                          className="grandsoncomment-profile-img"
+                        />
+                      ) : (
+                        <img
+                          src="/basic_profile_img.png"
+                          alt=""
+                          className="grandsoncomment-profile-img"
+                        />
+                      )}
                       {data.user.nickname} ·{" "}
                       {detailDate(new Date(data.created_at))}
                     </p>

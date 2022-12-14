@@ -1,0 +1,11 @@
+.soncomment-profile-img {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.soncomment-count {
+  color: lightsalmon;
+  text-decoration: none;
+  margin-left: 5px;
+  font-weight: 500;
+}

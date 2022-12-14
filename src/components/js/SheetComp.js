@@ -24,6 +24,7 @@ import styled from "../css/Community.module.css";
 import CostomToggle from "./CustomArticle";
 import SonSheetComp from "./SonSheetComp";
 import { OverlayTriggerState } from "react-stately";
+import "../css/SheetComp.css";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -124,6 +125,19 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
                   return (
                     <div className={styled.comcommentdiv}>
                       <p className={styled.comcommenttext}>
+                        {data.user.profile_image ? (
+                          <img
+                            src={`${data.user.profile_image}`}
+                            alt=""
+                            className="soncomment-profile-img"
+                          />
+                        ) : (
+                          <img
+                            src="/basic_profile_img.png"
+                            alt=""
+                            className="soncomment-profile-img"
+                          />
+                        )}
                         {data.user.nickname} ·{" "}
                         {detailDate(new Date(data.created_at))}
                       </p>
@@ -138,20 +152,21 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
                             setModalData(data);
                           }}
                         />
+                        {data.soncomments.length > 0 ? (
+                          <a
+                            {...openButton.buttonProps}
+                            ref={openButtonRef}
+                            className="soncomment-count"
+                            onClick={() => {
+                              setModalData(data);
+                            }}
+                          >
+                            {data.soncomments.length}
+                          </a>
+                        ) : (
+                          <span className="soncomment-count">0</span>
+                        )}
                       </p>
-
-                      {data.soncomments.length > 0 ? (
-                        <a
-                          {...openButton.buttonProps}
-                          ref={openButtonRef}
-                          className={styled.sonlength}
-                          onClick={() => {
-                            setModalData(data);
-                          }}
-                        >
-                          답글 {data.soncomments.length + "개"}
-                        </a>
-                      ) : null}
                     </div>
                   );
                 })}

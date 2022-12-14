@@ -98,15 +98,13 @@ function CommunityDetail() {
                 <img
                   src={`${article.user.profile_image}`}
                   alt=""
-                  width="30px"
-                  className="profile-img"
+                  className="commu-detail-profile-img"
                 />
               ) : (
                 <img
-                  src="./basic_profile_img.png"
+                  src="/basic_profile_img.png"
                   alt=""
-                  width="30px"
-                  className="profile-img"
+                  className="commu-detail-profile-img"
                 />
               )}
               {article.user.nickname} |{" "}
@@ -126,15 +124,13 @@ function CommunityDetail() {
                   <img
                     src={`${article.user.profile_image}`}
                     alt=""
-                    width="30px"
-                    className={styled.comdetailimg}
+                    className="commu-detail-profile-img"
                   />
                 ) : (
                   <img
                     src="/basic_profile_img.png"
                     alt=""
-                    width="30px"
-                    className="profile-img"
+                    className="commu-detail-profile-img"
                   />
                 )}
                 <button
