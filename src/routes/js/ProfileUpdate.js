@@ -6,6 +6,7 @@ import { Container, Form } from "react-bootstrap";
 import { changeUser } from "../../store/userSlice.js";
 import { useNavigate } from "react-router-dom";
 import Topnavbar from "../../../src/components/js/Topnavbar";
+import toast, { Toaster } from "react-hot-toast";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -37,7 +38,7 @@ function ProfileAdd() {
       data: formData,
     }).then((res) => {
       dispatch(changeUser({ ...res.data }));
-      alert("성공적으로 업데이트 되었습니다");
+      setTimeout(() => toast.success("성공적으로 업데이트 되었습니다."), 200);
       navigate("/profile");
     });
   };
@@ -53,6 +54,10 @@ function ProfileAdd() {
 
   return (
     <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Topnavbar key="roul" pagename="프로필 업데이트" />
       <Form onSubmit={ProfileUpdate}>
         <h3 className="text-center my-5">

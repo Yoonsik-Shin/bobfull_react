@@ -9,6 +9,7 @@ import EmailCheck from "../../components/js/Email.js";
 import KakaoLogin from "../../components/js/KakaoLogin.js";
 import GoogleLogin from "../../components/js/GoogleLogin.js";
 import "../css/Login.css";
+import toast, { Toaster } from "react-hot-toast";
 
 function Login() {
   var baseURL = process.env.REACT_APP_BASE_URL; // 환경변수설정
@@ -29,14 +30,14 @@ function Login() {
   const LoginFunc = (e) => {
     e.preventDefault();
     if (!inputId) {
-      return alert("ID를 입력하세요.");
+      return toast.error("ID를 입력하세요.");
     } else if (!inputPw) {
-      return alert("Password를 입력하세요.");
+      return toast.error("Password를 입력하세요.");
     } else {
       axios({
         method: "post",
         url: `${baseURL}/accounts/login/`,
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
         },
         data: {
@@ -62,14 +63,14 @@ function Login() {
               `Bearer ${res.data.access_token}`
             );
             setMsg("");
-            alert("성공적으로 로그인 되었습니다.");
+            setTimeout(() => toast.success("성공적으로 로그인 되었습니다."), 200);
           }
         })
         .catch((err) => {
           console.log(err);
           if (err.code === "ERR_BAD_REQUEST") {
             setMsg("ID, Password가 비어있습니다.");
-            alert("비밀번호나 이메일이 다릅니다.");
+            toast.error("비밀번호나 이메일이 다릅니다.");
           }
         });
     }
@@ -87,6 +88,10 @@ function Login() {
 
   return (
     <Container className="login-container">
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <div className="login-layout">
         <div className="login-logo">
           <img src="/logo.png" alt="" width="100px" />

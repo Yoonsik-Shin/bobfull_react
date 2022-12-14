@@ -25,6 +25,7 @@ import {
   useDialog,
 } from 'react-aria';
 import SheetComp from "../../components/js/SheetComp";
+import toast, { Toaster } from "react-hot-toast";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -80,6 +81,7 @@ function CommunityDetail() {
     console.log(submit);
     e.target[0].value = "";
     getArticle();
+
   };
 
   useEffect(() => {
@@ -88,6 +90,10 @@ function CommunityDetail() {
 
   return (
     <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Topnavbar key="res" pagename={name ? name + "번 글" : ""} />
       {article ? (
         <>
