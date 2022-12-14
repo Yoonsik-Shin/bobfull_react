@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import '../css/test.css'
 function NavbarBottom() {
   let navigate = useNavigate()
-  console.clear();
 
   const icon = document.querySelectorAll('.toolbar__icon');
   const smile = document.querySelector('.icon--smile svg');

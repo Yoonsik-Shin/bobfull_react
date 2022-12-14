@@ -22,7 +22,7 @@ function ChatRoomDetail() {
     setInputChating(e.target.value);
   };
   const [messages, setMessages] = useState();
-  const interval = 100;
+  const interval = 1000;
   const getMessages = useQuery(
     ["Messages"],
     () =>

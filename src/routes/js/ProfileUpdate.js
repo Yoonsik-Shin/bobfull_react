@@ -13,6 +13,7 @@ var baseURL = process.env.REACT_APP_BASE_URL;
 function ProfileAdd() {
   let dispatch = useDispatch();
   let navigate = useNavigate();
+  const [imgData, setImgData] = useState()
   const user = useSelector((state) => state.user);
   const formData = new FormData();
   const [userState, setUserState] = useState({
@@ -30,12 +31,19 @@ function ProfileAdd() {
     Object.entries(copy).map(([key, value]) => {
       formData.append(`${key}`, value);
     });
+    formData.append('profile_image', imgData)
+
+    for (var pair of formData.entries()) {
+      console.log(pair[0]+ ', ' + pair[1]);
+    }
+
     await axios({
       method: "put",
       url: `${baseURL}/accounts/user/`,
       processData: false,
       data: formData,
     }).then((res) => {
+      console.log(res.data)
       dispatch(changeUser({ ...res.data }));
       setTimeout(() => toast.success("성공적으로 업데이트 되었습니다."), 200);
       navigate("/profile");
@@ -48,6 +56,7 @@ function ProfileAdd() {
   const [url, setUrl] = useState(user.profile_image ? user.profile_image : '')
   const imageInput = (file) => {
     formData.append("profile_image", file.target.files[0]);
+    setImgData(file.target.files[0])
     console.log(file.target.files[0]);
     setUrl(URL.createObjectURL(file.target.files[0]))
   };
@@ -81,15 +90,16 @@ function ProfileAdd() {
           <h2 className="ms-2 mb-4">이미지 </h2>
           <div className='d-flex justify-content-evenly align-items-center'>
             <div className="text-center" >
-              {url ?
-                <img src={url} alt=""
-                  className="profileimg" id="profile_img_load" />
-                : <img
-                  src="/basic_profile_img.png"
-                  alt=""
-                  className="profileimg"
-                  id="profile_img_load"
-                />}
+              {
+                url ?
+                  <img src={url} alt=""
+                    className="profileimg" id="profile_img_load" />
+                  : <>{
+                      user.profile_image ?
+                      <img src={user.profile_image} className="profileimg" id="profile_img_load"/>
+                      : <img src="/basic_profile_img.png" className="profileimg" id="profile_img_load"/>
+                    }</>
+              }
             </div>
             <Form.Control
               className="file-form"
