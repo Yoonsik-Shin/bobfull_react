@@ -1,9 +1,9 @@
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 
 function RadioButton(props) {
   return (
-    <Form>
-      {['radio'].map((type, idx) => (
+    <Form style={{ marginTop: "15px" }}>
+      {["radio"].map((type, idx) => (
         <div key={idx}>
           <Form.Check
             inline
