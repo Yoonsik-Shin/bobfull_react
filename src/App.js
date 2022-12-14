@@ -23,9 +23,15 @@ import MatchingRoomDetail from "./routes/js/MatchingRoomDetail.js"
 import MatchingList from "./routes/js/MatchingList";
 import ChatRoom from "./routes/js/ChatRoom.js"
 import ChatRoomDetail from "./routes/js/ChatRoomDetail.js"
+import Intro from "./routes/js/Intro";
+import { useLocation } from 'react-router-dom';
 
 function App() {
   const user = useSelector((state) => state.user);
+  const location = useLocation();
+  useEffect(() => {
+    console.log(location.pathname);
+  }, [location])
   return (
     <div className="App" style={{ paddingBottom: "66px" }}>
       {/* 페이지나누기 */}
@@ -35,14 +41,14 @@ function App() {
         <Route path="/login" element={user.isLogin ? <Profile /> : <Login />} /> {/* 로그인페이지 */}
         <Route path="/res_index" element={user.isLogin ? <Restaurants /> : <Login />} />
         <Route path="/res_index/:id" element={user.isLogin ? <RestaurantsDetail /> : <Login />} />
-        <Route path="/res_category" element={user.isLogin ? <Category /> : <Login /> }/>
-        <Route path="/community" element={user.isLogin ?<Community /> : <Login /> } />
-        <Route path="/community/:id" element={user.isLogin ?<CommunityDetail /> : <Login />} />
+        <Route path="/res_category" element={user.isLogin ? <Category /> : <Login />} />
+        <Route path="/community" element={user.isLogin ? <Community /> : <Login />} />
+        <Route path="/community/:id" element={user.isLogin ? <CommunityDetail /> : <Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={user.isLogin ? <Profile /> : <Login />} />
         <Route path="/profile/update" element={user.isLogin ? <ProfileUpdate /> : <Login />} />
         <Route path="/roulette" element={<Roulette />} />
-        <Route path="/map" element={user.isLogin ?<KakaoMap /> : <Login />} />
+        <Route path="/map" element={user.isLogin ? <KakaoMap /> : <Login />} />
         <Route path="/" element={<Test />} />
         <Route path="/oauth/callback/kakao" element={<KaKaoAuth />} />
         <Route path="/accounts/google/callback/" element={<GoogleAuth />} />
@@ -51,8 +57,9 @@ function App() {
         <Route path="/matching_list" element={user.isLogin ? <MatchingList /> : <Login />} />
         <Route path="/multichat/index" element={user.isLogin ? <ChatRoom /> : <Login />} />
         <Route path="/multichat/:room_id" element={user.isLogin ? <ChatRoomDetail /> : <Login />} />
+        <Route path="/intro" element={<Intro />} />
       </Routes>
-      <NavbarBottom />
+      {location.pathname !== '/intro' && location.pathname !== "/" ? <NavbarBottom /> : null}
     </div>
   );
 }
