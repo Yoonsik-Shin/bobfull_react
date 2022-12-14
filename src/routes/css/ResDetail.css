@@ -4,7 +4,24 @@
 
 .res-menu {
   margin-bottom: 20px;
+}
 
+.res-title {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.res-chat-button {
+  text-decoration: none;
+  color: white;
+  background-color: lightsalmon;
+  border-color: lightsalmon;
+  border-radius: 5px;
+  margin-left: 5px;
+  height: 35px;
+  border: 0;
+  outline: 0;
 }
 
 .res-date {
@@ -26,7 +43,7 @@
 .res-detail-img {
   height: 300px;
   border-radius: 20px;
-  padding: 10px
+  padding: 10px;
 }
 
 .slick-arrow {

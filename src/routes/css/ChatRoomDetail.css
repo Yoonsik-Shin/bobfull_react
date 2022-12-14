@@ -1,0 +1,36 @@
+.chat-box {
+  border: 1px solid;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.profile-img {
+  margin-right: 5px;
+  border-radius: 50%;
+  width: 20px;
+}
+
+.chat-text {
+  padding-left: 5px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.send-form {
+  display: flex;
+  position: fixed;
+  bottom: 80px;
+  text-align: center;
+  width: 90%;
+}
+
+.sendbtn {
+  color: white;
+  background-color: lightsalmon;
+  border-color: lightsalmon;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  margin-left: 5px;
+  width: 100px;
+}
