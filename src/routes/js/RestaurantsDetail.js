@@ -12,6 +12,8 @@ import Topnavbar from "../../../src/components/js/Topnavbar";
 import Star from "../../../src/components/js/Star";
 import { current } from "@reduxjs/toolkit";
 import toast, { Toaster } from "react-hot-toast";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -23,6 +25,10 @@ function RestaurantsDetail() {
   const [score, setScore] = useState(1);
   const [scoreSum, setScoreSum] = useState([]);
   const name = new URL(window.location.href).searchParams.get("name");
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getRes = async () => {
     const res = await axios.get(`${baseURL}/restaurant/${id}/`, {
@@ -73,7 +79,7 @@ function RestaurantsDetail() {
         grade: "⭐".repeat(score),
       },
     });
-    toast.success('리뷰 작성 완료.')
+    toast.success("리뷰 작성 완료.");
     getReviews();
     e.target[0].value = "";
   };
@@ -114,10 +120,7 @@ function RestaurantsDetail() {
 
   return (
     <Container>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
+      <Toaster position="top-center" reverseOrder={false} />
       <Topnavbar key="res" pagename={name ? name : ""} />
       {restaurant ? (
         <>
@@ -181,6 +184,35 @@ function RestaurantsDetail() {
               <span className="review-span">아직 리뷰가 없어요 😥</span>
             )}
           </h2>
+          <h3>리뷰작성하기</h3>
+          <Form onSubmit={onSubmitReview}>
+            <Form.Control
+              type="text"
+              placeholder="작성할 내용을 입력하세요."
+              className="mb-3"
+              required
+            />
+            <Star handleInput={handleInput} />
+          </Form>
+          <button className={styled1.resbtn} onclick={handleShow}>
+            리뷰 쓰기
+          </button>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Woohoo, you're reading this text in a modal!
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
           {reviews.map((el, i) => {
             return (
               <div>
@@ -199,17 +231,6 @@ function RestaurantsDetail() {
           })}
         </>
       ) : null}
-      <h3>리뷰작성하기</h3>
-      <Form onSubmit={onSubmitReview}>
-        <Form.Control
-          type="text"
-          placeholder="작성할 내용을 입력하세요."
-          className="mb-3"
-          required
-        />
-        <Star handleInput={handleInput} />
-        <button className={styled1.resbtn}>리뷰 쓰기</button>
-      </Form>
     </Container>
   );
 }
