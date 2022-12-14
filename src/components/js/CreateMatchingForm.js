@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react";
-import { Container, Form } from 'react-bootstrap'
+import { Container, Form, Modal, Button } from 'react-bootstrap'
 import { useSelector } from "react-redux";
 import { useParams } from 'react-router-dom'
 import RadioButton from '../../components/js/RadioButton.js'
@@ -12,7 +12,6 @@ var baseURL = process.env.REACT_APP_BASE_URL
 function CreateForm(props) {
 
   const user = useSelector((state) => state.user);
-  let { id } = useParams();
   const [hostInfo, setHostInfo] = useState({
     title: null,
     to_date: null,
@@ -20,7 +19,6 @@ function CreateForm(props) {
     member: [user.id],
     chk_gender: null,
   })
-
 
   const titleInput = (e) => {
     setHostInfo({ ...hostInfo, title: e.target.value })
@@ -39,18 +37,17 @@ function CreateForm(props) {
     e.preventDefault()
     const createRoom = await axios({
       method: 'post',
-      url: `${baseURL}/articles/${id}/matching_room/`,
+      url: `${baseURL}/articles/${props.id}/matching_room/`,
       data: hostInfo
     })
     setHostInfo({ ...hostInfo, ...createRoom.data })
+    props.setResponseChat(createRoom.data.id)
     for (let i = 0; i < 3; i++) {
       e.target[i].value = null;
     }
     e.target[3].checked = false;
     e.target[4].checked = false;
     toast.success('매칭룸이 생성되었습니다.')
-    props.setResponseChat(createRoom.data.id)
-    console.log(createRoom.data)
     attendChatting()
   }
 
@@ -86,12 +83,13 @@ function CreateForm(props) {
       <Form onSubmit={createMatchingRoom}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Control type="text" placeholder="매칭룸명" onChange={titleInput} required />
-          <Form.Control type="text" placeholder="매칭룸내용" onChange={contentInput} required as="textarea" rows={3} />
+          <Form.Control type="text" placeholder="약속내용" onChange={contentInput} required as="textarea" rows={3} />
           <Form.Control type="datetime-local" onChange={endTimeInput} name="약속종료시간" required />
           <RadioButton checkGenderInput={checkGenderInput}></RadioButton>
         </Form.Group>
         <button>매칭룸 생성</button>
       </Form>
+      
     </Container>
   )
 }
