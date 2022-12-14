@@ -39,21 +39,24 @@ function MatchingRoom() {
 
   useState(() => {
     getMatchingRoom();
-  }, [matchList]);
+  }, [responseChat]);
 
   useState(() => {
     getRes()
+    getMatchingRoom();
   }, [])
 
   return (
     <>
       {formModal ?
-      <div className="bg-black">
+      <div className="bga-black">
         <Container>
-           <CreateForm getMatchingRoom={getMatchingRoom} responseChat={responseChat} setResponseChat={setResponseChat} id={id} />
+          <div class='bg-white'>
+            <CreateForm getMatchingRoom={getMatchingRoom} responseChat={responseChat} setResponseChat={setResponseChat} id={id} matchList={matchList} resName={resName} setFormModal={setFormModal}/>
+          </div>
         </Container>
       </div>
-       : null}
+      : null}
       <Container style={{position: 'relative'}}>
         { matchList ? <Topnavbar key="roul" pagename={`매칭룸 리스트 : ${resName} #${resId}  `} /> : null }
         <div class='form-btn-position'>
