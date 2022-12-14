@@ -1,0 +1,28 @@
+.chatroom-title {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.chatroom-card {
+  background-color: white;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  color: gray;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 2vh;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+.chatting-link {
+  text-decoration: none;
+  color: lightsalmon;
+}
+
+.chatting-profile-img {
+  border-radius: 50%;
+  width: 20px;
+}

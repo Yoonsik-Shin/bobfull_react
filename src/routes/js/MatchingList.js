@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "../css/MatchingList.css";
 import moment from "moment";
 import "moment/locale/ko";
+import Topnavbar from "../../../src/components/js/Topnavbar";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -23,7 +24,7 @@ function MatchingList() {
   }, []);
   return (
     <Container>
-      <h1 className="matching-title">모임 리스트</h1>
+      <Topnavbar key="res" pagename={"모임 리스트"} />
       {matching ? (
         <div>
           {matching.map((data, idx) => {
@@ -42,7 +43,7 @@ function MatchingList() {
                   "4/4"
                 ) : (
                   <Link
-                    className="matchingLink"
+                    className="matching-link"
                     to={`/matching_room/${data.restaurant_id}/${data.id}`}
                   >
                     자세히보기
