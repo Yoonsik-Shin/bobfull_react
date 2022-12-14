@@ -18,3 +18,4 @@ npm install react-hot-toast
 npm install react-modal-sheet
 npm install react-stately
 npm install react-aria
+npm install react-scroll-motion
