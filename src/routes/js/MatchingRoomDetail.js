@@ -100,7 +100,7 @@ function MatchingRoomDetail() {
           <button
             onClick={() => {
               attendRoom();
-              attendChatting();
+              setTimeout(() => attendChatting(), 500);
             }}
             className="matchingDetailBtn"
           >
