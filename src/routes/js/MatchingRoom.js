@@ -29,8 +29,6 @@ function MatchingRoom() {
     })
     console.log(matchingRoom.data) 
     setMatchList(matchingRoom.data)
-    setResId(matchingRoom.data[0].restaurant_id)
-    setResName(matchingRoom.data[0].restaurant_name)
   }
   
   const getRes = async () => {
