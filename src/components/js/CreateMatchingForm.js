@@ -41,29 +41,20 @@ function CreateForm(props) {
       data: hostInfo
     })
     setHostInfo({ ...hostInfo, ...createRoom.data })
-    props.setResponseChat(createRoom.data.id)
+    createChatRoom()
     for (let i = 0; i < 3; i++) {
       e.target[i].value = null;
     }
     e.target[3].checked = false;
     e.target[4].checked = false;
     toast.success('매칭룸이 생성되었습니다.')
-    attendChatting()
+    props.setResponseChat(createRoom.data.id)
+    props.setFormModal(false)
   }
 
-  useEffect(() => {
-    props.getMatchingRoom()
-  }, [hostInfo])
 
   useEffect(() => {
-    axios({
-      method: 'post',
-      url: `${baseURL}/multichat/${props.responseChat}/create/`
-    })
-      .then((res) => {
-        console.log(res.data.matching_room.id)
-        props.setResponseChat(res.data.matching_room.id)
-      })
+    attendChatting()
   }, [props.responseChat])
 
   const attendChatting = async () => {
@@ -74,21 +65,35 @@ function CreateForm(props) {
     console.log(autoIn.data)
   }
 
+  const createChatRoom = async () => {
+    const autoCreate = axios({
+      method: 'post',
+      url: `${baseURL}/multichat/${props.responseChat}/create/`
+    })
+    props.setResponseChat(autoCreate.data)
+  }
+
+  const closeModal = () => {
+    props.setFormModal(false)
+  }
+
   return (
     <Container className="abosulte-container">
       <Toaster
         position="top-center"
         reverseOrder={false}
       />
+      { props.matchList ? <h5>{props.resName} 매칭룸 생성</h5> : null} 
       <Form onSubmit={createMatchingRoom}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Group controlId="exampleForm.ControlInput1">
           <Form.Control type="text" placeholder="매칭룸명" onChange={titleInput} required />
           <Form.Control type="text" placeholder="약속내용" onChange={contentInput} required as="textarea" rows={3} />
           <Form.Control type="datetime-local" onChange={endTimeInput} name="약속종료시간" required />
           <RadioButton checkGenderInput={checkGenderInput}></RadioButton>
         </Form.Group>
-        <button>매칭룸 생성</button>
+          <button type='submit'>생성</button>
       </Form>
+          <button onClick={closeModal}>취소</button>
       
     </Container>
   )

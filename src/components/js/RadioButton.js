@@ -4,7 +4,7 @@ function RadioButton(props) {
   return (
     <>
       {['radio'].map((type, idx) => (
-        <div key={idx} className="mb-3">
+        <div key={idx}>
           <Form.Check
             inline
             label="성별 상관없어요"
