@@ -2,7 +2,7 @@ import { Container, Form } from "react-bootstrap";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "../css/ChatRoomDetail.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,6 +10,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -21,8 +22,7 @@ function ChatRoomDetail() {
   const handleInputChat = (e) => {
     setInputChating(e.target.value);
   };
-  const [messages, setMessages] = useState();
-  const interval = 1000;
+  const interval = 2000;
   const getMessages = useQuery(
     ["Messages"],
     () =>
@@ -39,7 +39,7 @@ function ChatRoomDetail() {
   );
 
   return (
-    <Container className="sending-fix">
+    <Container className="sending-fix" ref={messageBoxRef}>
       <div className="sending-area-top"></div>
       <div className="sending-topnav">
         <div
@@ -53,12 +53,14 @@ function ChatRoomDetail() {
       </div>
       {getMessages.isLoading && "로딩중"}
       {getMessages.error && "에러남"}
+      <div className="sending-top-padding">
       {getMessages.data &&
         getMessages.data.map((el, idx) => {
           return (
             <>
               {user.id == el.sender.id ? (
                 <div className="chat-box-me">
+                  <div key={`unread-${idx}`} className="chat-unread-me">{el.unread}</div>
                   <div key={idx} className="chat-textarea-me">
                     <div className="chat-username">{el.sender.nickname}</div>
                     <div className="chat-text-me">{el.content}</div>
@@ -100,18 +102,20 @@ function ChatRoomDetail() {
                     <div className="chat-username">{el.sender.nickname}</div>
                     <div className="chat-text">{el.content}</div>
                   </div>
+                  <div key={`unread-${idx}`} className="chat-unread">{el.unread}</div>
                 </div>
               )}
             </>
           );
         })}
+      </div>
       <div className="sendchat">
-        <SendChat
-          room_id={room_id}
-          setInputChating={setInputChating}
-          inputChating={inputChating}
-          handleInputChat={handleInputChat}
-        />
+      <SendChat
+        room_id={room_id}
+        setInputChating={setInputChating}
+        inputChating={inputChating}
+        handleInputChat={handleInputChat}
+      />
       </div>
     </Container>
   );

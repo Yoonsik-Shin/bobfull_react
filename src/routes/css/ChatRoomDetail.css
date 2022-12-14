@@ -106,3 +106,19 @@
   width: 100%;
   background-color: #f6f6f6;
 }
+
+.chat-unread-me {
+  padding-top: 30px;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+.chat-unread {
+  padding-top: 30px;
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.sending-top-padding {
+  padding-top: 15%;
+}
