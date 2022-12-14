@@ -1,13 +1,13 @@
 import { useParams, Link } from "react-router-dom";
-import { Container, Form } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "../css/MatchingRoomDetail.css";
-import Button from "react-bootstrap/Button";
 import moment from "moment";
 import "moment/locale/ko";
 import Topnavbar from "../../../src/components/js/Topnavbar";
+import toast, { Toaster } from "react-hot-toast";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -60,6 +60,10 @@ function MatchingRoomDetail() {
 
   return (
     <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       {info ? <Topnavbar key="roul" pagename={`${info.id}번 매칭룸`} /> : null}
       <div className="detail-card">
         {info ? (
@@ -104,7 +108,10 @@ function MatchingRoomDetail() {
             매칭 {state}하기
           </button>
         ) : (
+          <> 
           <div>매칭참가중</div>
+          
+          </>
         )}
         {info && participation.includes(user.id) ? (
           <div className="Btns">
@@ -119,6 +126,9 @@ function MatchingRoomDetail() {
             </button>
             <button className="chattingRoomBtn">
               <Link to={`/multichat/${useParam.detail}`}>채팅하기</Link>
+            </button>
+            <button className="evaluateRoomBtn">
+              <Link to={`/matching_room/review/${useParam.id}/${useParam.detail}`}>매칭룸 평가하기</Link>
             </button>
           </div>
         ) : null}

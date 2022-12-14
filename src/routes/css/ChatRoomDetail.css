@@ -102,7 +102,7 @@
   position: fixed;
   top: 0%;
   left: 0;
-  height: 7%;
+  height: 80px;
   width: 100%;
   background-color: #f6f6f6;
 }
@@ -120,5 +120,5 @@
 }
 
 .sending-top-padding {
-  padding-top: 15%;
+  padding-top: 78px;
 }
