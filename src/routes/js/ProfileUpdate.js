@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import { changeUser } from "../../store/userSlice.js";
 import { useNavigate } from "react-router-dom";
+import Topnavbar from "../../../src/components/js/Topnavbar";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -52,6 +53,7 @@ function ProfileAdd() {
 
   return (
     <Container>
+      <Topnavbar key="roul" pagename="프로필 업데이트" />
       <Form onSubmit={ProfileUpdate}>
         <h3 className="text-center my-5">
           프로필을 입력하면
