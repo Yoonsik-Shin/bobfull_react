@@ -27,12 +27,12 @@
   border-radius: 5px;
   border: 0;
   outline: 0;
-  margin-top: 10px
 }
 
 .chattingRoomBtn a {
   text-decoration: none;
   color: white;
+  padding: 0;
 }
 
 .chattingRoomBtn {

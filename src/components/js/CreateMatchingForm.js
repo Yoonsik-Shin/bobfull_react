@@ -46,7 +46,8 @@ function CreateForm(props) {
     for (let i = 0; i < 3; i++) {
       e.target[i].value = null;
     }
-    console.log(e)
+    e.target[3].checked = false;
+    e.target[4].checked = false;
     toast.success('매칭룸이 생성되었습니다.')
     props.setResponseChat(createRoom.data.id)
     console.log(createRoom.data)
