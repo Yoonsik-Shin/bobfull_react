@@ -58,10 +58,6 @@ function MatchingRoomDetail() {
     console.log(autoOut.data)
   }
 
-  useEffect(() => {
-    state == '취소' ? attendChatting() : leaveChatting()
-  }, [state])
-
   return (
     <Container>
       {info ? <Topnavbar key="roul" pagename={`${info.id}번 매칭룸`} /> : null}
@@ -97,6 +93,7 @@ function MatchingRoomDetail() {
           info && (state == "참가") ? 
           <button onClick={()=>{
             attendRoom()
+            attendChatting()
           }} className="matchingDetailBtn">매칭 {state}하기</button> 
           : <div>매칭참가중</div>
         }
@@ -104,6 +101,7 @@ function MatchingRoomDetail() {
           <div className="Btns">
             <button onClick={()=>{
               attendRoom()
+              leaveChatting()
             }} className="matchingDetailBtn">
               매칭 {state}하기
             </button>
@@ -113,8 +111,8 @@ function MatchingRoomDetail() {
           </div>
         ) : null}
       </div>
-      {/* <button onClick={leaveChatting}>싱크맞추기 : 채팅룸나가기</button>
-      <button onClick={attendChatting}>싱크맞추기 : 채팅룸들어가기</button> */}
+      <button onClick={leaveChatting}>싱크맞추기 : 채팅룸나가기</button>
+      <button onClick={attendChatting}>싱크맞추기 : 채팅룸들어가기</button>
     </Container>
   );
 }

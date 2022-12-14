@@ -19,6 +19,7 @@ function CreateForm(props) {
     member: [user.id],
     chk_gender: null,
   })
+  const [success, setSuccess] = useState()
 
   const titleInput = (e) => {
     setHostInfo({ ...hostInfo, title: e.target.value })
@@ -33,6 +34,7 @@ function CreateForm(props) {
     setHostInfo({ ...hostInfo, chk_gender: Boolean(e.target.value) })
   }
 
+  // 폼 제출시 매칭룸 생성
   const createMatchingRoom = async (e) => {
     e.preventDefault()
     const createRoom = await axios({
@@ -40,38 +42,36 @@ function CreateForm(props) {
       url: `${baseURL}/articles/${props.id}/matching_room/`,
       data: hostInfo
     })
-    setHostInfo({ ...hostInfo, ...createRoom.data })
-    createChatRoom()
+    // 채팅룸 번호 생성성
+    props.setResponseChat(createRoom.data.id)
+    toast.success('매칭룸이 생성되었습니다.')
     for (let i = 0; i < 3; i++) {
       e.target[i].value = null;
     }
     e.target[3].checked = false;
     e.target[4].checked = false;
-    toast.success('매칭룸이 생성되었습니다.')
-    props.setResponseChat(createRoom.data.id)
     props.setFormModal(false)
   }
 
-
+  // 채팅룸 번호 받은 후 방생성 실행
   useEffect(() => {
-    attendChatting()
+    createChatRoom()
   }, [props.responseChat])
 
-  const attendChatting = async () => {
-    const autoIn = await axios({
-      method: "get",
-      url: `${baseURL}/multichat/${props.responseChat}/join/`
-    })
-    console.log(autoIn.data)
-  }
-
+  // 매칭룸 생성후 id값 받아 채팅룸 생성하는 함수
   const createChatRoom = async () => {
-    const autoCreate = axios({
+    const autoCreate = await axios({
       method: 'post',
       url: `${baseURL}/multichat/${props.responseChat}/create/`
     })
-    props.setResponseChat(autoCreate.data)
+    setSuccess(autoCreate.data)
   }
+
+  // 채팅방 생성 후 매칭룸 불러오기
+  useState(() => {
+    props.getMatchingRoom();
+  }, [success]);
+  
 
   const closeModal = () => {
     props.setFormModal(false)
