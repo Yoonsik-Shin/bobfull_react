@@ -10,9 +10,11 @@
   display: flex;
   align-items: center;
   height: 50px;
+  margin-top: 20px;
 }
 
 .res-chat-button {
+  color: white;
   background-color: lightsalmon;
   border-color: lightsalmon;
   border-radius: 5px;
@@ -65,8 +67,30 @@
 .res-detail-review-create {
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .res-detail-review-create h3 {
-  padding-top: 15px
+  padding-top: 10px;
+}
+
+.review-close-btn {
+  width: 100%;
+}
+
+.review-card {
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.res-profile-img {
+  margin-right: 5px;
+  border-radius: 50%;
+  width: 20px;
+}
+
+.review-title {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
 }

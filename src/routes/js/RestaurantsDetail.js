@@ -45,10 +45,6 @@ function RestaurantsDetail() {
     setReviews(review.data);
     let copy = [];
     review.data.map((el, idx) => {
-      console.log(copy);
-      console.log(el);
-      console.log(el.grade);
-      console.log(el.grade.length);
       copy.push(el.grade.length);
       setScoreSum(copy);
     });
@@ -134,7 +130,9 @@ function RestaurantsDetail() {
             {restaurant.category_name}
           </button>
           <div className="res-title">
-            <h2 className={styled1.name}>{restaurant.name}</h2>
+            <h2 className={styled1.name} style={{ marginBottom: "0px" }}>
+              {restaurant.name}
+            </h2>
             <button className="res-chat-button">
               {restaurant ? (
                 <Link to={`/matching_room/${restaurant.id}`}>
@@ -144,7 +142,9 @@ function RestaurantsDetail() {
             </button>
           </div>
           <p style={{ fontSize: "15px" }}>{restaurant.address.slice(0, -8)}</p>
-          <h2 className={styled1.name}>인기메뉴</h2>
+          <h2 className={styled1.name} style={{ marginTop: "40px" }}>
+            인기메뉴
+          </h2>
           {menus.map((menu) => (
             <p className={styled1.menuname}>{menu}</p>
           ))}
@@ -152,60 +152,62 @@ function RestaurantsDetail() {
       ) : null}
       {reviews ? (
         <>
-          <h2 className={styled1.name}>
-            식당리뷰
-            {reviews.length ? (
-              <span className="review-span">
-                {" "}
-                {reviews.length}개의 리뷰{" "}
-                {scoreSum.length != 0 ? (
-                  <span>
-                    {" "}
-                    | 평점 :{" "}
-                    {(
-                      scoreSum.reduce((acc, cur) => {
-                        return acc + cur;
-                      }) / scoreSum.length
-                    ).toFixed(2)}
-                    /5
-                  </span>
-                ) : null}
-              </span>
-            ) : (
-              <span className="review-span">아직 리뷰가 없어요 😥</span>
-            )}
-          </h2>
-          <div className="res-detail-review-create">
-            <h3>리뷰작성하기</h3>
-            <ReviewModal handleInput={handleInput} onSubmitReview={onSubmitReview} />
-          </div>
-              
-          {/* <Form onSubmit={onSubmitReview}>
-            <Form.Control
-              type="text"
-              placeholder="작성할 내용을 입력하세요."
-              className="mb-3"
-              required
+          <div className="review-title">
+            <h2 className={styled1.name} style={{ marginBottom: "0px" }}>
+              식당리뷰
+            </h2>
+            <ReviewModal
+              handleInput={handleInput}
+              onSubmitReview={onSubmitReview}
             />
-            <Star handleInput={handleInput} />
-          </Form>
-          <button className={styled1.resbtn} onclick={handleShow}>
-            리뷰 쓰기
-          </button> */}
-          
+          </div>
+          {reviews.length ? (
+            <span className="review-span">
+              {" "}
+              {reviews.length}개의 리뷰{" "}
+              {scoreSum.length != 0 ? (
+                <span>
+                  {" "}
+                  | 평점 :{" "}
+                  {(
+                    scoreSum.reduce((acc, cur) => {
+                      return acc + cur;
+                    }) / scoreSum.length
+                  ).toFixed(2)}
+                  /5
+                </span>
+              ) : null}
+            </span>
+          ) : (
+            <span className="review-span">아직 리뷰가 없어요 😥</span>
+          )}
+          <div className="res-detail-review-create"></div>
           {reviews.map((el, i) => {
             return (
-              <div>
-                <p className={styled1.review}>
-                  {reviews[i].user}
-                  <span className="res-date">
-                    {detailDate(new Date(reviews[i].updated_at))}
-                  </span>
-                  <br />
-                  <span className="res-detail-span-p">
-                    {reviews[i].content} {reviews[i].grade}
-                  </span>
-                </p>
+              <div className="review-card">
+                {reviews[i].user.profile_image ? (
+                  <img
+                    src={`${reviews[i].user.profile_image}`}
+                    alt=""
+                    width="45px"
+                    className="res-profile-img"
+                  />
+                ) : (
+                  <img
+                    src="/basic_profile_img.png"
+                    alt=""
+                    width="45px"
+                    className="res-profile-img"
+                  />
+                )}
+                {reviews[i].user.nickname}
+                <span className="res-date">
+                  {detailDate(new Date(reviews[i].updated_at))}
+                </span>
+                <br />
+                <span className="res-detail-span-p">
+                  {reviews[i].content} {reviews[i].grade}
+                </span>
               </div>
             );
           })}
@@ -218,37 +220,41 @@ function RestaurantsDetail() {
 export default RestaurantsDetail;
 
 function ReviewModal(props) {
-  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   return (
     <>
-      <Button className='res-chat-button' onClick={handleShow}>
+      <button className="res-chat-button" onClick={handleShow}>
         리뷰쓰기
-      </Button>
+      </button>
 
-      <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        aria-labelledby="example-modal-sizes-title-lg"
+      >
         <Modal.Header closeButton>
-          <Modal.Title>리뷰작성하기</Modal.Title>
+          <Modal.Title>리뷰 작성</Modal.Title>
         </Modal.Header>
         <Form onSubmit={props.onSubmitReview}>
           <Modal.Body>
-              <Form.Control
-                type="text"
-                placeholder="작성할 내용을 입력하세요."
-                className="mb-3"
-                required
-              />
-              <Star handleInput={props.handleInput} />
-            
+            <Form.Control
+              as="textarea"
+              placeholder="작성할 내용을 입력하세요."
+              className="mb-3"
+              required
+            />
+            <Star handleInput={props.handleInput} />
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={handleClose} className={styled1.resbtn}>
-              닫기
-            </Button>
-            <Button type='submit' onClick={handleClose} className={styled1.resbtn}>
+            <Button
+              type="submit"
+              onClick={handleClose}
+              className={styled1.resbtn}
+            >
               작성
             </Button>
           </Modal.Footer>
