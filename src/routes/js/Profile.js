@@ -271,7 +271,7 @@ function Profile() {
       </ListGroup>
       <div className="mt-5">
         <button className="btn btn-secondary" onClick={() => LogoutFunc()}>
-          로그아웃 할게요
+          계정전환 할게요
         </button>
       </div>
     </Container>
