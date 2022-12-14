@@ -23,6 +23,7 @@ import MatchingRoomDetail from "./routes/js/MatchingRoomDetail.js"
 import MatchingList from "./routes/js/MatchingList";
 import ChatRoom from "./routes/js/ChatRoom.js"
 import ChatRoomDetail from "./routes/js/ChatRoomDetail.js"
+import Evaluation from "./routes/js/Evaluation.js"
 import Intro from "./routes/js/Intro";
 import { useLocation } from 'react-router-dom';
 
@@ -54,6 +55,7 @@ function App() {
         <Route path="/accounts/google/callback/" element={<GoogleAuth />} />
         <Route path="/matching_room/:id" element={user.isLogin ? <MatchingRoom /> : <Login />} />
         <Route path="/matching_room/:id/:detail" element={user.isLogin ? <MatchingRoomDetail /> : <Login />} />
+        <Route path="/matching_room/review/:id/:detail" element={user.isLogin ? <Evaluation /> : <Login />} />
         <Route path="/matching_list" element={user.isLogin ? <MatchingList /> : <Login />} />
         <Route path="/multichat/index" element={user.isLogin ? <ChatRoom /> : <Login />} />
         <Route path="/multichat/:room_id" element={user.isLogin ? <ChatRoomDetail /> : <Login />} />

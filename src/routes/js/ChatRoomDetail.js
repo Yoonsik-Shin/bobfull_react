@@ -39,7 +39,7 @@ function ChatRoomDetail() {
   );
 
   return (
-    <Container className="sending-fix" ref={messageBoxRef}>
+    <Container className="sending-fix">
       <div className="sending-area-top"></div>
       <div className="sending-topnav">
         <div

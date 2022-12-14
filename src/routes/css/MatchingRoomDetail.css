@@ -38,9 +38,25 @@
 .chattingRoomBtn {
   background-color: skyblue;
   border-color: skyblue;
+  margin-right: 5px;
   border-radius: 5px;
   border: 0;
   outline: 0;
+}
+
+.evaluateRoomBtn {
+  background-color: rgb(188, 188, 188);
+  border-color: rgb(188, 188, 188);
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+}
+
+.evaluateRoomBtn a {
+  text-decoration: none;
+  color: white;
+  padding: 0;
 }
 
 .matching-detail-h5 {
