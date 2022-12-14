@@ -61,3 +61,12 @@
 .res-detail-span-p {
   font-size: large;
 }
+
+.res-detail-review-create {
+  display: flex;
+  align-items: center;
+}
+
+.res-detail-review-create h3 {
+  padding-top: 15px
+}

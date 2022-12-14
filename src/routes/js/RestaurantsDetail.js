@@ -54,15 +54,6 @@ function RestaurantsDetail() {
     });
   };
 
-  // useEffect(() => {
-  //   [...reviews].map((el, idx) => {
-  //     let copy = [...scoreSum]
-  //     copy.push(reviews[idx].grade.length)
-  //     setScoreSum(copy)
-  //     console.log(scoreSum)
-  //   })
-  // }, [reviews])
-
   // 랜더링시 레스토랑 정보 받아오기
   useEffect(() => {
     getRes();
@@ -184,8 +175,12 @@ function RestaurantsDetail() {
               <span className="review-span">아직 리뷰가 없어요 😥</span>
             )}
           </h2>
-          <h3>리뷰작성하기</h3>
-          <Form onSubmit={onSubmitReview}>
+          <div className="res-detail-review-create">
+            <h3>리뷰작성하기</h3>
+            <ReviewModal handleInput={handleInput} onSubmitReview={onSubmitReview} />
+          </div>
+              
+          {/* <Form onSubmit={onSubmitReview}>
             <Form.Control
               type="text"
               placeholder="작성할 내용을 입력하세요."
@@ -196,23 +191,8 @@ function RestaurantsDetail() {
           </Form>
           <button className={styled1.resbtn} onclick={handleShow}>
             리뷰 쓰기
-          </button>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Woohoo, you're reading this text in a modal!
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={handleClose}>
-                Save Changes
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          </button> */}
+          
           {reviews.map((el, i) => {
             return (
               <div>
@@ -236,3 +216,44 @@ function RestaurantsDetail() {
 }
 
 export default RestaurantsDetail;
+
+function ReviewModal(props) {
+  
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <Button className='res-chat-button' onClick={handleShow}>
+        리뷰쓰기
+      </Button>
+
+      <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
+        <Modal.Header closeButton>
+          <Modal.Title>리뷰작성하기</Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={props.onSubmitReview}>
+          <Modal.Body>
+              <Form.Control
+                type="text"
+                placeholder="작성할 내용을 입력하세요."
+                className="mb-3"
+                required
+              />
+              <Star handleInput={props.handleInput} />
+            
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={handleClose} className={styled1.resbtn}>
+              닫기
+            </Button>
+            <Button type='submit' onClick={handleClose} className={styled1.resbtn}>
+              작성
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+    </>
+  );
+}

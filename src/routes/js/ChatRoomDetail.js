@@ -75,6 +75,7 @@ function SendChat(props) {
       data: { content: props.inputChating },
     });
     console.log(sendingCheck.data);
+    e.target[0].value = null;
   };
   console.log(props.inputChating);
   return (
