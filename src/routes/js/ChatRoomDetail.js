@@ -43,23 +43,39 @@ function ChatRoomDetail() {
       {getMessages.data &&
         getMessages.data.map((el, idx) => {
           return (
-            <div key={idx} className="chat-box">
-              <div className="chat-text">
-                <img
-                  src={`${el.sender.profile_image}`}
-                  className="profile-img"
-                ></img>
-                {el.sender.nickname} : {el.content}
+            <div className="chat-box">
+              <div key={idx}>
+                {el.sender.profile_image ? (
+                  <img
+                    src={`${el.sender.profile_image}`}
+                    alt=""
+                    width="45px"
+                    className="profile-img"
+                  />
+                ) : (
+                  <img
+                    src="/basic_profile_img.png"
+                    alt=""
+                    width="45px"
+                    className="profile-img"
+                  />
+                )}
+              </div>
+              <div key={idx} className="chat-textarea">
+                <div className="chat-username">{el.sender.nickname}</div>
+                <div className="chat-text">{el.content}</div>
               </div>
             </div>
           );
         })}
-      <SendChat
-        room_id={room_id}
-        setInputChating={setInputChating}
-        inputChating={inputChating}
-        handleInputChat={handleInputChat}
-      />
+      <div className="sendchat">
+        <SendChat
+          room_id={room_id}
+          setInputChating={setInputChating}
+          inputChating={inputChating}
+          handleInputChat={handleInputChat}
+        />
+      </div>
     </Container>
   );
 }
