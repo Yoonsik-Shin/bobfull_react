@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import moment from "moment";
 import "moment/locale/ko";
+import toast, { Toaster } from "react-hot-toast";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -45,6 +46,7 @@ function Community() {
         content: content,
       },
     });
+    toast.success('글 작성 완료.')
     getArticle();
     handleClose();
   };
@@ -53,6 +55,10 @@ function Community() {
   }, []);
   return (
     <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Topnavbar key="res" pagename="커뮤니티" />
       <div className="d-flex justify-content-between community-titles">
         <h2 className="article-list">글 목록</h2>

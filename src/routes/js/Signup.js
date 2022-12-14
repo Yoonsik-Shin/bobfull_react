@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Container, Form } from 'react-bootstrap';
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 import styled from '../../components/css/Button.module.css';
 
@@ -48,7 +49,7 @@ function Signup() {
   }
   const onSubmit = (e) => {
     if (password1 !== password2) {
-      return alert('비밀번호가 서로 다릅니다.')
+      return toast.error('비밀번호가 서로 다릅니다.')
     }
     e.preventDefault();
     axios({
@@ -57,8 +58,8 @@ function Signup() {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-store',
-          Pragma: 'no-store',
-          Expires: '0',
+        Pragma: 'no-store',
+        Expires: '0',
       },
       data: {
         email: email,
@@ -69,19 +70,22 @@ function Signup() {
       .then(res => {
         console.log(res)
         if (res.status === 201) {
-          alert('성공적으로 회원가입 되었습니다.')
+          setTimeout(() => toast.success("성공적으로 회원가입이 되었습니다."), 200);
           return navigate('/login') // 회원가입 성공시 로그인페이지로
         }
       })
       .catch((err) => {
         console.log(err)
-        if (err.code === 'ERR_BAD_REQUEST') {
-          return alert('잘못된 이메일을 입력하셨습니다')
-        }
+        return toast.error('잘못된 이메일을 입력하셨습니다')
+
       })
   }
   return (
     <Container style={{ marginTop: '150px' }}>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <h3>밥풀의 멤버가 되어 <br />
         다양한 서비스를 이용해보세요</h3>
       <div className=''>

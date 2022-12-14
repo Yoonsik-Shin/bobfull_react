@@ -52,14 +52,15 @@ function Profile() {
     })
       .then((res) => {
         console.log(res);
-        toast.success("Successfully toasted!");
+        setTimeout(() => toast.success("성공적으로 로그아웃이 되었습니다."), 200);
         dispatch(clearUser());
         localStorage.setItem("Authorization", "");
+
       })
       .catch((err) => {
-        toast.success("Successfully toasted!");
+        setTimeout(() => toast.success("성공적으로 로그아웃이 되었습니다."), 200);
         dispatch(clearUser());
-        localStorage.setItem("Authorization", "");
+        setTimeout(() => localStorage.setItem("Authorization", "");
         return console.error(err);
       });
   };
@@ -76,6 +77,10 @@ function Profile() {
 
   return (
     <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Topnavbar key="roul" pagename="프로필" />
       {/* 프로필 이미지, 정보 */}
       <div class="profile-nickname">
@@ -269,10 +274,6 @@ function Profile() {
           로그아웃 할게요
         </button>
       </div>
-      <Toaster
-      // position="bottom-center"
-      // reverseOrder={false}
-      />
     </Container>
   );
 }

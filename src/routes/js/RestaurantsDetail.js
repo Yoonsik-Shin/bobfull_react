@@ -11,6 +11,7 @@ import styled from "styled-components";
 import Topnavbar from "../../../src/components/js/Topnavbar";
 import Star from "../../../src/components/js/Star";
 import { current } from "@reduxjs/toolkit";
+import toast, { Toaster } from "react-hot-toast";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -72,6 +73,7 @@ function RestaurantsDetail() {
         grade: "⭐".repeat(score),
       },
     });
+    toast.success('리뷰 작성 완료.')
     getReviews();
     e.target[0].value = "";
   };
@@ -112,6 +114,10 @@ function RestaurantsDetail() {
 
   return (
     <Container>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Topnavbar key="res" pagename={name ? name : ""} />
       {restaurant ? (
         <>
