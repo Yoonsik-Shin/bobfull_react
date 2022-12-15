@@ -31,6 +31,9 @@
 .searchForm {
   margin-top: 10px;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
 .searchForm input {
@@ -38,6 +41,7 @@
   height: 35px;
   border-radius: 5px;
   padding-left: 10px;
+  width: 65vw;
 }
 
 .searchBtn {
