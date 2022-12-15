@@ -177,12 +177,14 @@ function Restaurants() {
     <Container>
       <Topnavbar key="res" pagename={name ? name : "모든 목록"} />
       {/* <h6>현재위치</h6> */}
-      <form onSubmit={onSubmitSearch} className="searchForm">
-        <input onChange={handleSearch} type="text" placeholder="검색어를 입력하세요" size="26" />
-        <button className="searchBtn" type="submit">
-          검색
-        </button>
-      </form>
+      <div className="searchFormdiv">
+        <form onSubmit={onSubmitSearch} className="searchForm">
+          <input onChange={handleSearch} type="text" placeholder="검색어를 입력하세요" />
+          <button className="searchBtn" type="submit">
+            검색
+          </button>
+        </form>
+      </div>
       <hr />
       <div className="list">
 
