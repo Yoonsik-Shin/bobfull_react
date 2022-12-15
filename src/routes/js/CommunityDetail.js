@@ -89,7 +89,7 @@ function CommunityDetail() {
   return (
     <Container>
       <Toaster position="top-center" reverseOrder={false} />
-      <Topnavbar key="res" pagename={name ? name + "번 글" : ""} />
+      <Topnavbar key="res" pagename={id + "번 글"} />
       {article ? (
         <>
           <div className={styled.comdetailcard}>

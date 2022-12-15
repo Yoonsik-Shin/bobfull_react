@@ -24,6 +24,7 @@ function ProfileAdd() {
     alcohol: user.alcohol,
     talk: user.talk,
     speed: user.speed,
+    profile_image: user.profile_image ? user.profile_image : null,
   });
   const ProfileUpdate = async (e) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ function ProfileAdd() {
       formData.append(`${key}`, value);
     });
     formData.append('profile_image', imgData)
-
+    
     for (var pair of formData.entries()) {
       console.log(pair[0]+ ', ' + pair[1]);
     }
