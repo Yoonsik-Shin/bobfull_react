@@ -71,6 +71,7 @@ const SonSheetComp = ({ sheetState, id, data, origincomment, getArticle2 }) => {
     e.target[0].value = "";
     getArticle();
     getArticle2();
+    setContent('');
   };
   useEffect(() => {
     getArticle();

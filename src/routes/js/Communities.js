@@ -49,6 +49,8 @@ function Community() {
     toast.success("글 작성 완료.");
     getArticle();
     handleClose();
+    setTitle('');
+    setContent('');
   };
 
   const detailDate = (a) => {

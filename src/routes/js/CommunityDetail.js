@@ -66,6 +66,7 @@ function CommunityDetail() {
     console.log(e);
     e.target[0].value = "";
     getArticle();
+    setContent('');
   };
 
   const onSubmitRecomment = async (e) => {
@@ -80,6 +81,7 @@ function CommunityDetail() {
     console.log(submit);
     e.target[0].value = "";
     getArticle();
+    setContent('');
   };
 
   useEffect(() => {
