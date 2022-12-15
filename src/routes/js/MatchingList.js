@@ -49,12 +49,13 @@ function MatchingList() {
                   }
                   </div>
                 ) : (
-                  <Link
-                    className="matching-link"
-                    to={`/matching_room/${data.restaurant_id}/${data.id}`}
-                  >
-                    자세히보기
-                  </Link>
+                  <div>
+                    {
+                      data.member.includes(user.id) ?
+                      <Link className="matching-link" to={`/matching_room/${data.restaurant_id}/${data.id}`}>자세히보기 (참여중)</Link>
+                      : <Link className="matching-link" to={`/matching_room/${data.restaurant_id}/${data.id}`}>자세히보기</Link>
+                    }
+                  </div>
                 )}
               </div>
             );
