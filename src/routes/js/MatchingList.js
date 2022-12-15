@@ -6,10 +6,12 @@ import "../css/MatchingList.css";
 import moment from "moment";
 import "moment/locale/ko";
 import Topnavbar from "../../../src/components/js/Topnavbar";
+import { useSelector } from "react-redux";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
 function MatchingList() {
+  const user = useSelector((state) => state.user);
   const [matching, setMatching] = useState([]);
   const getroom = async () => {
     const res = await axios({
@@ -40,7 +42,12 @@ function MatchingList() {
                 <br />
                 {data.member.length}명<br />
                 {data.member.length >= 4 ? (
-                  "4/4 인원초과"
+                  <div>
+                  4/4 인원초과<br/>
+                  {
+                    data.member.includes(user.id) ? <Link className="matching-link" to={`/matching_room/${data.restaurant_id}/${data.id}`}>자세히보기 (참여중)</Link> : null 
+                  }
+                  </div>
                 ) : (
                   <Link
                     className="matching-link"
