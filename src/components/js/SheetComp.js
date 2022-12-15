@@ -62,6 +62,7 @@ const SheetComp = ({ sheetState, comments, id, getArticle }) => {
     console.log(e);
     e.target[0].value = "";
     getArticle();
+    setContent('');
   };
 
   // In real world usage this would be a separate React component
