@@ -29,3 +29,12 @@
   max-width: 33.48px;
   color: black;
 }
+
+.navtext1 {
+  font-size: 15px;
+  font-weight: 700;
+  /* : center; */
+  max-width: 33.48px;
+  color: black;
+  font-weight: 1000;
+}
