@@ -59,7 +59,7 @@ function Intro() {
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
           <h1 className={styled.introtext}>
             <Animator animation={MoveIn(-1000, 0)}>판교에서 만나요 👋🏻 - 용환</Animator>
-            <Animator animation={MoveIn(1000, 0)}>. - 윤식</Animator>
+            <Animator animation={MoveIn(1000, 0)}>다들 취뽀해요~ 🍔 - 윤식</Animator>
             3주동안 고생많으셨고 런칭합시다~<img src="/monkyong.png" style={{ width: 45 }} />- 문경
             <Animator animation={MoveOut(1000, 0)}>막판을 불태운 우리들의 라스트 댄스 <img src="/tae.png" style={{ width: 50 }} /> - 태극</Animator>
             <Animator animation={MoveOut(-1000, 0)}>야옹😹 - 주용</Animator>
