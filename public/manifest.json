@@ -3,17 +3,17 @@
   "name": "밥풀의 새로운 문화",
   "icons": [
     {
-      "src": "basic_profile_img.ico",
+      "src": "bobfull.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "basic_profile_img.png",
+      "src": "bobfull.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "basic_profile_img.png",
+      "src": "bobfull.png",
       "type": "image/png",
       "sizes": "512x512"
     }
