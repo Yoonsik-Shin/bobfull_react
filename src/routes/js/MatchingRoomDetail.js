@@ -37,7 +37,7 @@ function MatchingRoomDetail() {
       method: "post",
       url: `${baseURL}/articles/${useParam.id}/matching_room/${useParam.detail}/add/`,
     });
-    alert(attend.data);
+    toast.success(attend.data);
     getDetail();
     participation.includes(user.id) ? setState("참가") : setState("취소");
   };
@@ -108,9 +108,9 @@ function MatchingRoomDetail() {
             매칭 {state}하기
           </button>
         ) : (
-          <> 
-          <div>매칭참가중</div>
-          
+          <>
+            <div>매칭참가중</div>
+
           </>
         )}
         {info && participation.includes(user.id) ? (
