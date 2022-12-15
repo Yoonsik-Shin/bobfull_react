@@ -13,7 +13,7 @@ let user = createSlice({
     speed: null,
     gender: null,
     manner: null,
-    profile_image: null,
+    profile_image: 'https://master.d3n2xysrd0lvj9.amplifyapp.com/basic_profile_img.png',
     access_token: null,
     refresh_token: null,
     isLoading: false,
@@ -47,7 +47,7 @@ let user = createSlice({
       state.speed = null
       state.gender = null
       state.manner = null
-      state.profile_image = null
+      state.profile_image = '/basic_profile_img.png'
       state.access_token = null
       state.refresh_token = null
       state.isLogin = false

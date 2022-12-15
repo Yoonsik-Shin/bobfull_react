@@ -125,14 +125,19 @@ function MatchingRoom() {
                       약속시간 : {moment(el.to_date).format("MM/D a h:mm")}
                     </div>
                     <div>현재 멤버수 : {el.member.length}</div>
-                    <button className="matching-detail-btn">
+                    {el.member.length >= 4 ? (
+                      <div className="matching-detail-btn-tt">4/4 인원초과</div>
+                    ) : (
+                      <button className="matching-detail-btn">
                       <Link
-                        className="matching-detail-link"
-                        to={`/matching_room/${id}/${el.id}`}
-                      >
-                        자세히보기
-                      </Link>
+                      className="matching-detail-link"
+                      to={`/matching_room/${id}/${el.id}`}
+                    >
+                      자세히보기
+                    </Link>
                     </button>
+                    )}
+
                   </Card.Body>
                 </Card>
               );
