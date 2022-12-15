@@ -7,6 +7,7 @@ import { changeUser } from "../../store/userSlice.js";
 import { useNavigate } from "react-router-dom";
 import Topnavbar from "../../../src/components/js/Topnavbar";
 import toast, { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 var baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -16,6 +17,7 @@ function ProfileAdd() {
   const [imgData, setImgData] = useState()
   const user = useSelector((state) => state.user);
   const formData = new FormData();
+  const [userImg, setUserImg] = useState()
   const [userState, setUserState] = useState({
     email: user.email ? user.email : `kakaoUser${user.id}@kakao.com`,
     nickname: user.nickname ? user.nickname : null,
@@ -24,16 +26,15 @@ function ProfileAdd() {
     alcohol: user.alcohol,
     talk: user.talk,
     speed: user.speed,
-    profile_image: user.profile_image ? user.profile_image : null,
   });
+
   const ProfileUpdate = async (e) => {
     e.preventDefault();
     let copy = { ...userState };
     Object.entries(copy).map(([key, value]) => {
       formData.append(`${key}`, value);
     });
-    formData.append('profile_image', imgData)
-    
+    imgData ? formData.append('profile_image', imgData) : formData.append('profile_image', userImg)
     for (var pair of formData.entries()) {
       console.log(pair[0]+ ', ' + pair[1]);
     }
@@ -61,6 +62,44 @@ function ProfileAdd() {
     console.log(file.target.files[0]);
     setUrl(URL.createObjectURL(file.target.files[0]))
   };
+  
+  const getUserDetail = async () => {
+    const userDetail = await axios({
+      method: 'get',
+      url: `${baseURL}/accounts/user/`,
+    })
+    console.log(userDetail.data)
+  }
+
+  useEffect(()=>{
+    getUserDetail()
+    createFile();
+  }, [])
+
+  async function createFile(){
+    let responsed = await axios({
+      url: user.profile_image,
+      method: 'get',
+      headers: {
+        'access-control-allow-origin' : '*',
+        'Authorization' : '',
+      },
+      responseType: 'blob'
+    })
+    // let data = response.blob();
+    console.log(responsed.data)
+    const ext = user.profile_image.split(".").pop(); // url 구조에 맞게 수정할 것
+    const filename = user.profile_image.split("/").pop(); // url 구조에 맞게 수정할 것
+    let metadata = {
+      type: `image/${ext}`
+    };
+    let file = new File([responsed.data], filename, metadata);
+    // ... do something with the file or return it
+    console.log(file)
+    setUserImg(file)
+  }
+  
+
   return (
     <Container>
       <Toaster
