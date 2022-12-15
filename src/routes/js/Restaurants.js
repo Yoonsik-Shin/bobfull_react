@@ -221,7 +221,6 @@ function Restaurants() {
                   <h3 className="res-index-h3">{data.name}</h3>
                 </Link>
                 <div className="res-detail">
-                  <div>별점</div>
                   <div id={idx}>
                     거리{PositionCalculation(data.address, idx)}
                   </div>

@@ -1,6 +1,7 @@
 .soncomment-profile-img {
   width: 20px;
   margin-right: 5px;
+  border-radius: 50%;
 }
 
 .soncomment-count {
