@@ -36,7 +36,7 @@ function ProfileAdd() {
     });
     imgData ? formData.append('profile_image', imgData) : formData.append('profile_image', userImg)
     for (var pair of formData.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]);
+      console.log(pair[0] + ', ' + pair[1]);
     }
 
     await axios({
@@ -134,11 +134,11 @@ function ProfileAdd() {
                 url ?
                   <img src={url} alt=""
                     className="profileimg" id="profile_img_load" />
-                  : <> 
+                  : <>
                     {
                       user.profile_image ?
-                      <img src={user.profile_image} className="profileimg" id="profile_img_load"/>
-                      : <img src="/basic_profile_img.png" className="profileimg" id="profile_img_load"/>
+                        <img src={user.profile_image} className="profileimg" id="profile_img_load" />
+                        : <img src="/basic_profile_img.png" className="profileimg" id="profile_img_load" />
                     }</>
               }
             </div>

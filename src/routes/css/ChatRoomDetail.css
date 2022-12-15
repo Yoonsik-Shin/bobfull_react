@@ -122,3 +122,7 @@
 .sending-top-padding {
   padding-top: 78px;
 }
+
+.sending-fix {
+  padding-bottom: 130px !important;
+}

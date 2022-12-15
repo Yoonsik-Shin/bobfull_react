@@ -15,6 +15,10 @@ import { useEffect } from "react";
 var baseURL = process.env.REACT_APP_BASE_URL;
 
 function ChatRoomDetail() {
+  const messagesEndRef = useRef(null)
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: 'end' })
+  }
   let navigate = useNavigate();
   const { room_id } = useParams();
   const user = useSelector((state) => state.user);
@@ -37,9 +41,11 @@ function ChatRoomDetail() {
     { cacheTime: interval },
     { staleTime: interval }
   );
-
+  useEffect(() => {
+    scrollToBottom()
+  }, [getMessages]);
   return (
-    <Container className="sending-fix">
+    <Container className="sending-fix" ref={messagesEndRef}>
       <div className="sending-area-top"></div>
       <div className="sending-topnav">
         <div
@@ -54,68 +60,72 @@ function ChatRoomDetail() {
       {getMessages.isLoading && "로딩중"}
       {getMessages.error && "에러남"}
       <div className="sending-top-padding">
-      {getMessages.data &&
-        getMessages.data.map((el, idx) => {
-          return (
-            <>
-              {user.id == el.sender.id ? (
-                <div className="chat-box-me">
-                  <div key={`unread-${idx}`} className="chat-unread-me">{el.unread}</div>
-                  <div key={idx} className="chat-textarea-me">
-                    <div className="chat-username">{el.sender.nickname}</div>
-                    <div className="chat-text-me">{el.content}</div>
+        {getMessages.data &&
+          getMessages.data.map((el, idx) => {
+            return (
+              <>
+                {user.id == el.sender.id ? (
+                  <div className="chat-box-me">
+                    <div key={`unread-${idx}`} className="chat-unread-me">
+                      {el.unread}
+                    </div>
+                    <div key={idx} className="chat-textarea-me">
+                      <div className="chat-username">{el.sender.nickname}</div>
+                      <div className="chat-text-me">{el.content}</div>
+                    </div>
+                    <div key={idx}>
+                      {el.sender.profile_image ? (
+                        <img
+                          src={`${el.sender.profile_image}`}
+                          width="45px"
+                          className="profile-img"
+                        />
+                      ) : (
+                        <img
+                          src="/basic_profile_img.png"
+                          width="45px"
+                          className="profile-img"
+                        />
+                      )}
+                    </div>
                   </div>
-                  <div key={idx}>
-                    {el.sender.profile_image ? (
-                      <img
-                        src={`${el.sender.profile_image}`}
-                        width="45px"
-                        className="profile-img"
-                      />
-                    ) : (
-                      <img
-                        src="/basic_profile_img.png"
-                        width="45px"
-                        className="profile-img"
-                      />
-                    )}
+                ) : (
+                  <div className="chat-box">
+                    <div key={idx}>
+                      {el.sender.profile_image ? (
+                        <img
+                          src={`${el.sender.profile_image}`}
+                          width="45px"
+                          className="profile-img"
+                        />
+                      ) : (
+                        <img
+                          src="/basic_profile_img.png"
+                          width="45px"
+                          className="profile-img"
+                        />
+                      )}
+                    </div>
+                    <div key={idx} className="chat-textarea">
+                      <div className="chat-username">{el.sender.nickname}</div>
+                      <div className="chat-text">{el.content}</div>
+                    </div>
+                    <div key={`unread-${idx}`} className="chat-unread">
+                      {el.unread}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="chat-box">
-                  <div key={idx}>
-                    {el.sender.profile_image ? (
-                      <img
-                        src={`${el.sender.profile_image}`}
-                        width="45px"
-                        className="profile-img"
-                      />
-                    ) : (
-                      <img
-                        src="/basic_profile_img.png"
-                        width="45px"
-                        className="profile-img"
-                      />
-                    )}
-                  </div>
-                  <div key={idx} className="chat-textarea">
-                    <div className="chat-username">{el.sender.nickname}</div>
-                    <div className="chat-text">{el.content}</div>
-                  </div>
-                  <div key={`unread-${idx}`} className="chat-unread">{el.unread}</div>
-                </div>
-              )}
-            </>
-          );
-        })}
+                )}
+              </>
+            );
+          })}
       </div>
       <div className="sendchat">
-      <SendChat
-        room_id={room_id}
-        setInputChating={setInputChating}
-        inputChating={inputChating}
-        handleInputChat={handleInputChat}
-      />
+        <SendChat
+          room_id={room_id}
+          setInputChating={setInputChating}
+          inputChating={inputChating}
+          handleInputChat={handleInputChat}
+        />
       </div>
     </Container>
   );
