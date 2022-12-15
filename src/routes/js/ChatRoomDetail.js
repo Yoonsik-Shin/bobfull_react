@@ -15,6 +15,10 @@ import { useEffect } from "react";
 var baseURL = process.env.REACT_APP_BASE_URL;
 
 function ChatRoomDetail() {
+  const messagesEndRef = useRef(null)
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: 'end' })
+  }
   let navigate = useNavigate();
   const { room_id } = useParams();
   const user = useSelector((state) => state.user);
@@ -37,9 +41,11 @@ function ChatRoomDetail() {
     { cacheTime: interval },
     { staleTime: interval }
   );
-
+  useEffect(() => {
+    scrollToBottom()
+  }, [getMessages]);
   return (
-    <Container className="sending-fix">
+    <Container className="sending-fix" ref={messagesEndRef}>
       <div className="sending-area-top"></div>
       <div className="sending-topnav">
         <div
