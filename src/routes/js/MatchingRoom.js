@@ -126,15 +126,15 @@ function MatchingRoom() {
                     </div>
                     <div>현재 멤버수 : {el.member.length}</div>
                     {el.member.length >= 4 ? (
-                      <div className="matching-detail-btn-tt">4/4 인원초과</div>
+                      <div>
+                        4/4 인원초과<br></br>
+                      {
+                        el.member.includes(user.id) ? <Link className="matching-detail-btn-tt" to={`/matching_room/${id}/${el.id}`}>자세히보기 (참여중)</Link> : null 
+                      }
+                        </div>
                     ) : (
                       <button className="matching-detail-btn">
-                      <Link
-                      className="matching-detail-link"
-                      to={`/matching_room/${id}/${el.id}`}
-                    >
-                      자세히보기
-                    </Link>
+                      <Link className="matching-detail-link"to={`/matching_room/${id}/${el.id}`}>자세히보기</Link>
                     </button>
                     )}
 

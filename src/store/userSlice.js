@@ -13,7 +13,7 @@ let user = createSlice({
     speed: null,
     gender: null,
     manner: null,
-    profile_image: 'https://master.d3n2xysrd0lvj9.amplifyapp.com/basic_profile_img.png',
+    profile_image: 'https://bobfull.s3.ap-northeast-2.amazonaws.com/account/1/basic_profile_img.jpg',
     access_token: null,
     refresh_token: null,
     isLoading: false,
@@ -31,7 +31,7 @@ let user = createSlice({
       state.speed = action.payload.speed
       state.gender = action.payload.gender
       state.manner = action.payload.manner
-      state.profile_image = action.payload.profile_image
+      state.profile_image = 'https://bobfull.s3.ap-northeast-2.amazonaws.com/account/1/basic_profile_img.jpg'
       state.access_token = action.payload.access_token
       state.refresh_token = action.payload.refresh_token
       state.isLogin = true
@@ -47,7 +47,7 @@ let user = createSlice({
       state.speed = null
       state.gender = null
       state.manner = null
-      state.profile_image = '/basic_profile_img.png'
+      state.profile_image = 'https://bobfull.s3.ap-northeast-2.amazonaws.com/account/1/basic_profile_img.jpg'
       state.access_token = null
       state.refresh_token = null
       state.isLogin = false
