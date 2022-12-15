@@ -136,8 +136,8 @@ function MatchingRoom() {
                       <div>
                       {
                         el.member.includes(user.id) ?
-                        <Link className="matching-detail-btn-tt" to={`/matching_room/${id}/${el.id}`}>자세히보기 (참여중)</Link>
-                        : <Link className="matching-detail-link"to={`/matching_room/${id}/${el.id}`}>자세히보기</Link>
+                        <Link className="matching-link" to={`/matching_room/${id}/${el.id}`}>자세히보기 (참여중)</Link>
+                        : <Link className="matching-link"to={`/matching_room/${id}/${el.id}`}>자세히보기</Link>
                       }
                       </div>
                     )}
