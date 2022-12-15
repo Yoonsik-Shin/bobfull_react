@@ -39,8 +39,8 @@ function MatchingList() {
                 {data.from_date}
                 <br />
                 {data.member.length}명<br />
-                {data.member.length > 4 ? (
-                  "4/4"
+                {data.member.length >= 4 ? (
+                  "4/4 인원초과"
                 ) : (
                   <Link
                     className="matching-link"
