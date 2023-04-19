@@ -1,12 +1,23 @@
 # BOBfull
 
-> 익명 기반 식사 매칭 [BoBfull] project![bobfull](README.assets/bobfull.png)
-> 
-> [Backdend-Domain](https://bobfullbean-env.eba-mxtkhmg5.ap-northeast-2.elasticbeanstalk.com/) 
->
-> [Frontend-Domain](https://master.d3n2xysrd0lvj9.amplifyapp.com/main)
->
-> [Frontend-Repository](https://github.com/Yoonsik-Shin/bobfull_react/)
+## 익명 기반 식사 매칭 프로젝트
+
+> [BackEnd-Repository](https://github.com/kmk4162/bobfull)
+
+​    
+
+---
+
+## ❗[Refactoring Doc](./Refactoring.md)❗
+
+- 개인학습을 위해 코드 리팩토링 진행
+- 모든 부분을 진행하지는 않았음 
+- 성능저하 해소, 레이어 분리, 리액트에서의 DOM조작 제거등을 진행함
+- 지속적인 학습을 통해 더 개선할 예정
+
+---
+
+​     
 
 ## 🔖 Table of contents
 
@@ -27,10 +38,12 @@
       - [Multichat APP](#multichat-app)
       - [Restaurant APP](#restaurant-app)
     - [Frontend](#Frontend)
-        - [???](#???)
-        - [????](#????)
+        - [React](#React)
+        - [Redux](#Redux)
   - [💬Reviews](#reviews)
   - [Scrum Records](#scrum-records)
+
+​    
 
 ## 📜 General info
 
@@ -41,20 +54,26 @@
   - Front-end([신윤식](https://github.com/Yoonsik-Shin/), [이용환](https://github.com/tnpfldyd/))
   - Back-end([김문경](https://github.com/kmk4162/), [이주용](https://github.com/yaonggod/), [이태극](https://github.com/uRo3YA/))
 
+​    
+
 ## 🧭Preview
 
 - 메인 화면
-	- ![메인메뉴](./assets/%EB%A9%94%EC%9D%B8%EB%A9%94%EB%89%B4.JPG)
+	
+	![메인메뉴](./assets/%EB%A9%94%EC%9D%B8%EB%A9%94%EB%89%B4.JPG)
 - 프로필 페이지
-  - ![프로필](./assets/%ED%94%84%EB%A1%9C%ED%95%84.JPG)
-
+  
+  ![프로필](./assets/%ED%94%84%EB%A1%9C%ED%95%84.JPG)
+  
 - 룰렛
-  - ![af2ec0d6d8](./assets/af2ec0d6d8.gif)
-
+  
+  ![af2ec0d6d8](./assets/af2ec0d6d8.gif)
+  
 - 리뷰 작성
-  - ![6e8264aacc](./assets/6e8264aacc.gif)
+  
+  ![6e8264aacc](./assets/6e8264aacc.gif)
 
-
+​    
 
 ## 🗃️Modeling
 
@@ -62,9 +81,13 @@
 
 > ![bobfull (1)](./assets/bobfull%20(1).png)
 
+​    
+
 ### 와이어 프레임
 
 > ![와이어프레임](./assets/%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84.JPG)
+
+​    
 
 ## 💻Technologies
 
@@ -94,6 +117,8 @@
 * CI/CD
 
   <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
+
+​      
 
 ## 🔍Features
 
@@ -155,6 +180,8 @@
 
 - JWT 토큰 로그인 후 유저의 상태관리
 
+​    
+
 ## 💬Reviews
 
 - 김문경
@@ -198,7 +225,7 @@
   - 프론트와 백 서로 따로 배포를 하여 백서버와 프론트 서버를 연결시키는 것을 경험하여 좋았습니다.
   
 
-
+​    
 
 ## Scrum Records
 
