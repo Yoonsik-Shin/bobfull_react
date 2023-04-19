@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react";
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { useEffect, useMemo, useState } from "react";
 
-function Location() {
-  const [state, setState] = useState({
+export const useWatchLocation = () => {
+  const DEFAULT_LOCATION = {
     center: {
       lat: 33.450701,
       lng: 126.570667,
     },
     errMsg: null,
     isLoading: true,
-  });
+  };
 
+  const [curLocation, setCurLocation] = useState(DEFAULT_LOCATION);
+
+  // 현재위치 알아오기
   useEffect(() => {
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          setState((prev) => ({
+          setCurLocation((prev) => ({
             ...prev,
             center: {
               lat: position.coords.latitude, // 위도
@@ -26,7 +28,7 @@ function Location() {
           }));
         },
         (err) => {
-          setState((prev) => ({
+          setCurLocation((prev) => ({
             ...prev,
             errMsg: err.message,
             isLoading: false,
@@ -35,7 +37,7 @@ function Location() {
       );
     } else {
       // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-      setState((prev) => ({
+      setCurLocation((prev) => ({
         ...prev,
         errMsg: "geolocation을 사용할수 없어요..",
         isLoading: false,
@@ -43,35 +45,7 @@ function Location() {
     }
   }, []);
 
-  return (
-    <>
-      {/* <div>{state.center.lat}</div>
-      <div>{state.center.lng}</div> */}
-      <Map // 지도를 표시할 Container
-        center={state.center}
-        style={{
-          // 지도의 크기
-          width: "100%",
-          height: "450px",
-        }}
-        level={3} // 지도의 확대 레벨
-      >
-        {!state.isLoading && (
-          <MapMarker position={state.center} style={{ textAlign: "center" }}>
-            <div
-              style={{
-                color: "#000",
-                display: "inline-block",
-                paddingLeft: "13px",
-              }}
-            >
-              {state.errMsg ? state.errMsg : "현재 위치 입니다"}
-            </div>
-          </MapMarker>
-        )}
-      </Map>
-    </>
-  );
-}
-
-export default Location;
+  return {
+    curLocation,
+  };
+};
